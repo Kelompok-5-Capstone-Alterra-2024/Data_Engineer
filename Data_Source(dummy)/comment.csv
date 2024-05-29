@@ -1,0 +1,22 @@
+id,customer_id,article_id,comment,created_at,updated_at,deleted_at
+1,1,1,Artikel ini sangat informatif! Saya belajar banyak hal baru.,2024-05-29 19:36:00,-,-
+2,2,2,Bagus sekali! Penjelasannya mudah dipahami.,2024-05-29 19:37:00,-,-
+3,3,3,Saya suka dengan contoh-contoh yang diberikan. Sangat membantu!,2024-05-29 19:38:00,-,-
+4,4,4,Artikel ini sangat relevan dengan kebutuhan saya. Terima kasih!,2024-05-29 19:39:00,-,-
+5,5,5,Saya ingin menambahkan beberapa informasi. Menurut saya...,2024-05-29 19:40:00,-,-
+6,6,6,Apakah ada cara lain untuk melakukan ini?,2024-05-29 19:41:00,-,-
+7,7,7,Saya mengalami masalah saat mengikuti langkah-langkahnya.,2024-05-29 19:42:00,-,-
+8,8,8,Bisakah Anda menjelaskan lebih detail mengenai bagian ini?,2024-05-29 19:43:00,-,-
+9,9,9,Saya ingin memberikan saran...,2024-05-29 19:44:00,-,-
+10,10,10,Artikel ini sangat bagus! Saya akan merekomendasikannya kepada teman-teman saya.,2024-05-29 19:45:00,-,-
+11,11,11,Saya ingin berlangganan newsletter untuk mendapatkan informasi terbaru.,2024-05-29 19:46:00,-,-
+12,12,12,Saya ingin mengikuti akun media sosial Anda untuk mendapatkan update.,2024-05-29 19:47:00,-,-
+13,13,13,Saya ingin memberikan testimoni...,2024-05-29 19:48:00,-,-
+14,14,14,Saya ingin mengajukan pertanyaan...,2024-05-29 19:49:00,-,-
+15,15,15,Saya ingin memberikan saran untuk...,2024-05-29 19:50:00,-,-
+16,16,16,Saya ingin melaporkan...,2024-05-29 19:51:00,-,-
+17,17,17,Saya ingin...,2024-05-29 19:52:00,-,-
+18,18,18,Saya ingin...,2024-05-29 19:53:00,-,-
+19,19,19,Saya ingin...,2024-05-29 19:54:00,-,-
+20,20,20,Saya ingin...,2024-05-29 19:55:00,-,-
+21,21,21,Saya ingin...,2024-05-29,,
