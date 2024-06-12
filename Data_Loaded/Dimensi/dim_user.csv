@@ -1,0 +1,70 @@
+id,created_at,deleted_at,fullname,username,email,password,avatar,reset_token,no_telp
+1,2024-06-03 10:45:11.896,,John Doe,johndoe,newaccount@test.com,123123,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,PyZcxA7ErwYN3VC0Yef4NyfVseHQ33UAmY6kVNhInFo=,-
+51,2024-06-04 10:45:11.896,2024-06-06 08:04:25.838,sinta,sinta,sintaayr03@gmail.com,12345,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,81365706378
+52,2024-06-04 10:45:11.896,,ayu,ayu,sintaayr19@gmail.com,12345,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,81365706378
+53,2024-06-04 10:45:11.896,,risma,risma,sintaayr06@gmail.com,12345,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,81365706378
+54,2024-06-04 10:45:11.896,,wati,wati,sintaayr1906@gmail.com,12345,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,81365706378
+55,2024-06-04 10:45:11.896,,sintaayr,sintaayr,sintaayr190603@gmail.com,12345,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,81365706378
+56,2024-06-04 10:45:11.896,,suryaditr,suryaditr,suryadisimanungkalitt@gmail.com,1234,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,82277266175
+58,2024-06-05 10:45:11.896,,hanggoro,hanggoroo,hanggoroo@gmail.com,12345678,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,85607944442
+59,2024-06-05 10:45:11.896,,seto,seto,setohanggoro8@gmail.com,12345,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,85607944442
+60,2024-06-05 10:45:11.896,,ika,ika,ikapurwanti144@gmail.com,12345,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,wuUUJNvMDPI4ePttMNqTUO5ZHW0pq8hjXngL1YiQavg=,89503250312
+61,2024-06-05 10:45:11.896,,purwanti,purwanti,purwantiika144@gmail.com,12345,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,89503250312
+62,2024-06-05 10:45:11.896,,ikap,ikap,ikapprwnt144@gmail.com,12345,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,89503250312
+63,2024-06-05 10:45:11.896,,tarisa,tarisa,111202013105@mhs.dinus.ac.id,12345,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,87762583790
+64,2024-06-05 10:45:11.896,,dina,dina,dina105@gmail.com,12345,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,87762583790
+65,2024-06-05 10:45:11.896,,lutfiana,lutfiana,lutfianaaa11@gmail.com,12345,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,87762583790
+66,2024-06-05 10:45:11.896,,lutfi,lutfi,lutfiii22@gmail.com,12345,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,87762583790
+67,2024-06-05 10:45:11.896,,dzikri,dzikri,dzikririandripratama@gmail.com,12345,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,882005620028
+68,2024-06-05 10:45:11.896,,riandri,riandri,riandripratama@gmail.com,12345,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,882005620028
+69,2024-06-05 10:45:11.896,,pratama,pratama,dzikripratama@gmail.com,12345,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,882005620028
+70,2024-06-05 10:45:11.896,,hilmi,hilmi,hilmiyahya825@gmail.com,12345,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,81259830695
+71,2024-06-05 06:17:18.949,,Angga Aliimu Fattah,Angga,bigboss13022003@gmail.com,bigboss2003,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,t-y693_1Z9inlGlTvMwGlvyqg5zjDw3xuZeNalTg-Wg=,0
+72,2024-06-05 06:37:57.756,,Hanggoro Seto F,johndoe,hanggoroseto9@gmail.com,12345,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,0932255
+73,2024-06-05 06:38:42.897,,sinta ayu,sinta,sinta@gmail.com,12345,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,0932255
+74,2024-06-05 06:39:53.424,,sinta,sinta,sinta1@gmail.com,12345,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,0932255
+75,2024-06-05 06:41:53.972,,Angga Aliimu Fattah,angga,a@gmail.com,a12345,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,09762562598726
+76,2024-06-05 07:14:31.241,,Anggi Hanggoro,anggi,hanggoroseto99@gmail.com,12345,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,085607944442
+77,2024-06-05 07:31:52.140,,lemot,lemot,lemot@gmail.com,lemot,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,0978786534324
+78,2024-06-05 08:35:31.059,,suryadi9,suryadi9,suryadi9@gmail.com,suryadi9,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,082277266175
+79,2024-06-05 12:11:05.291,,Anggi Hanggoro Firman,anggi12,hanggoroseto98@gmail.com,12345,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,085607944441
+80,2024-06-06 07:34:13.185,,Kris2,Kris92,testaja2@test.com,123123,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,091111118
+81,2024-06-06 11:21:07.530,,suryaa,surya,susrya5@gmail.com,12345,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,09322558
+82,2024-06-06 11:22:32.877,,suryaadaii,suryagit,suryagit@gmail.com,12345,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,093225582
+83,2024-06-06 12:56:55.605,,suryaadaiis,suryagits,suryagits@gmail.com,12345,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,0932255822
+84,2024-06-06 16:32:42.669,,oala,oala,oala@gmail.com,oala,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,08676546
+85,2024-06-06 16:58:31.903,,Anggi Hanggoro Firmandani,anggi123,hanggoroseto6@gmail.com,123,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,I1lNbD-Vi8nkcMwTIANwWOBNJRxZ3gAC-ReTg1lkBc0=,085607941
+86,2024-06-06 17:45:06.159,,manut,manut,manutgmail.com,manut,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,0932252
+87,2024-06-09 09:43:13.315,,Suryadi12,Suryadi12,suryadi12@gmail.com,Suryadi12,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,08223225582
+88,2024-06-09 09:44:48.358,,Suryadia2, Suryadia2,suryadi122@gmail.com,Suryadia2,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,082232255822
+89,2024-06-09 09:45:45.332,,Suryadi1aa2,Suryadi1aa2,suryadi122aa@gmail.com,Suryadi1aa2,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,082232255823
+90,2024-06-10 07:22:11.377,,Suryadiaaw2,Suryadi1awa2,suryadi122aagmail.com,Suryadi1aa2,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,0822322422
+91,2024-06-10 07:44:41.022,,yuda,yuda77,yudha.islami@alterra.id,1234567,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,K0rfDjCfepHUjGp3OiR8oW-lbTJic88lvU2ZyZAS5bM=,0822322422323
+92,2024-06-10 07:44:41.022,,sintaaa,sintaaa,sintaayr03@gmail.com,9999,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,JTjQxOL4SLN-5yRvbl8tHeO3stZARy5INVhaHfDkfHs=,0999999999
+93,2024-06-11 18:56:14.077,,yudda,yiudd77,udha.islami@alterra.id,1234567,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,022322422323
+94,2024-06-11 19:07:10.561,,rainamantis,rainy,rainamantis@gmail.com,101010,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,0932255888
+95,2024-06-11 19:12:31.077,,arya,arya,arya@gmail.com,arya,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,07686473563
+96,2024-06-11 19:13:09.411,,aryas,aryas,aryas@gmail.com,arya,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,0786846756734
+97,2024-06-11 19:14:08.819,,selo,selo,selo@gmail.com,selo,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,0786754635
+98,2024-06-11 19:23:33.297,,anita,anita,anita@gmail.com,anita,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,0865785374564
+99,2024-06-11 19:24:22.869,,terserah,terserah,terserah@gmail.com,terserah,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,067467456876
+100,2024-06-11 19:25:49.039,,suka suka suka,sukasukasuka,sukasuka@gmail.com,suka,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,081234567890
+101,2024-06-11 19:26:05.449,2024-06-12 06:09:15.028,rainamantiss,rainyy,rainamantiss@gmail.com,10101010,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,093
+102,2024-06-11 19:26:18.164,2024-06-12 06:10:50.177,sukas,sukas,sukas@gmail.com,sukas,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,08
+103,2024-06-11 19:26:47.416,2024-06-12 06:11:53.370,rainamantisss,rainyyy,rainamantisss@gmail.com,1010101011,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,123
+104,2024-06-11 19:29:19.290,2024-06-12 06:12:53.894,sukass,sukass,sukass@gmail.com,sukass,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,08796457
+105,2024-06-11 20:13:04.766,,d,d,d,d,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,d
+106,2024-06-11 22:30:16.715,,manutt,manutt,manutt@gmail.com,manutt,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,078685743534
+107,2024-06-11 22:39:44.717,,malas,malas,malas@gmail.com,malas,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,08797685745
+108,2024-06-11 22:40:34.060,,gobles,gobles,gobles@gmail.com,gobles,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,0982374355
+109,2024-06-11 22:45:19.957,,bolang,bolang,bolang@gmail.com,bolang,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,4354789778675
+110,2024-06-11 22:47:37.884,,bolang1,bolang1,bolang1@gmail.com,bolang1,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,43547897786751
+111,2024-06-11 22:49:01.356,2024-06-12 02:31:40.544,bolangs,bolangs,bolangs@gmail.com,bolangs,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,435478977867511
+112,2024-06-12 07:30:58.103,,sd,sd,sd,sd,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,sd
+113,2024-06-12 07:44:22.154,,sds,sds,sds,sds,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,sds
+114,2024-06-12 07:45:05.031,,yuddsa,yisudd77,udhsa.islami@alterra.id,123d4567,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,02422323
+115,2024-06-12 07:45:41.485,,asus,asus,asus@gmail.com,asus,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,08768645464
+116,2024-06-12 07:47:14.381,,asuss,asuss,asus1@gmail.com,asuss,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,08567536434
+117,2024-06-12 07:55:05.703,,asussd,asussd,asus1d@gmail.com,asussd,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,085675364342
+118,2024-06-12 08:11:47.825,,asussa,asussa,asussa,asussa,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,436346357
+119,2024-06-12 08:26:32.922,,haland,haland,haland@gmail.com,haland,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,-,086345325532
