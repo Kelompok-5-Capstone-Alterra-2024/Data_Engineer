@@ -1,3 +1,0 @@
-id,created_at,updated_at,deleted_at,user_id,article_id,comment,total_likes
-1,2024-06-09 05:57:01.302,2024-06-09 05:57:01.302,,73,32,This is a new comment.,
-2,2024-06-09 13:20:06.191,2024-06-09 13:20:06.191,,73,32,This is a new comment.1213,0.0
