@@ -902,3 +902,95 @@ File Path                                                PID  Runtime      # DAG
 [2024-06-23T15:13:43.537+0000] {manager.py:1203} ERROR - Processor for /opt/airflow/dags/etl_dags.py with PID 52 started at 2024-06-23T15:11:24.481037+00:00 has timed out, killing it.
 [2024-06-23T15:13:45.045+0000] {manager.py:452} INFO - Exiting gracefully upon receiving signal 15
 [2024-06-23T15:13:45.034+0000] {manager.py:452} INFO - Exiting gracefully upon receiving signal 15
+[2024-06-23T15:20:12.786+0000] {manager.py:470} INFO - Processing files using up to 2 processes at a time 
+[2024-06-23T15:20:12.807+0000] {manager.py:471} INFO - Process each file at most once every 30 seconds
+[2024-06-23T15:20:12.808+0000] {manager.py:472} INFO - Checking for new files in /opt/airflow/dags every 300 seconds
+[2024-06-23T15:20:12.816+0000] {manager.py:737} INFO - Searching for files in /opt/airflow/dags
+[2024-06-23T15:20:13.001+0000] {manager.py:740} INFO - There are 4 files in /opt/airflow/dags
+[2024-06-23T15:20:14.881+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  ----------
+/opt/airflow/dags/etl_all_dags.py                         43  0.53s             0           0
+/opt/airflow/dags/etl_dags.py                                                   0           0
+/opt/airflow/dags/custom_operator/etl_all_operator.py                           0           0
+/opt/airflow/dags/custom_operator/etl_operator.py         44  0.23s             0           0
+================================================================================
+[2024-06-23T15:20:48.864+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  ----------
+/opt/airflow/dags/etl_all_dags.py                         43  34.27s            0           0
+/opt/airflow/dags/etl_dags.py                                                   0           0
+/opt/airflow/dags/custom_operator/etl_all_operator.py                           0           0
+/opt/airflow/dags/custom_operator/etl_operator.py         44  33.97s            0           0
+================================================================================
+[2024-06-23T15:20:54.604+0000] {manager.py:1016} ERROR - Processor for /opt/airflow/dags/custom_operator/etl_operator.py exited with return code -9.
+[2024-06-23T15:21:06.149+0000] {manager.py:1203} ERROR - Processor for /opt/airflow/dags/etl_all_dags.py with PID 43 started at 2024-06-23T15:20:14.335088+00:00 has timed out, killing it.
+[2024-06-23T15:21:23.985+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/etl_all_dags.py                                               0           1  51.81s          2024-06-23T15:21:06
+/opt/airflow/dags/custom_operator/etl_operator.py                               0          -1  39.95s          2024-06-23T15:20:54
+/opt/airflow/dags/etl_dags.py                             48  17.70s            0           0
+/opt/airflow/dags/custom_operator/etl_all_operator.py     47  22.13s            0           0
+================================================================================
+[2024-06-23T15:25:16.909+0000] {manager.py:737} INFO - Searching for files in /opt/airflow/dags
+[2024-06-23T15:25:19.724+0000] {manager.py:740} INFO - There are 4 files in /opt/airflow/dags
+[2024-06-23T15:25:20.249+0000] {manager.py:1203} ERROR - Processor for /opt/airflow/dags/custom_operator/etl_all_operator.py with PID 47 started at 2024-06-23T15:21:01.808878+00:00 has timed out, killing it.
+[2024-06-23T15:25:20.278+0000] {manager.py:1203} ERROR - Processor for /opt/airflow/dags/etl_dags.py with PID 48 started at 2024-06-23T15:21:06.236391+00:00 has timed out, killing it.
+[2024-06-23T15:25:21.975+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/custom_operator/etl_all_operator.py                           0           1  258.44s         2024-06-23T15:25:20
+/opt/airflow/dags/etl_dags.py                                                   0           1  254.01s         2024-06-23T15:25:20
+/opt/airflow/dags/etl_all_dags.py                         49  1.47s             0           1  51.81s          2024-06-23T15:21:06
+/opt/airflow/dags/custom_operator/etl_operator.py         50  0.16s             0          -1  39.95s          2024-06-23T15:20:54
+================================================================================
+[2024-06-23T15:26:54.077+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/custom_operator/etl_all_operator.py                           0           1  258.44s         2024-06-23T15:25:20
+/opt/airflow/dags/etl_dags.py                                                   0           1  254.01s         2024-06-23T15:25:20
+/opt/airflow/dags/etl_all_dags.py                         49  93.57s            0           1  51.81s          2024-06-23T15:21:06
+/opt/airflow/dags/custom_operator/etl_operator.py         50  92.27s            0          -1  39.95s          2024-06-23T15:20:54
+================================================================================
+[2024-06-23T15:27:48.248+0000] {manager.py:1203} ERROR - Processor for /opt/airflow/dags/etl_all_dags.py with PID 49 started at 2024-06-23T15:25:20.413236+00:00 has timed out, killing it.
+[2024-06-23T15:27:48.329+0000] {manager.py:1203} ERROR - Processor for /opt/airflow/dags/custom_operator/etl_operator.py with PID 50 started at 2024-06-23T15:25:21.720038+00:00 has timed out, killing it.
+[2024-06-23T15:27:48.877+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/custom_operator/etl_all_operator.py     51  0.13s             0           1  258.44s         2024-06-23T15:25:20
+/opt/airflow/dags/etl_dags.py                             52  0.02s             0           1  254.01s         2024-06-23T15:25:20
+/opt/airflow/dags/etl_all_dags.py                                               0           1  147.83s         2024-06-23T15:27:48
+/opt/airflow/dags/custom_operator/etl_operator.py                               0           1  146.53s         2024-06-23T15:27:48
+================================================================================
+[2024-06-23T15:30:21.221+0000] {manager.py:1203} ERROR - Processor for /opt/airflow/dags/custom_operator/etl_all_operator.py with PID 51 started at 2024-06-23T15:27:48.712986+00:00 has timed out, killing it.
+[2024-06-23T15:33:27.297+0000] {manager.py:1203} ERROR - Processor for /opt/airflow/dags/etl_dags.py with PID 52 started at 2024-06-23T15:27:48.825301+00:00 has timed out, killing it.
+[2024-06-23T15:33:39.531+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/etl_all_dags.py                         53  0.70s             0           1  147.83s         2024-06-23T15:27:48
+/opt/airflow/dags/custom_operator/etl_operator.py         54  0.14s             0           1  146.53s         2024-06-23T15:27:48
+/opt/airflow/dags/custom_operator/etl_all_operator.py                           0           1  142.33s         2024-06-23T15:30:11
+/opt/airflow/dags/etl_dags.py                                                   0           1  142.22s         2024-06-23T15:30:11
+================================================================================

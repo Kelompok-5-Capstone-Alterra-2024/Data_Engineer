@@ -462,3 +462,6 @@ airflow.exceptions.AirflowException: missing keyword argument 'ds'
 [2024-06-23T15:25:21.927+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/etl_all_dags.py for tasks to queue
 [2024-06-23T15:25:22.213+0000] {logging_mixin.py:188} INFO - [2024-06-23T15:25:22.199+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/etl_all_dags.py
 [2024-06-23T15:26:53.981+0000] {logging_mixin.py:188} INFO - [2024-06-23T15:25:56.233+0000] {timeout.py:68} ERROR - Process timed out, PID: 49
+[2024-06-23T15:33:40.794+0000] {processor.py:161} INFO - Started process (PID=53) to work on /opt/airflow/dags/etl_all_dags.py
+[2024-06-23T15:33:40.923+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/etl_all_dags.py for tasks to queue
+[2024-06-23T15:33:50.432+0000] {logging_mixin.py:188} INFO - [2024-06-23T15:33:47.891+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/etl_all_dags.py

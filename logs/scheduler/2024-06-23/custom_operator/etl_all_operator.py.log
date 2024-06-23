@@ -526,3 +526,7 @@ sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) could not translate
 [2024-06-23T15:21:23.920+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/custom_operator/etl_all_operator.py for tasks to queue
 [2024-06-23T15:21:24.173+0000] {logging_mixin.py:188} INFO - [2024-06-23T15:21:24.090+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/custom_operator/etl_all_operator.py
 [2024-06-23T15:23:08.623+0000] {logging_mixin.py:188} INFO - [2024-06-23T15:22:09.419+0000] {timeout.py:68} ERROR - Process timed out, PID: 47
+[2024-06-23T15:27:49.465+0000] {processor.py:161} INFO - Started process (PID=51) to work on /opt/airflow/dags/custom_operator/etl_all_operator.py
+[2024-06-23T15:27:49.588+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/custom_operator/etl_all_operator.py for tasks to queue
+[2024-06-23T15:27:52.367+0000] {logging_mixin.py:188} INFO - [2024-06-23T15:27:49.973+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/custom_operator/etl_all_operator.py
+[2024-06-23T15:28:35.300+0000] {logging_mixin.py:188} INFO - [2024-06-23T15:28:32.110+0000] {timeout.py:68} ERROR - Process timed out, PID: 51

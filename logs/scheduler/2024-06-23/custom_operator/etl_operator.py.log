@@ -278,3 +278,6 @@ Please take a look at these docs to improve your DAG import time:
 [2024-06-23T15:25:22.146+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/custom_operator/etl_operator.py for tasks to queue
 [2024-06-23T15:25:22.215+0000] {logging_mixin.py:188} INFO - [2024-06-23T15:25:22.197+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/custom_operator/etl_operator.py
 [2024-06-23T15:26:53.980+0000] {logging_mixin.py:188} INFO - [2024-06-23T15:25:56.233+0000] {timeout.py:68} ERROR - Process timed out, PID: 50
+[2024-06-23T15:33:40.801+0000] {processor.py:161} INFO - Started process (PID=54) to work on /opt/airflow/dags/custom_operator/etl_operator.py
+[2024-06-23T15:33:40.913+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/custom_operator/etl_operator.py for tasks to queue
+[2024-06-23T15:33:50.431+0000] {logging_mixin.py:188} INFO - [2024-06-23T15:33:47.891+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/custom_operator/etl_operator.py
