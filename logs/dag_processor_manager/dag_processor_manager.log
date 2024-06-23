@@ -1,0 +1,904 @@
+[2024-06-23T13:02:54.477+0000] {manager.py:470} INFO - Processing files using up to 2 processes at a time 
+[2024-06-23T13:02:54.480+0000] {manager.py:471} INFO - Process each file at most once every 30 seconds
+[2024-06-23T13:02:54.485+0000] {manager.py:472} INFO - Checking for new files in /opt/airflow/dags every 300 seconds
+[2024-06-23T13:02:54.487+0000] {manager.py:737} INFO - Searching for files in /opt/airflow/dags
+[2024-06-23T13:02:54.912+0000] {manager.py:740} INFO - There are 4 files in /opt/airflow/dags
+[2024-06-23T13:02:55.795+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  ----------
+/opt/airflow/dags/etl_all_dags.py                         37  0.57s             0           0
+/opt/airflow/dags/etl_dags.py                                                   0           0
+/opt/airflow/dags/custom_operator/etl_all_operator.py     36  0.62s             0           0
+/opt/airflow/dags/custom_operator/etl_operator.py                               0           0
+================================================================================
+[2024-06-23T13:03:26.968+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/etl_all_dags.py                                               0           1  29.45s          2024-06-23T13:03:24
+/opt/airflow/dags/custom_operator/etl_all_operator.py                           0           0  29.44s          2024-06-23T13:03:24
+/opt/airflow/dags/etl_dags.py                             46  2.23s             0           0
+/opt/airflow/dags/custom_operator/etl_operator.py         47  0.12s             0           0
+================================================================================
+[2024-06-23T13:03:57.618+0000] {manager.py:1016} ERROR - Processor for /opt/airflow/dags/etl_dags.py exited with return code 1.
+[2024-06-23T13:03:58.060+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/etl_dags.py                                                   0          -1  32.95s          2024-06-23T13:03:57
+/opt/airflow/dags/etl_all_dags.py                                               0           1  29.45s          2024-06-23T13:03:24
+/opt/airflow/dags/custom_operator/etl_all_operator.py     55  0.02s             0           0  29.44s          2024-06-23T13:03:24
+/opt/airflow/dags/custom_operator/etl_operator.py         47  31.21s            0           0
+================================================================================
+[2024-06-23T13:04:00.089+0000] {manager.py:1016} ERROR - Processor for /opt/airflow/dags/custom_operator/etl_operator.py exited with return code 1.
+[2024-06-23T13:04:29.073+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/custom_operator/etl_operator.py                               0          -1  33.25s          2024-06-23T13:04:00
+/opt/airflow/dags/etl_dags.py                             59  1.03s             0          -1  32.95s          2024-06-23T13:03:57
+/opt/airflow/dags/custom_operator/etl_all_operator.py                           0           0  22.96s          2024-06-23T13:04:20
+/opt/airflow/dags/etl_all_dags.py                                               0           1  20.59s          2024-06-23T13:04:20
+================================================================================
+[2024-06-23T13:04:59.825+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                              PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/etl_dags.py                                                   1           0  9.40s           2024-06-23T13:04:37
+/opt/airflow/dags/custom_operator/etl_operator.py                               0           0  7.31s           2024-06-23T13:04:37
+/opt/airflow/dags/etl_all_dags.py                                               0           1  1.50s           2024-06-23T13:04:52
+/opt/airflow/dags/custom_operator/etl_all_operator.py                           0           0  1.45s           2024-06-23T13:04:52
+================================================================================
+[2024-06-23T13:05:30.310+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/etl_all_dags.py                         87  1.03s             0           1  8.08s           2024-06-23T13:05:27
+/opt/airflow/dags/custom_operator/etl_all_operator.py                           0           0  4.66s           2024-06-23T13:05:27
+/opt/airflow/dags/etl_dags.py                                                   1           0  1.45s           2024-06-23T13:05:09
+/opt/airflow/dags/custom_operator/etl_operator.py                               0           0  1.33s           2024-06-23T13:05:09
+================================================================================
+[2024-06-23T13:06:00.450+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/custom_operator/etl_all_operator.py    103  2.09s             0           0  4.66s           2024-06-23T13:05:27
+/opt/airflow/dags/etl_dags.py                                                   1           0  3.85s           2024-06-23T13:05:43
+/opt/airflow/dags/etl_all_dags.py                                               0           1  3.82s           2024-06-23T13:05:43
+/opt/airflow/dags/custom_operator/etl_operator.py                               0           0  1.38s           2024-06-23T13:05:45
+================================================================================
+[2024-06-23T13:06:31.229+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/custom_operator/etl_all_operator.py                           0           0  5.85s           2024-06-23T13:06:04
+/opt/airflow/dags/etl_dags.py                            112  16.45s            1           0  3.85s           2024-06-23T13:05:43
+/opt/airflow/dags/etl_all_dags.py                        111  16.73s            0           1  3.82s           2024-06-23T13:05:43
+/opt/airflow/dags/custom_operator/etl_operator.py                               0           0  1.38s           2024-06-23T13:05:45
+================================================================================
+[2024-06-23T13:07:01.647+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                              PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/etl_all_dags.py                                               0           1  22.49s          2024-06-23T13:06:36
+/opt/airflow/dags/custom_operator/etl_operator.py                               0           0  2.51s           2024-06-23T13:06:39
+/opt/airflow/dags/custom_operator/etl_all_operator.py                           0           0  2.42s           2024-06-23T13:06:39
+/opt/airflow/dags/etl_dags.py                                                   1           0  1.71s           2024-06-23T13:06:54
+================================================================================
+[2024-06-23T13:07:31.744+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                              PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/etl_all_dags.py                                               1           0  1.47s           2024-06-23T13:07:08
+/opt/airflow/dags/etl_dags.py                                                   1           0  1.28s           2024-06-23T13:07:26
+/opt/airflow/dags/custom_operator/etl_all_operator.py                           0           0  1.22s           2024-06-23T13:07:11
+/opt/airflow/dags/custom_operator/etl_operator.py                               0           0  1.11s           2024-06-23T13:07:11
+================================================================================
+[2024-06-23T13:07:55.379+0000] {manager.py:737} INFO - Searching for files in /opt/airflow/dags
+[2024-06-23T13:07:55.755+0000] {manager.py:740} INFO - There are 4 files in /opt/airflow/dags
+[2024-06-23T13:08:01.888+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                              PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/etl_dags.py                                                   1           0  1.99s           2024-06-23T13:07:58
+/opt/airflow/dags/etl_all_dags.py                                               1           0  1.37s           2024-06-23T13:07:41
+/opt/airflow/dags/custom_operator/etl_all_operator.py                           0           0  1.24s           2024-06-23T13:07:43
+/opt/airflow/dags/custom_operator/etl_operator.py                               0           0  1.24s           2024-06-23T13:07:43
+================================================================================
+[2024-06-23T13:08:32.566+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                              PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/etl_dags.py                                                   1           0  1.07s           2024-06-23T13:08:30
+/opt/airflow/dags/etl_all_dags.py                                               1           0  1.04s           2024-06-23T13:08:13
+/opt/airflow/dags/custom_operator/etl_all_operator.py                           0           0  1.01s           2024-06-23T13:08:15
+/opt/airflow/dags/custom_operator/etl_operator.py                               0           0  0.99s           2024-06-23T13:08:15
+================================================================================
+[2024-06-23T13:09:02.726+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                              PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/etl_dags.py                                                   1           0  1.60s           2024-06-23T13:09:02
+/opt/airflow/dags/etl_all_dags.py                                               1           0  1.08s           2024-06-23T13:08:44
+/opt/airflow/dags/custom_operator/etl_all_operator.py                           0           0  0.99s           2024-06-23T13:08:46
+/opt/airflow/dags/custom_operator/etl_operator.py                               0           0  0.97s           2024-06-23T13:08:46
+================================================================================
+[2024-06-23T13:09:32.926+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/custom_operator/etl_all_operator.py                           0           0  3.11s           2024-06-23T13:09:20
+/opt/airflow/dags/etl_all_dags.py                                               1           0  2.93s           2024-06-23T13:09:17
+/opt/airflow/dags/custom_operator/etl_operator.py                               0           0  2.69s           2024-06-23T13:09:20
+/opt/airflow/dags/etl_dags.py                            198  0.01s             1           0  1.60s           2024-06-23T13:09:02
+================================================================================
+[2024-06-23T13:10:28.688+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/custom_operator/etl_all_operator.py    208  38.02s            0           0  3.11s           2024-06-23T13:09:20
+/opt/airflow/dags/etl_all_dags.py                        207  39.51s            1           0  2.93s           2024-06-23T13:09:17
+/opt/airflow/dags/custom_operator/etl_operator.py                               0           0  2.69s           2024-06-23T13:09:20
+/opt/airflow/dags/etl_dags.py                                                   1           0  1.07s           2024-06-23T13:09:33
+================================================================================
+[2024-06-23T13:10:29.859+0000] {manager.py:1016} ERROR - Processor for /opt/airflow/dags/custom_operator/etl_all_operator.py exited with return code 1.
+[2024-06-23T13:10:30.113+0000] {manager.py:1016} ERROR - Processor for /opt/airflow/dags/etl_all_dags.py exited with return code 1.
+[2024-06-23T13:13:12.968+0000] {manager.py:737} INFO - Searching for files in /opt/airflow/dags
+[2024-06-23T13:13:13.338+0000] {manager.py:740} INFO - There are 4 files in /opt/airflow/dags
+[2024-06-23T13:13:13.504+0000] {manager.py:1203} ERROR - Processor for /opt/airflow/dags/custom_operator/etl_operator.py with PID 211 started at 2024-06-23T13:10:30.066535+00:00 has timed out, killing it.
+[2024-06-23T13:13:13.540+0000] {manager.py:1203} ERROR - Processor for /opt/airflow/dags/etl_dags.py with PID 218 started at 2024-06-23T13:10:30.883348+00:00 has timed out, killing it.
+[2024-06-23T13:13:13.666+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/custom_operator/etl_operator.py                               0           1  163.44s         2024-06-23T13:13:13
+/opt/airflow/dags/etl_dags.py                                                   0           1  162.62s         2024-06-23T13:13:13
+/opt/airflow/dags/etl_all_dags.py                        222  0.01s             0          -1  40.95s          2024-06-23T13:10:30
+/opt/airflow/dags/custom_operator/etl_all_operator.py    221  0.02s             0          -1  39.20s          2024-06-23T13:10:29
+================================================================================
+[2024-06-23T13:14:27.940+0000] {manager.py:1203} ERROR - Processor for /opt/airflow/dags/custom_operator/etl_all_operator.py with PID 221 started at 2024-06-23T13:13:13.639784+00:00 has timed out, killing it.
+[2024-06-23T13:14:28.013+0000] {manager.py:1203} ERROR - Processor for /opt/airflow/dags/etl_all_dags.py with PID 222 started at 2024-06-23T13:13:13.657332+00:00 has timed out, killing it.
+[2024-06-23T13:14:28.561+0000] {manager.py:452} INFO - Exiting gracefully upon receiving signal 15
+[2024-06-23T13:14:35.637+0000] {manager.py:470} INFO - Processing files using up to 2 processes at a time 
+[2024-06-23T13:14:35.644+0000] {manager.py:471} INFO - Process each file at most once every 30 seconds
+[2024-06-23T13:14:35.668+0000] {manager.py:472} INFO - Checking for new files in /opt/airflow/dags every 300 seconds
+[2024-06-23T13:14:35.686+0000] {manager.py:737} INFO - Searching for files in /opt/airflow/dags
+[2024-06-23T13:14:36.374+0000] {manager.py:740} INFO - There are 4 files in /opt/airflow/dags
+[2024-06-23T13:14:36.857+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  ----------
+/opt/airflow/dags/etl_all_dags.py                        239  0.11s             0           0
+/opt/airflow/dags/etl_dags.py                            238  0.17s             0           0
+/opt/airflow/dags/custom_operator/etl_all_operator.py                           0           0
+/opt/airflow/dags/custom_operator/etl_operator.py                               0           0
+================================================================================
+[2024-06-23T13:14:43.307+0000] {manager.py:452} INFO - Exiting gracefully upon receiving signal 15
+[2024-06-23T13:14:43.321+0000] {manager.py:452} INFO - Exiting gracefully upon receiving signal 15
+[2024-06-23T13:14:43.307+0000] {manager.py:452} INFO - Exiting gracefully upon receiving signal 15
+[2024-06-23T13:14:46.972+0000] {manager.py:452} INFO - Exiting gracefully upon receiving signal 15
+[2024-06-23T13:14:49.507+0000] {manager.py:452} INFO - Exiting gracefully upon receiving signal 15
+[2024-06-23T13:14:51.140+0000] {manager.py:452} INFO - Exiting gracefully upon receiving signal 15
+[2024-06-23T13:16:21.793+0000] {manager.py:470} INFO - Processing files using up to 2 processes at a time 
+[2024-06-23T13:16:21.800+0000] {manager.py:471} INFO - Process each file at most once every 30 seconds
+[2024-06-23T13:16:21.803+0000] {manager.py:472} INFO - Checking for new files in /opt/airflow/dags every 300 seconds
+[2024-06-23T13:16:21.805+0000] {manager.py:737} INFO - Searching for files in /opt/airflow/dags
+[2024-06-23T13:16:21.984+0000] {manager.py:740} INFO - There are 4 files in /opt/airflow/dags
+[2024-06-23T13:16:22.179+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  ----------
+/opt/airflow/dags/etl_all_dags.py                         30  0.11s             0           0
+/opt/airflow/dags/etl_dags.py                             29  0.12s             0           0
+/opt/airflow/dags/custom_operator/etl_all_operator.py                           0           0
+/opt/airflow/dags/custom_operator/etl_operator.py                               0           0
+================================================================================
+[2024-06-23T13:16:52.252+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/etl_dags.py                                                   1           0  10.23s          2024-06-23T13:16:32
+/opt/airflow/dags/etl_all_dags.py                                               1           0  10.12s          2024-06-23T13:16:32
+/opt/airflow/dags/custom_operator/etl_all_operator.py     40  19.97s            0           0
+/opt/airflow/dags/custom_operator/etl_operator.py         41  19.82s            0           0
+================================================================================
+[2024-06-23T13:17:23.117+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                              PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/custom_operator/etl_all_operator.py                           0           0  21.22s          2024-06-23T13:16:53
+/opt/airflow/dags/custom_operator/etl_operator.py                               0           0  21.09s          2024-06-23T13:16:53
+/opt/airflow/dags/etl_all_dags.py                                               1           0  6.28s           2024-06-23T13:17:08
+/opt/airflow/dags/etl_dags.py                                                   1           0  6.00s           2024-06-23T13:17:08
+================================================================================
+[2024-06-23T13:17:53.368+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                              PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/custom_operator/etl_all_operator.py                           0           0  1.40s           2024-06-23T13:17:25
+/opt/airflow/dags/custom_operator/etl_operator.py                               0           0  1.35s           2024-06-23T13:17:25
+/opt/airflow/dags/etl_dags.py                                                   1           0  1.27s           2024-06-23T13:17:40
+/opt/airflow/dags/etl_all_dags.py                                               1           0  1.26s           2024-06-23T13:17:40
+================================================================================
+[2024-06-23T13:28:40.003+0000] {manager.py:737} INFO - Searching for files in /opt/airflow/dags
+[2024-06-23T13:28:41.911+0000] {manager.py:740} INFO - There are 4 files in /opt/airflow/dags
+[2024-06-23T13:28:42.243+0000] {manager.py:1203} ERROR - Processor for /opt/airflow/dags/custom_operator/etl_all_operator.py with PID 68 started at 2024-06-23T13:17:56.158442+00:00 has timed out, killing it.
+[2024-06-23T13:28:42.251+0000] {manager.py:1203} ERROR - Processor for /opt/airflow/dags/custom_operator/etl_operator.py with PID 69 started at 2024-06-23T13:17:56.237828+00:00 has timed out, killing it.
+[2024-06-23T13:28:42.484+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/custom_operator/etl_all_operator.py                           0           1  646.08s         2024-06-23T13:28:42
+/opt/airflow/dags/custom_operator/etl_operator.py                               0           1  646.00s         2024-06-23T13:28:42
+/opt/airflow/dags/etl_dags.py                             70  0.14s             1           0  1.27s           2024-06-23T13:17:40
+/opt/airflow/dags/etl_all_dags.py                         71  0.02s             1           0  1.26s           2024-06-23T13:17:40
+================================================================================
+[2024-06-23T13:32:39.966+0000] {manager.py:1203} ERROR - Processor for /opt/airflow/dags/etl_dags.py with PID 70 started at 2024-06-23T13:28:42.325315+00:00 has timed out, killing it.
+[2024-06-23T13:32:40.116+0000] {manager.py:1203} ERROR - Processor for /opt/airflow/dags/etl_all_dags.py with PID 71 started at 2024-06-23T13:28:42.438417+00:00 has timed out, killing it.
+[2024-06-23T13:33:03.244+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/custom_operator/etl_all_operator.py     79  20.52s            0           1  646.08s         2024-06-23T13:28:42
+/opt/airflow/dags/custom_operator/etl_operator.py                               0           1  646.00s         2024-06-23T13:28:42
+/opt/airflow/dags/etl_dags.py                                                   0           1  237.56s         2024-06-23T13:32:39
+/opt/airflow/dags/etl_all_dags.py                         78  22.86s            0           1  237.44s         2024-06-23T13:32:39
+================================================================================
+[2024-06-23T13:33:46.726+0000] {manager.py:737} INFO - Searching for files in /opt/airflow/dags
+[2024-06-23T13:33:47.021+0000] {manager.py:740} INFO - There are 4 files in /opt/airflow/dags
+[2024-06-23T13:33:47.208+0000] {manager.py:1016} ERROR - Processor for /opt/airflow/dags/etl_dags.py exited with return code 1.
+[2024-06-23T13:33:47.213+0000] {manager.py:1016} ERROR - Processor for /opt/airflow/dags/custom_operator/etl_operator.py exited with return code 1.
+[2024-06-23T13:33:47.231+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                              PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/custom_operator/etl_operator.py                               0          -1  36.93s          2024-06-23T13:33:47
+/opt/airflow/dags/etl_dags.py                                                   0          -1  34.96s          2024-06-23T13:33:47
+/opt/airflow/dags/etl_all_dags.py                                               1           0  31.17s          2024-06-23T13:33:11
+/opt/airflow/dags/custom_operator/etl_all_operator.py                           0           0  27.05s          2024-06-23T13:33:09
+================================================================================
+[2024-06-23T13:34:18.176+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/custom_operator/etl_operator.py        108  0.00s             0          -1  36.93s          2024-06-23T13:33:47
+/opt/airflow/dags/etl_dags.py                            107  0.04s             0          -1  34.96s          2024-06-23T13:33:47
+/opt/airflow/dags/etl_all_dags.py                                               1           0  7.57s           2024-06-23T13:33:54
+/opt/airflow/dags/custom_operator/etl_all_operator.py                           0           0  7.06s           2024-06-23T13:33:54
+================================================================================
+[2024-06-23T13:35:08.508+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/etl_all_dags.py                        122  0.01s             1           0  6.90s           2024-06-23T13:34:32
+/opt/airflow/dags/custom_operator/etl_all_operator.py                           0           0  6.18s           2024-06-23T13:34:31
+/opt/airflow/dags/etl_dags.py                            121  0.06s             1           0  2.67s           2024-06-23T13:34:20
+/opt/airflow/dags/custom_operator/etl_operator.py                               0           0  2.32s           2024-06-23T13:34:20
+================================================================================
+[2024-06-23T13:38:09.611+0000] {manager.py:1203} ERROR - Processor for /opt/airflow/dags/etl_dags.py with PID 121 started at 2024-06-23T13:35:06.269688+00:00 has timed out, killing it.
+[2024-06-23T13:38:09.829+0000] {manager.py:1203} ERROR - Processor for /opt/airflow/dags/etl_all_dags.py with PID 122 started at 2024-06-23T13:35:06.316875+00:00 has timed out, killing it.
+[2024-06-23T13:38:10.771+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/etl_dags.py                                                   0           1  183.33s         2024-06-23T13:38:09
+/opt/airflow/dags/etl_all_dags.py                                               0           1  183.28s         2024-06-23T13:38:09
+/opt/airflow/dags/custom_operator/etl_all_operator.py    125  0.33s             0           0  6.18s           2024-06-23T13:34:31
+/opt/airflow/dags/custom_operator/etl_operator.py        126  0.09s             0           0  2.32s           2024-06-23T13:34:20
+================================================================================
+[2024-06-23T13:41:04.058+0000] {manager.py:737} INFO - Searching for files in /opt/airflow/dags
+[2024-06-23T13:41:04.370+0000] {manager.py:740} INFO - There are 4 files in /opt/airflow/dags
+[2024-06-23T13:41:04.577+0000] {manager.py:1203} ERROR - Processor for /opt/airflow/dags/etl_dags.py with PID 137 started at 2024-06-23T13:38:39.657637+00:00 has timed out, killing it.
+[2024-06-23T13:41:04.590+0000] {manager.py:1203} ERROR - Processor for /opt/airflow/dags/etl_all_dags.py with PID 138 started at 2024-06-23T13:38:39.677167+00:00 has timed out, killing it.
+[2024-06-23T13:41:04.735+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/etl_dags.py                                                   0           1  144.92s         2024-06-23T13:41:04
+/opt/airflow/dags/etl_all_dags.py                                               0           1  144.90s         2024-06-23T13:41:04
+/opt/airflow/dags/custom_operator/etl_all_operator.py    139  0.07s             0           0  6.00s           2024-06-23T13:38:16
+/opt/airflow/dags/custom_operator/etl_operator.py        140  0.01s             0           0  5.75s           2024-06-23T13:38:16
+================================================================================
+[2024-06-23T14:03:35.867+0000] {manager.py:470} INFO - Processing files using up to 2 processes at a time 
+[2024-06-23T14:03:35.876+0000] {manager.py:471} INFO - Process each file at most once every 30 seconds
+[2024-06-23T14:03:35.885+0000] {manager.py:472} INFO - Checking for new files in /opt/airflow/dags every 300 seconds
+[2024-06-23T14:03:35.890+0000] {manager.py:737} INFO - Searching for files in /opt/airflow/dags
+[2024-06-23T14:03:36.339+0000] {manager.py:740} INFO - There are 4 files in /opt/airflow/dags
+[2024-06-23T14:03:36.954+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  ----------
+/opt/airflow/dags/etl_all_dags.py                         37  0.24s             0           0
+/opt/airflow/dags/etl_dags.py                             36  0.30s             0           0
+/opt/airflow/dags/custom_operator/etl_all_operator.py                           0           0
+/opt/airflow/dags/custom_operator/etl_operator.py                               0           0
+================================================================================
+[2024-06-23T14:04:07.792+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/etl_dags.py                                                   1           0  11.68s          2024-06-23T14:03:48
+/opt/airflow/dags/etl_all_dags.py                                               1           0  11.43s          2024-06-23T14:03:48
+/opt/airflow/dags/custom_operator/etl_all_operator.py     40  19.32s            0           0
+/opt/airflow/dags/custom_operator/etl_operator.py         44  18.16s            0           0
+================================================================================
+[2024-06-23T14:04:42.047+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/custom_operator/etl_all_operator.py                           0           0  21.45s          2024-06-23T14:04:09
+/opt/airflow/dags/custom_operator/etl_operator.py                               0           0  20.19s          2024-06-23T14:04:09
+/opt/airflow/dags/etl_dags.py                             58  22.86s            1           0  11.68s          2024-06-23T14:03:48
+/opt/airflow/dags/etl_all_dags.py                         57  23.12s            1           0  11.43s          2024-06-23T14:03:48
+================================================================================
+[2024-06-23T14:06:53.008+0000] {manager.py:1203} ERROR - Processor for /opt/airflow/dags/etl_all_dags.py with PID 57 started at 2024-06-23T14:04:18.912663+00:00 has timed out, killing it.
+[2024-06-23T14:06:53.108+0000] {manager.py:1203} ERROR - Processor for /opt/airflow/dags/etl_dags.py with PID 58 started at 2024-06-23T14:04:19.175019+00:00 has timed out, killing it.
+[2024-06-23T14:06:53.597+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/etl_all_dags.py                                               0           1  154.09s         2024-06-23T14:06:53
+/opt/airflow/dags/etl_dags.py                                                   0           1  153.83s         2024-06-23T14:06:53
+/opt/airflow/dags/custom_operator/etl_all_operator.py     61  0.18s             0           0  21.45s          2024-06-23T14:04:09
+/opt/airflow/dags/custom_operator/etl_operator.py         62  0.03s             0           0  20.19s          2024-06-23T14:04:09
+================================================================================
+[2024-06-23T14:07:41.188+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/etl_all_dags.py                                               0           1  154.09s         2024-06-23T14:06:53
+/opt/airflow/dags/etl_dags.py                                                   0           1  153.83s         2024-06-23T14:06:53
+/opt/airflow/dags/custom_operator/etl_all_operator.py     61  47.85s            0           0  21.45s          2024-06-23T14:04:09
+/opt/airflow/dags/custom_operator/etl_operator.py         62  47.70s            0           0  20.19s          2024-06-23T14:04:09
+================================================================================
+[2024-06-23T14:07:41.289+0000] {manager.py:1016} ERROR - Processor for /opt/airflow/dags/custom_operator/etl_all_operator.py exited with return code 1.
+[2024-06-23T14:07:43.728+0000] {manager.py:452} INFO - Exiting gracefully upon receiving signal 15
+[2024-06-23T14:07:46.940+0000] {manager.py:452} INFO - Exiting gracefully upon receiving signal 15
+[2024-06-23T14:07:54.824+0000] {manager.py:452} INFO - Exiting gracefully upon receiving signal 15
+[2024-06-23T14:07:54.985+0000] {manager.py:452} INFO - Exiting gracefully upon receiving signal 15
+[2024-06-23T14:07:55.357+0000] {manager.py:452} INFO - Exiting gracefully upon receiving signal 15
+[2024-06-23T14:08:20.654+0000] {manager.py:470} INFO - Processing files using up to 2 processes at a time 
+[2024-06-23T14:08:20.656+0000] {manager.py:471} INFO - Process each file at most once every 30 seconds
+[2024-06-23T14:08:20.657+0000] {manager.py:472} INFO - Checking for new files in /opt/airflow/dags every 300 seconds
+[2024-06-23T14:08:20.658+0000] {manager.py:737} INFO - Searching for files in /opt/airflow/dags
+[2024-06-23T14:08:20.746+0000] {manager.py:740} INFO - There are 4 files in /opt/airflow/dags
+[2024-06-23T14:08:20.908+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  ----------
+/opt/airflow/dags/etl_all_dags.py                         32  0.08s             0           0
+/opt/airflow/dags/etl_dags.py                             31  0.09s             0           0
+/opt/airflow/dags/custom_operator/etl_all_operator.py                           0           0
+/opt/airflow/dags/custom_operator/etl_operator.py                               0           0
+================================================================================
+[2024-06-23T14:08:51.510+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                              PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/etl_dags.py                                                   1           0  1.62s           2024-06-23T14:08:22
+/opt/airflow/dags/etl_all_dags.py                                               1           0  1.09s           2024-06-23T14:08:42
+/opt/airflow/dags/custom_operator/etl_all_operator.py                           0           0  0.73s           2024-06-23T14:08:23
+/opt/airflow/dags/custom_operator/etl_operator.py                               0           0  0.67s           2024-06-23T14:08:23
+================================================================================
+[2024-06-23T14:09:22.111+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                              PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/etl_all_dags.py                                               1           0  1.47s           2024-06-23T14:09:14
+/opt/airflow/dags/custom_operator/etl_operator.py                               0           0  1.29s           2024-06-23T14:08:55
+/opt/airflow/dags/etl_dags.py                                                   1           0  1.00s           2024-06-23T14:08:53
+/opt/airflow/dags/custom_operator/etl_all_operator.py                           0           0  0.81s           2024-06-23T14:08:54
+================================================================================
+[2024-06-23T14:09:52.297+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                              PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/etl_dags.py                                                   1           0  6.83s           2024-06-23T14:09:30
+/opt/airflow/dags/custom_operator/etl_all_operator.py                           0           0  6.26s           2024-06-23T14:09:30
+/opt/airflow/dags/custom_operator/etl_operator.py                               0           0  1.49s           2024-06-23T14:09:32
+/opt/airflow/dags/etl_all_dags.py                                               1           0  0.92s           2024-06-23T14:09:45
+================================================================================
+[2024-06-23T14:10:22.949+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                              PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/custom_operator/etl_operator.py                               0           0  5.44s           2024-06-23T14:10:11
+/opt/airflow/dags/etl_dags.py                                                   1           0  4.89s           2024-06-23T14:10:06
+/opt/airflow/dags/custom_operator/etl_all_operator.py                           0           0  4.79s           2024-06-23T14:10:06
+/opt/airflow/dags/etl_all_dags.py                                               1           0  2.58s           2024-06-23T14:10:18
+================================================================================
+[2024-06-23T14:10:53.023+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                              PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/custom_operator/etl_all_operator.py                           0           0  1.99s           2024-06-23T14:10:46
+/opt/airflow/dags/custom_operator/etl_operator.py                               0           0  1.26s           2024-06-23T14:10:43
+/opt/airflow/dags/etl_all_dags.py                                               1           0  0.88s           2024-06-23T14:10:49
+/opt/airflow/dags/etl_dags.py                                                   1           0  0.88s           2024-06-23T14:10:37
+================================================================================
+[2024-06-23T14:11:23.069+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                              PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/custom_operator/etl_all_operator.py                           0           0  0.88s           2024-06-23T14:11:17
+/opt/airflow/dags/etl_dags.py                                                   1           0  0.85s           2024-06-23T14:11:08
+/opt/airflow/dags/etl_all_dags.py                                               1           0  0.83s           2024-06-23T14:11:20
+/opt/airflow/dags/custom_operator/etl_operator.py                               0           0  0.69s           2024-06-23T14:11:13
+================================================================================
+[2024-06-23T14:12:14.887+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/custom_operator/etl_operator.py                               0           0  2.15s           2024-06-23T14:11:46
+/opt/airflow/dags/etl_dags.py                                                   1           0  0.95s           2024-06-23T14:11:39
+/opt/airflow/dags/custom_operator/etl_all_operator.py    131  27.33s            0           0  0.88s           2024-06-23T14:11:17
+/opt/airflow/dags/etl_all_dags.py                        133  24.20s            1           0  0.83s           2024-06-23T14:11:20
+================================================================================
+[2024-06-23T14:13:05.912+0000] {manager.py:1203} ERROR - Processor for /opt/airflow/dags/custom_operator/etl_all_operator.py with PID 131 started at 2024-06-23T14:11:47.511945+00:00 has timed out, killing it.
+[2024-06-23T14:13:05.971+0000] {manager.py:1203} ERROR - Processor for /opt/airflow/dags/etl_all_dags.py with PID 133 started at 2024-06-23T14:11:50.635087+00:00 has timed out, killing it.
+[2024-06-23T14:13:06.129+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/custom_operator/etl_all_operator.py                           0           1  78.40s          2024-06-23T14:13:05
+/opt/airflow/dags/etl_all_dags.py                                               0           1  75.28s          2024-06-23T14:13:05
+/opt/airflow/dags/custom_operator/etl_operator.py                               0           0  2.15s           2024-06-23T14:11:46
+/opt/airflow/dags/etl_dags.py                            135  0.04s             1           0  0.95s           2024-06-23T14:11:39
+================================================================================
+[2024-06-23T14:13:20.771+0000] {manager.py:737} INFO - Searching for files in /opt/airflow/dags
+[2024-06-23T14:13:21.998+0000] {manager.py:740} INFO - There are 4 files in /opt/airflow/dags
+[2024-06-23T14:13:36.482+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/custom_operator/etl_all_operator.py    145  0.37s             0           1  78.40s          2024-06-23T14:13:05
+/opt/airflow/dags/etl_all_dags.py                        146  0.35s             0           1  75.28s          2024-06-23T14:13:05
+/opt/airflow/dags/etl_dags.py                                                   1           0  17.79s          2024-06-23T14:13:23
+/opt/airflow/dags/custom_operator/etl_operator.py                               0           0  16.93s          2024-06-23T14:13:23
+================================================================================
+[2024-06-23T14:14:07.197+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                              PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/etl_all_dags.py                                               1           0  1.90s           2024-06-23T14:13:38
+/opt/airflow/dags/custom_operator/etl_all_operator.py                           0           0  1.66s           2024-06-23T14:13:37
+/opt/airflow/dags/etl_dags.py                                                   1           0  1.22s           2024-06-23T14:13:55
+/opt/airflow/dags/custom_operator/etl_operator.py                               0           0  1.09s           2024-06-23T14:13:55
+================================================================================
+[2024-06-23T14:14:37.329+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                              PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/etl_dags.py                                                   1           0  1.24s           2024-06-23T14:14:26
+/opt/airflow/dags/custom_operator/etl_operator.py                               0           0  1.08s           2024-06-23T14:14:26
+/opt/airflow/dags/etl_all_dags.py                                               1           0  0.81s           2024-06-23T14:14:09
+/opt/airflow/dags/custom_operator/etl_all_operator.py                           0           0  0.72s           2024-06-23T14:14:08
+================================================================================
+[2024-06-23T14:15:07.489+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                              PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/etl_dags.py                                                   1           0  1.87s           2024-06-23T14:14:58
+/opt/airflow/dags/custom_operator/etl_operator.py                               0           0  1.44s           2024-06-23T14:14:58
+/opt/airflow/dags/etl_all_dags.py                                               1           0  1.38s           2024-06-23T14:14:40
+/opt/airflow/dags/custom_operator/etl_all_operator.py                           0           0  1.29s           2024-06-23T14:14:40
+================================================================================
+[2024-06-23T14:15:39.381+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/etl_dags.py                            205  9.46s             1           0  1.87s           2024-06-23T14:14:58
+/opt/airflow/dags/etl_all_dags.py                                               1           0  1.51s           2024-06-23T14:15:12
+/opt/airflow/dags/custom_operator/etl_operator.py        206  9.18s             0           0  1.44s           2024-06-23T14:14:58
+/opt/airflow/dags/custom_operator/etl_all_operator.py                           0           0  1.41s           2024-06-23T14:15:12
+================================================================================
+[2024-06-23T14:16:22.433+0000] {manager.py:1203} ERROR - Processor for /opt/airflow/dags/etl_dags.py with PID 205 started at 2024-06-23T14:15:28.905347+00:00 has timed out, killing it.
+[2024-06-23T14:16:22.633+0000] {manager.py:1203} ERROR - Processor for /opt/airflow/dags/custom_operator/etl_operator.py with PID 206 started at 2024-06-23T14:15:29.188936+00:00 has timed out, killing it.
+[2024-06-23T14:16:23.289+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/etl_dags.py                                                   0           1  53.49s          2024-06-23T14:16:22
+/opt/airflow/dags/custom_operator/etl_operator.py                               0           1  53.21s          2024-06-23T14:16:22
+/opt/airflow/dags/etl_all_dags.py                        210  0.08s             1           0  1.51s           2024-06-23T14:15:12
+/opt/airflow/dags/custom_operator/etl_all_operator.py    209  0.18s             0           0  1.41s           2024-06-23T14:15:12
+================================================================================
+[2024-06-23T14:16:53.958+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/etl_dags.py                            219  1.03s             0           1  53.49s          2024-06-23T14:16:22
+/opt/airflow/dags/custom_operator/etl_operator.py        218  1.05s             0           1  53.21s          2024-06-23T14:16:22
+/opt/airflow/dags/etl_all_dags.py                                               1           0  22.96s          2024-06-23T14:16:46
+/opt/airflow/dags/custom_operator/etl_all_operator.py                           0           0  22.69s          2024-06-23T14:16:45
+================================================================================
+[2024-06-23T14:17:24.987+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/etl_all_dags.py                        230  8.77s             1           0  22.96s          2024-06-23T14:16:46
+/opt/airflow/dags/custom_operator/etl_all_operator.py    228  9.18s             0           0  22.69s          2024-06-23T14:16:45
+/opt/airflow/dags/etl_dags.py                                                   1           0  1.87s           2024-06-23T14:16:54
+/opt/airflow/dags/custom_operator/etl_operator.py                               0           0  1.52s           2024-06-23T14:16:54
+================================================================================
+[2024-06-23T14:17:33.329+0000] {manager.py:1016} ERROR - Processor for /opt/airflow/dags/custom_operator/etl_all_operator.py exited with return code 1.
+[2024-06-23T14:17:55.471+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                              PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/etl_all_dags.py                                               1           0  20.35s          2024-06-23T14:17:36
+/opt/airflow/dags/custom_operator/etl_all_operator.py                           0          -1  17.53s          2024-06-23T14:17:33
+/opt/airflow/dags/custom_operator/etl_operator.py                               0           0  5.56s           2024-06-23T14:17:39
+/opt/airflow/dags/etl_dags.py                                                   1           0  3.36s           2024-06-23T14:17:40
+================================================================================
+[2024-06-23T14:18:21.603+0000] {manager.py:737} INFO - Searching for files in /opt/airflow/dags
+[2024-06-23T14:18:21.929+0000] {manager.py:740} INFO - There are 4 files in /opt/airflow/dags
+[2024-06-23T14:18:26.262+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                              PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/etl_all_dags.py                                               1           0  4.36s           2024-06-23T14:18:11
+/opt/airflow/dags/custom_operator/etl_operator.py                               0           0  2.02s           2024-06-23T14:18:13
+/opt/airflow/dags/etl_dags.py                                                   1           0  1.71s           2024-06-23T14:18:13
+/opt/airflow/dags/custom_operator/etl_all_operator.py                           0           0  1.09s           2024-06-23T14:18:04
+================================================================================
+[2024-06-23T14:19:31.427+0000] {manager.py:1203} ERROR - Processor for /opt/airflow/dags/custom_operator/etl_all_operator.py with PID 261 started at 2024-06-23T14:18:36.021473+00:00 has timed out, killing it.
+[2024-06-23T14:19:31.756+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/custom_operator/etl_all_operator.py                           0           1  55.41s          2024-06-23T14:19:31
+/opt/airflow/dags/etl_all_dags.py                                               1           0  4.36s           2024-06-23T14:18:11
+/opt/airflow/dags/custom_operator/etl_operator.py        263  0.05s             0           0  2.02s           2024-06-23T14:18:13
+/opt/airflow/dags/etl_dags.py                            264  0.01s             1           0  1.71s           2024-06-23T14:18:13
+================================================================================
+[2024-06-23T14:46:31.148+0000] {manager.py:470} INFO - Processing files using up to 2 processes at a time 
+[2024-06-23T14:46:31.631+0000] {manager.py:471} INFO - Process each file at most once every 30 seconds
+[2024-06-23T14:46:31.635+0000] {manager.py:472} INFO - Checking for new files in /opt/airflow/dags every 300 seconds
+[2024-06-23T14:46:31.670+0000] {manager.py:737} INFO - Searching for files in /opt/airflow/dags
+[2024-06-23T14:46:32.931+0000] {manager.py:740} INFO - There are 4 files in /opt/airflow/dags
+[2024-06-23T14:46:46.196+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  ----------
+/opt/airflow/dags/etl_all_dags.py                         41  7.40s             0           0
+/opt/airflow/dags/etl_dags.py                                                   0           0
+/opt/airflow/dags/custom_operator/etl_all_operator.py                           0           0
+/opt/airflow/dags/custom_operator/etl_operator.py         42  6.37s             0           0
+================================================================================
+[2024-06-23T14:47:09.982+0000] {manager.py:452} INFO - Exiting gracefully upon receiving signal 15
+[2024-06-23T14:49:20.528+0000] {manager.py:470} INFO - Processing files using up to 2 processes at a time 
+[2024-06-23T14:49:20.531+0000] {manager.py:471} INFO - Process each file at most once every 30 seconds
+[2024-06-23T14:49:20.533+0000] {manager.py:472} INFO - Checking for new files in /opt/airflow/dags every 300 seconds
+[2024-06-23T14:49:20.535+0000] {manager.py:737} INFO - Searching for files in /opt/airflow/dags
+[2024-06-23T14:49:21.440+0000] {manager.py:740} INFO - There are 4 files in /opt/airflow/dags
+[2024-06-23T14:49:22.553+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  ----------
+/opt/airflow/dags/etl_all_dags.py                         31  0.55s             0           0
+/opt/airflow/dags/etl_dags.py                                                   0           0
+/opt/airflow/dags/custom_operator/etl_all_operator.py                           0           0
+/opt/airflow/dags/custom_operator/etl_operator.py         32  0.27s             0           0
+================================================================================
+[2024-06-23T14:49:53.069+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/etl_all_dags.py                                               1           0  10.85s          2024-06-23T14:49:32
+/opt/airflow/dags/custom_operator/etl_operator.py                               0           0  9.92s           2024-06-23T14:49:32
+/opt/airflow/dags/etl_dags.py                             45  10.52s            1           0  6.67s           2024-06-23T14:49:38
+/opt/airflow/dags/custom_operator/etl_all_operator.py                           0           0  5.45s           2024-06-23T14:49:38
+================================================================================
+[2024-06-23T14:50:23.559+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/custom_operator/etl_operator.py                               0           0  17.06s          2024-06-23T14:50:20
+/opt/airflow/dags/etl_dags.py                                                   1           0  15.62s          2024-06-23T14:50:20
+/opt/airflow/dags/etl_all_dags.py                         56  3.07s             1           0  10.85s          2024-06-23T14:49:32
+/opt/airflow/dags/custom_operator/etl_all_operator.py     58  2.64s             0           0  5.45s           2024-06-23T14:49:38
+================================================================================
+[2024-06-23T14:50:53.964+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/custom_operator/etl_operator.py         66  2.53s             0           0  17.06s          2024-06-23T14:50:20
+/opt/airflow/dags/etl_dags.py                             67  2.30s             1           0  15.62s          2024-06-23T14:50:20
+/opt/airflow/dags/etl_all_dags.py                                               1           0  5.24s           2024-06-23T14:50:25
+/opt/airflow/dags/custom_operator/etl_all_operator.py                           0           0  4.55s           2024-06-23T14:50:25
+================================================================================
+[2024-06-23T14:51:24.468+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/custom_operator/etl_operator.py         66  33.09s            0           0  17.06s          2024-06-23T14:50:20
+/opt/airflow/dags/etl_dags.py                             67  32.86s            1           0  15.62s          2024-06-23T14:50:20
+/opt/airflow/dags/etl_all_dags.py                                               1           0  5.24s           2024-06-23T14:50:25
+/opt/airflow/dags/custom_operator/etl_all_operator.py                           0           0  4.55s           2024-06-23T14:50:25
+================================================================================
+[2024-06-23T14:51:54.728+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                              PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/etl_dags.py                                                   1           0  34.36s          2024-06-23T14:51:25
+/opt/airflow/dags/custom_operator/etl_operator.py                               0           0  34.22s          2024-06-23T14:51:25
+/opt/airflow/dags/etl_all_dags.py                                               1           0  2.90s           2024-06-23T14:51:28
+/opt/airflow/dags/custom_operator/etl_all_operator.py                           0           0  2.36s           2024-06-23T14:51:28
+================================================================================
+[2024-06-23T14:52:25.095+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                              PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/etl_dags.py                                                   1           0  2.52s           2024-06-23T14:51:58
+/opt/airflow/dags/custom_operator/etl_operator.py                               0           0  2.44s           2024-06-23T14:51:58
+/opt/airflow/dags/etl_all_dags.py                                               1           0  2.29s           2024-06-23T14:52:00
+/opt/airflow/dags/custom_operator/etl_all_operator.py                           0           0  2.23s           2024-06-23T14:52:00
+================================================================================
+[2024-06-23T14:53:10.942+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/etl_dags.py                                                   1           0  2.01s           2024-06-23T14:52:31
+/opt/airflow/dags/custom_operator/etl_operator.py        108  0.01s             0           0  1.76s           2024-06-23T14:52:30
+/opt/airflow/dags/etl_all_dags.py                        107  0.07s             1           0  1.33s           2024-06-23T14:52:32
+/opt/airflow/dags/custom_operator/etl_all_operator.py                           0           0  0.84s           2024-06-23T14:52:31
+================================================================================
+[2024-06-23T14:53:44.235+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/etl_all_dags.py                                               1           0  6.51s           2024-06-23T14:53:17
+/opt/airflow/dags/custom_operator/etl_operator.py                               0           0  6.27s           2024-06-23T14:53:17
+/opt/airflow/dags/etl_dags.py                            118  26.80s            1           0  2.01s           2024-06-23T14:52:31
+/opt/airflow/dags/custom_operator/etl_all_operator.py    117  26.97s            0           0  0.84s           2024-06-23T14:52:31
+================================================================================
+[2024-06-23T14:54:14.621+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                              PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/etl_dags.py                                                   1           0  28.74s          2024-06-23T14:53:46
+/opt/airflow/dags/custom_operator/etl_all_operator.py                           0           0  28.35s          2024-06-23T14:53:45
+/opt/airflow/dags/custom_operator/etl_operator.py                               0           0  5.05s           2024-06-23T14:53:52
+/opt/airflow/dags/etl_all_dags.py                                               1           0  4.80s           2024-06-23T14:53:52
+================================================================================
+[2024-06-23T14:54:20.742+0000] {manager.py:737} INFO - Searching for files in /opt/airflow/dags
+[2024-06-23T14:54:20.906+0000] {manager.py:740} INFO - There are 4 files in /opt/airflow/dags
+[2024-06-23T14:54:44.786+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                              PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/etl_all_dags.py                                               1           0  2.56s           2024-06-23T14:54:25
+/opt/airflow/dags/custom_operator/etl_operator.py                               0           0  2.43s           2024-06-23T14:54:25
+/opt/airflow/dags/etl_dags.py                                                   1           0  1.43s           2024-06-23T14:54:17
+/opt/airflow/dags/custom_operator/etl_all_operator.py                           0           0  0.80s           2024-06-23T14:54:16
+================================================================================
+[2024-06-23T14:55:16.367+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/etl_all_dags.py                                               1           0  2.56s           2024-06-23T14:54:25
+/opt/airflow/dags/custom_operator/etl_operator.py                               0           0  2.43s           2024-06-23T14:54:25
+/opt/airflow/dags/etl_dags.py                            152  28.30s            1           0  1.43s           2024-06-23T14:54:17
+/opt/airflow/dags/custom_operator/etl_all_operator.py    145  29.49s            0           0  0.80s           2024-06-23T14:54:16
+================================================================================
+[2024-06-23T14:55:18.048+0000] {manager.py:1016} ERROR - Processor for /opt/airflow/dags/custom_operator/etl_all_operator.py exited with return code 1.
+[2024-06-23T14:55:18.257+0000] {manager.py:1016} ERROR - Processor for /opt/airflow/dags/etl_dags.py exited with return code 1.
+[2024-06-23T14:55:46.732+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                              PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/custom_operator/etl_all_operator.py                           0          -1  31.20s          2024-06-23T14:55:18
+/opt/airflow/dags/etl_dags.py                                                   0          -1  30.22s          2024-06-23T14:55:18
+/opt/airflow/dags/etl_all_dags.py                                               1           0  8.63s           2024-06-23T14:55:26
+/opt/airflow/dags/custom_operator/etl_operator.py                               0           0  8.18s           2024-06-23T14:55:26
+================================================================================
+[2024-06-23T14:59:42.444+0000] {manager.py:1203} ERROR - Processor for /opt/airflow/dags/custom_operator/etl_all_operator.py with PID 169 started at 2024-06-23T14:55:48.183160+00:00 has timed out, killing it.
+[2024-06-23T15:01:14.029+0000] {manager.py:1203} ERROR - Processor for /opt/airflow/dags/etl_dags.py with PID 171 started at 2024-06-23T14:55:48.747023+00:00 has timed out, killing it.
+[2024-06-23T15:01:14.391+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/custom_operator/etl_all_operator.py                           0           1  148.75s         2024-06-23T14:58:16
+/opt/airflow/dags/etl_dags.py                                                   0           1  148.19s         2024-06-23T14:58:16
+/opt/airflow/dags/etl_all_dags.py                        179  0.14s             1           0  8.63s           2024-06-23T14:55:26
+/opt/airflow/dags/custom_operator/etl_operator.py        180  0.02s             0           0  8.18s           2024-06-23T14:55:26
+================================================================================
+[2024-06-23T15:01:14.430+0000] {manager.py:737} INFO - Searching for files in /opt/airflow/dags
+[2024-06-23T15:01:15.022+0000] {manager.py:740} INFO - There are 4 files in /opt/airflow/dags
+[2024-06-23T15:01:53.168+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/custom_operator/etl_all_operator.py                           0           1  148.75s         2024-06-23T14:58:16
+/opt/airflow/dags/etl_dags.py                                                   0           1  148.19s         2024-06-23T14:58:16
+/opt/airflow/dags/etl_all_dags.py                        179  38.92s            1           0  8.63s           2024-06-23T14:55:26
+/opt/airflow/dags/custom_operator/etl_operator.py        180  38.80s            0           0  8.18s           2024-06-23T14:55:26
+================================================================================
+[2024-06-23T15:01:53.210+0000] {manager.py:1016} ERROR - Processor for /opt/airflow/dags/etl_all_dags.py exited with return code 1.
+[2024-06-23T15:01:53.331+0000] {manager.py:1016} ERROR - Processor for /opt/airflow/dags/custom_operator/etl_operator.py exited with return code 1.
+[2024-06-23T15:04:46.752+0000] {manager.py:1203} ERROR - Processor for /opt/airflow/dags/custom_operator/etl_all_operator.py with PID 194 started at 2024-06-23T15:01:53.323045+00:00 has timed out, killing it.
+[2024-06-23T15:04:46.906+0000] {manager.py:1203} ERROR - Processor for /opt/airflow/dags/etl_dags.py with PID 195 started at 2024-06-23T15:01:54.571184+00:00 has timed out, killing it.
+[2024-06-23T15:04:47.425+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/custom_operator/etl_all_operator.py                           0           1  173.43s         2024-06-23T15:04:46
+/opt/airflow/dags/etl_dags.py                                                   0           1  172.18s         2024-06-23T15:04:46
+/opt/airflow/dags/etl_all_dags.py                        205  0.26s             0          -1  38.98s          2024-06-23T15:01:53
+/opt/airflow/dags/custom_operator/etl_operator.py        206  0.02s             0          -1  38.98s          2024-06-23T15:01:53
+================================================================================
+[2024-06-23T15:10:32.018+0000] {manager.py:470} INFO - Processing files using up to 2 processes at a time 
+[2024-06-23T15:10:32.025+0000] {manager.py:471} INFO - Process each file at most once every 30 seconds
+[2024-06-23T15:10:32.026+0000] {manager.py:472} INFO - Checking for new files in /opt/airflow/dags every 300 seconds
+[2024-06-23T15:10:32.028+0000] {manager.py:737} INFO - Searching for files in /opt/airflow/dags
+[2024-06-23T15:10:32.322+0000] {manager.py:740} INFO - There are 4 files in /opt/airflow/dags
+[2024-06-23T15:10:34.421+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  ----------
+/opt/airflow/dags/etl_all_dags.py                         41  1.60s             0           0
+/opt/airflow/dags/etl_dags.py                                                   0           0
+/opt/airflow/dags/custom_operator/etl_all_operator.py                           0           0
+/opt/airflow/dags/custom_operator/etl_operator.py         42  1.24s             0           0
+================================================================================
+[2024-06-23T15:11:05.066+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------------------------  -----  ---------  --------  ----------  --------------  ----------
+/opt/airflow/dags/etl_all_dags.py                         41  32.25s            0           0
+/opt/airflow/dags/etl_dags.py                                                   0           0
+/opt/airflow/dags/custom_operator/etl_all_operator.py                           0           0
+/opt/airflow/dags/custom_operator/etl_operator.py         42  31.89s            0           0
+================================================================================
+[2024-06-23T15:11:22.784+0000] {manager.py:1016} ERROR - Processor for /opt/airflow/dags/custom_operator/etl_operator.py exited with return code 1.
+[2024-06-23T15:11:23.200+0000] {manager.py:1016} ERROR - Processor for /opt/airflow/dags/etl_all_dags.py exited with return code 1.
+[2024-06-23T15:13:42.448+0000] {manager.py:1203} ERROR - Processor for /opt/airflow/dags/custom_operator/etl_all_operator.py with PID 51 started at 2024-06-23T15:11:23.000745+00:00 has timed out, killing it.
+[2024-06-23T15:13:43.537+0000] {manager.py:1203} ERROR - Processor for /opt/airflow/dags/etl_dags.py with PID 52 started at 2024-06-23T15:11:24.481037+00:00 has timed out, killing it.
+[2024-06-23T15:13:45.045+0000] {manager.py:452} INFO - Exiting gracefully upon receiving signal 15
+[2024-06-23T15:13:45.034+0000] {manager.py:452} INFO - Exiting gracefully upon receiving signal 15
