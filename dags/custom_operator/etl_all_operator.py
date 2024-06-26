@@ -8,11 +8,9 @@ import logging
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import storage
-from datetime import datetime
 from dotenv import load_dotenv
 from google.cloud import bigquery
 from io import StringIO
-from sqlalchemy import create_engine
 
 class ExtractData(PythonOperator):
     def __init__(self, mysql_conn_id, database, *args, **kwargs):
@@ -20,7 +18,7 @@ class ExtractData(PythonOperator):
         self.mysql_conn_id = mysql_conn_id
         self.database = database
     
-    def extract_data_from_external_db(self):
+    def extract_data_from_external_db(self, text_columns):
         mysql_hook = MySqlHook(mysql_conn_id=self.mysql_conn_id, 
                                 database=self.database)
         
@@ -33,6 +31,12 @@ class ExtractData(PythonOperator):
             data = mysql_hook.get_records(f"SELECT * FROM {table}")
             df = pd.DataFrame(data, columns=column_names)
             
+            # menambahkan kolom tertentu dengan ""
+            if text_columns:
+                for col in text_columns:
+                    if col in df.columns:
+                        df[col] = df[col].apply(lambda x: f'"{x}"' if isinstance(x, str) and not x.startswith('"') else x)
+            
             dataframes.append(df)
             table_names.append(table)
             
@@ -41,7 +45,9 @@ class ExtractData(PythonOperator):
         return dataframes, table_names
 
     def execute(self, context):
-        dataframes, table_names = self.extract_data_from_external_db()
+        text_columns = ['message', 'content', 'content_activity', 'description']
+        
+        dataframes, table_names = self.extract_data_from_external_db(text_columns)
         
         context['ti'].xcom_push(key='dataframes', value=dataframes)
         context['ti'].xcom_push(key='table_names', value=table_names)
@@ -94,14 +100,6 @@ class CleaningData(PythonOperator):
         return df
     
     def execute(self, context):
-        tables = ['admins', 'applications', 'articles', 'comments', 
-                    'donation_comments', 'donation_manual_comments', 
-                    'donation_manuals', 'donations', 'fundraising_categories', 
-                    'fundraisings', 'like_donation_comments', 'like_donation_manual_comments', 
-                    'likes_comments', 'organizations', 'testimoni_volunteers', 'transactions',
-                    'user_bookmark_articles', 'user_bookmark_fundraisings', 
-                    'user_bookmark_volunteer_vacancies', 'users', 'volunteers']
-        
         dataframes=context['ti'].xcom_pull(task_ids='extract_data', key='dataframes')
         dfs_raw_data = [dataframes[7], dataframes[10], dataframes[2], dataframes[21], dataframes[15], dataframes[18], dataframes[19], dataframes[3], dataframes[9], dataframes[20], dataframes[14], dataframes[17], dataframes[4], dataframes[13]]
         name_df = ["Donation", "Fundraising", "Application", "Volunteer_Vacancies", "Testimoni_Volunteer", "Bookmark_Fundraising", "Bookmark_Volunteer", "Article", "Fundraising_Categories", "User", "Organization", "Bookmark_Articles", "Comments", "Like Comments"]
@@ -117,7 +115,6 @@ class CleaningData(PythonOperator):
         for df_csv in dfs_csv:
             df = pd.read_csv(df_csv)
             dfs.append(df)
-        
         
         clean_dfs = []
         for i in range(len(dfs)):
@@ -225,7 +222,6 @@ class TransformationDataWarehouseSchema(PythonOperator):
         
         return df_fact_bookmark_volunteer_vacancies
     
-    
     def dimension_table(self, df_fundraisings, df_fundraising_categories, df_donation_manuals, df_organizations, df_users, df_applications, df_volunteer_vacancies, df_testimoni_volunteers, df_articles, df_bookmark_fundraising, df_bookmark_volunteer, df_bookmark_article, df_comments, df_like_comments):
         dim_fundraisings = df_fundraisings.drop(['fundraising_category_id', 'organization_id', 'updated_at'], axis=1)
         dim_fundraising_categories = df_fundraising_categories[['id', 'name', 'created_at']]
@@ -245,7 +241,6 @@ class TransformationDataWarehouseSchema(PythonOperator):
         
         all_dimension_table = [dim_fundraisings, dim_fundraising_categories, dim_donation_manual, dim_organization, dim_user, dim_volunteer_application, dim_volunteer_vacancies, dim_testimoni_volunteer, dim_article, dim_bookmark_fundraising, dim_bookmark_volunter_vacancies, dim_bookmark_article, dim_comments, dim_like_comments]
         return all_dimension_table
-    
     
     def execute(self, context):
         # ambil list clean_dfs
@@ -299,13 +294,13 @@ class LoadFirebase(PythonOperator):
             csv_str = df.to_csv(index=False)
 
             # Create the blob reference with folder name
-            file_name_with_date = f"{current_date}_{table_name}.csv"
-            file_path_in_bucket = f"{current_date}/{file_name_with_date}"
+            file_name = f"{table_name}.csv"
+            file_path_in_bucket = f"{current_date}/{file_name}"
             file_ref = bucket.blob(file_path_in_bucket)
             
             # Upload CSV string to Firebase
             file_ref.upload_from_string(csv_str, content_type='text/csv')
-            print(f"Dataframe {table_name} uploaded successfully as {file_name_with_date}!")
+            print(f"Dataframe {table_name} uploaded successfully as {file_name}!")
     
     def execute(self, context):
         ds = context['ds']
@@ -314,17 +309,22 @@ class LoadFirebase(PythonOperator):
         self.upload_files_to_firebase("/opt/airflow/.env", dataframes, tables_name, ds)
         return "Data success upload to Firebase"
 
+
 class LoadDatabaseLocal(PythonOperator):
     def __init__(self, mysql_conn_id, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.mysql_conn_id = mysql_conn_id
-
+    
     def test_mysql_connection(self):
         try:
             mysql_hook = MySqlHook(mysql_conn_id=self.mysql_conn_id)
             conn = mysql_hook.get_conn()
             cursor = conn.cursor()
-            cursor.execute("USE peduli_pintar")
+            cursor.execute("SELECT DATABASE()")
+            database_name = cursor.fetchone()[0]
+            cursor.execute("SELECT @@hostname")
+            server_host = cursor.fetchone()[0]
+            self.log.info(f"Connected to MySQL database '{database_name}' on server '{server_host}'")
             cursor.execute("SELECT 1")
             result = cursor.fetchone()
             cursor.close()
@@ -338,203 +338,71 @@ class LoadDatabaseLocal(PythonOperator):
         except Exception as e:
             logging.error(f"Error connecting to MySQL with connection ID '{self.mysql_conn_id}': {e}")
             return False
-
-    def create_and_insert_data(self, dfs, table_names):
+    
+    def load_db_local(self, dfs, table_names):
+        mysql_hook = MySqlHook(mysql_conn_id=self.mysql_conn_id)
+        connection = mysql_hook.get_conn()
+        
         try:
-            # Get SQLAlchemy connection string from MySqlHook
-            mysql_hook = MySqlHook(mysql_conn_id=self.mysql_conn_id)
-            connection_uri = mysql_hook.get_uri()
-
-            # Print connection URI to debug
-            logging.info(f"Original connection URI: {connection_uri}")
-
-            # Remove any __extra__ parameters if present
-            if '__extra__' in connection_uri:
-                connection_uri = connection_uri.split('?')[0]
-                logging.info(f"Cleaned connection URI: {connection_uri}")
-
-            engine = create_engine(connection_uri)
-
-            with engine.connect() as conn:
+            with connection.cursor() as cursor:
+                cursor.execute('CREATE DATABASE IF NOT EXISTS peduli_pintar')
+                cursor.execute('USE peduli_pintar')
+                
                 for df, table_name in zip(dfs, table_names):
-                    df.to_sql(table_name, conn, index=False, if_exists='replace')
-                    logging.info(f"Table '{table_name}' created and data inserted successfully.")
-
-            logging.info("All tables created and data inserted successfully.")
-            return True
-
+                    # Tipe data kolom
+                    columns = []
+                    for col in df.columns:
+                        if col == 'id':
+                            columns.append(f"{col} INT")
+                        else:
+                            columns.append(f"{col} TEXT")
+                    
+                    columns_str = ", ".join(columns)
+                    primary_key = 'id' if 'id' in df.columns else df.columns[0]  # Default to the first column if 'id' is not present
+                    
+                    sql_create_table = f"CREATE TABLE IF NOT EXISTS {table_name} ({columns_str}, PRIMARY KEY ({primary_key})) ENGINE=InnoDB"
+                    cursor.execute(sql_create_table)
+                    
+                    # Insert data into table with ON DUPLICATE KEY UPDATE
+                    for i, row in df.iterrows():
+                        values = ", ".join(["NULL" if pd.isna(row[col]) else "'" + str(row[col]) + "'" for col in df.columns])
+                        update_clause = ", ".join([f"{col}=VALUES({col})" for col in df.columns if col != primary_key])
+                        sql_insert_data = f"""
+                            INSERT INTO {table_name} ({', '.join(df.columns)})
+                            VALUES ({values})
+                            ON DUPLICATE KEY UPDATE {update_clause};
+                        """
+                        cursor.execute(sql_insert_data)
+                    
+                    connection.commit()
+                
+                self.log.info("Data berhasil disimpan ke tabel-tabel dalam database 'peduli_pintar'.")
+                return True
+        
         except Exception as e:
-            logging.error(f"Error creating tables and inserting data: {e}")
+            self.log.error(f"Error saving data to MySQL: {str(e)}")
             return False
+        
+        finally:
+            connection.close()
 
     def execute(self, context):
-        # ds = context['ds']
-
         if self.test_mysql_connection():
             logging.info("Connection DB sukses!!!")
-
+            
             df_dim_table = context['ti'].xcom_pull(task_ids='transform_dw_schema', key='list_dim_tables')
             df_fact_table = context['ti'].xcom_pull(task_ids='transform_dw_schema', key='list_fact_table')
-            dfs = df_dim_table + df_fact_table
-
-            logging.info(f"DataFrames retrieved: {dfs}")
+            
             table_names = ["dim_fundraisings", "dim_fundraising_categories", "dim_donation_manual", "dim_organization", "dim_user", "dim_volunteer_application", "dim_volunteer_vacancies", "dim_testimoni_volunteer", "dim_article", "dim_bookmark_fundraising", "dim_bookmark_volunter_vacancies", "dim_bookmark_article", "dim_comments", "dim_like_comments", "fact_donation_transaction", "fact_volunteer_applications", "fact_volunteer_testimoni", "fact_article_popular", "fact_bookmark_fundraising", "fact_bookmark_volunteer_vacancies"]
-
-            if self.create_and_insert_data(dfs, table_names):
+                
+            dfs = df_dim_table + df_fact_table
+                
+            if self.load_db_local(dfs, table_names):
                 logging.info("Data insertion completed successfully.")
             else:
                 raise Exception("Failed to create tables and insert data.")
         else:
             raise Exception("Failed to connect to MySQL database.")
-        
-        
-# class LoadDatabaseLocal(PythonOperator):
-#     def __init__(self, mysql_conn_id, *args, **kwargs):
-#         super().__init__(*args, **kwargs)
-#         self.mysql_conn_id = mysql_conn_id
-    
-#     def test_mysql_connection(self):
-#         try:
-#             mysql_hook = MySqlHook(mysql_conn_id=self.mysql_conn_id)
-#             conn = mysql_hook.get_conn()
-#             cursor = conn.cursor()
-#             cursor.execute("USE peduli_pintar")
-#             cursor.execute("SELECT 1")
-#             result = cursor.fetchone()
-#             cursor.close()
-#             conn.close()
-#             if result:
-#                 logging.info(f"Connection to MySQL with connection ID '{self.mysql_conn_id}' is successful.")
-#                 return True
-#             else:
-#                 logging.error(f"Connection to MySQL with connection ID '{self.mysql_conn_id}' failed.")
-#                 return False
-#         except Exception as e:
-#             logging.error(f"Error connecting to MySQL with connection ID '{self.mysql_conn_id}': {e}")
-#             return False
-    
-#     def load_db_local(self, create_table_file_path, dfs, table_names):
-#         mysql_hook = MySqlHook(mysql_conn_id=self.mysql_conn_id)
-#         conn = mysql_hook.get_conn()
-        
-#         # Create tables
-#         try:
-#             with open(create_table_file_path, 'r') as file:
-#                 table_queries = file.read().split(';')  # Split queries by semicolon
-                
-#             for query in table_queries:
-#                 if query.strip():  # Ignore empty lines
-#                     with conn.cursor() as cursor:
-#                         cursor.execute(query)
-#                     conn.commit()
-#         except Exception as e:
-#             logging.error(f"Error creating tables: {e}")
-#             return False
-        
-#         # Insert data
-#         for table_name, df in zip(table_names, dfs):
-#             try:
-#                 with conn.cursor() as cursor:
-#                     # Build INSERT INTO query
-#                     column_names = ', '.join(df.columns)
-#                     values_placeholders = ', '.join(['%s'] * len(df.columns))
-#                     insert_query = f"INSERT INTO {table_name} ({column_names}) VALUES ({values_placeholders})"
-                    
-#                     # Execute the INSERT INTO query
-#                     for row in df.itertuples(index=False):
-#                         cursor.execute(insert_query, row)
-#                     conn.commit()
-#             except Exception as e:
-#                 logging.error(f"Error inserting data into table '{table_name}': {e}")
-#                 return False
-#             finally:
-#                 conn.close()  # Ensure connection is closed after operations
-
-#         print("Tabel berhasil dibuat dan data berhasil dimasukkan.")
-#         return True
-    
-#     def execute(self, context):
-#         if self.test_mysql_connection():
-#             df_dim_table=context['ti'].xcom_pull(task_ids='transform_dw_schema', key='list_dim_tables')
-#             df_fact_table=context['ti'].xcom_pull(task_ids='transform_dw_schema', key='list_fact_table')
-#             dfs = df_dim_table + df_fact_table
-#             print(dfs)
-#             table_names = ["dim_fundraisings", "dim_fundraising_categories", "dim_donation_manual", "dim_organization", "dim_user", "dim_volunteer_application", "dim_volunteer_vacancies", "dim_testimoni_volunteer", "dim_article", "dim_bookmark_fundraising", "dim_bookmark_volunter_vacancies", "dim_bookmark_article", "fact_donation_transaction", "fact_volunteer_applications", "fact_volunteer_testimoni", "fact_article_popular", "fact_bookmark_fundraising", "fact_bookmark_volunteer_vacancies"]
-            
-#             self.load_db_local("dags/sql/create_tables.sql", dfs, table_names)
-#             print("Connection BERHASIL!!")
-#         else:
-#             raise Exception("Failed to connect to MySQL database.")
-        
-        
-# class LoadDatabaseLocal(PythonOperator):
-#     def __init__(self, mysql_conn_id, *args, **kwargs):
-#         super().__init__(*args, **kwargs)
-#         self.mysql_conn_id = mysql_conn_id
-    
-#     def test_mysql_connection(self):
-#         try:
-#             mysql_hook = MySqlHook(mysql_conn_id=self.mysql_conn_id)
-#             conn = mysql_hook.get_conn()
-#             cursor = conn.cursor()
-#             cursor.execute("USE peduli_pintar")
-#             cursor.execute("SELECT 1")
-#             result = cursor.fetchone()
-#             cursor.close()
-#             conn.close()
-#             if result:
-#                 logging.info(f"Connection to MySQL with connection ID '{self.mysql_conn_id}' is successful.")
-#                 return True
-#             else:
-#                 logging.error(f"Connection to MySQL with connection ID '{self.mysql_conn_id}' failed.")
-#                 return False
-#         except Exception as e:
-#             logging.error(f"Error connecting to MySQL with connection ID '{self.mysql_conn_id}': {e}")
-#             return False
-        
-#     def execute(self, context):
-#         # Test MySQL connection before proceeding
-#         if not self.test_mysql_connection():
-#             raise Exception(f"Failed to establish connection to MySQL with connection ID '{self.mysql_conn_id}'")
-
-#         mysql_hook = MySqlHook(mysql_conn_id=self.mysql_conn_id)
-#         connection = mysql_hook.get_conn()
-        
-#         try:
-#             # Retrieve DataFrames from XCom
-#             df_dim_table = context['ti'].xcom_pull(task_ids='transform_dw_schema', key='list_dim_tables')
-#             df_fact_table = context['ti'].xcom_pull(task_ids='transform_dw_schema', key='list_fact_table')
-            
-#             # Combine DataFrames if needed
-#             dfs = df_dim_table + df_fact_table
-            
-#             # Iterate through each DataFrame and save to corresponding table
-#             with connection.cursor() as cursor:
-#                 # Create database if it doesn't exist
-#                 cursor.execute('CREATE DATABASE IF NOT EXISTS peduli_pintar')
-#                 cursor.execute('USE peduli_pintar')
-                
-#                 for df in dfs:
-#                     table_name = df.name  # Assuming df.name contains the table name
-#                     columns = ", ".join([f"`{col}` TEXT" for col in df.columns])
-#                     sql = f"CREATE TABLE IF NOT EXISTS `{table_name}` ({columns}) ENGINE=InnoDB"
-#                     cursor.execute(sql)
-                    
-#                     for i, row in df.iterrows():
-#                         placeholders = ", ".join(["%s"] * len(row))
-#                         sql = f"INSERT INTO `{table_name}` VALUES ({placeholders})"
-#                         cursor.execute(sql, tuple(row))
-                    
-#                     connection.commit()
-                
-#                 self.log.info("Data berhasil disimpan ke tabel-tabel dalam database 'peduli_pintar'.")
-        
-#         except Exception as e:
-#             self.log.error(f"Terjadi kesalahan saat menyimpan data ke MySQL: {str(e)}")
-#             raise
-        
-#         finally:
-#             connection.close()
 
 
 class LoadGoogleBigQuery(PythonOperator):
@@ -544,17 +412,15 @@ class LoadGoogleBigQuery(PythonOperator):
     
     def upload_df_to_gbq(self, dataset_id, table_name, df):
         gcp_conn = BaseHook.get_connection(self.gcp_conn)
-
-        # Create a BigQuery client
+        
         client = bigquery.Client()
         
         # Convert DataFrame to CSV
         csv_buffer = StringIO()
-        df.to_csv(csv_buffer, index=False)
+        df.to_csv(csv_buffer, index=False)        
         csv_buffer.seek(0)
 
         table_id = f"{dataset_id}.{table_name}"
-        
         partition_by = bigquery.TimePartitioning(field="created_at")
 
         job_config = bigquery.LoadJobConfig(
@@ -565,10 +431,7 @@ class LoadGoogleBigQuery(PythonOperator):
             time_partitioning=partition_by
         )
 
-        # Load CSV data from StringIO buffer
         job = client.load_table_from_file(csv_buffer, table_id, job_config=job_config)
-        
-        # Wait for the load job to complete
         job.result()
 
         # Get table information
@@ -578,7 +441,7 @@ class LoadGoogleBigQuery(PythonOperator):
                 table.num_rows, len(table.schema), table_id
             )
         )
-    
+        
     def execute(self, context):
         env_path = "/opt/airflow/.env"
         load_dotenv(dotenv_path=env_path)

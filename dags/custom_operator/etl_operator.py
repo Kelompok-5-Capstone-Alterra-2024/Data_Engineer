@@ -13,6 +13,7 @@ from dotenv import load_dotenv
 from google.cloud import bigquery
 from io import StringIO
 from sqlalchemy import create_engine
+from google.cloud.exceptions import NotFound
 
 
 class ExtractData(PythonOperator):
@@ -22,7 +23,7 @@ class ExtractData(PythonOperator):
         self.database = database
         self.query_select = query_select
     
-    def extract_data_from_external_db(self, query):
+    def extract_data_from_external_db(self, query, text_columns):
         mysql_hook = MySqlHook(mysql_conn_id=self.mysql_conn_id, 
                                 database=self.database)
         
@@ -38,6 +39,12 @@ class ExtractData(PythonOperator):
             
             df = pd.DataFrame(data, columns=column_names)
             
+            # menambahkan kolom tertentu dengan ""
+            if text_columns:
+                for col in text_columns:
+                    if col in df.columns:
+                        df[col] = df[col].apply(lambda x: f'"{x}"' if isinstance(x, str) and not x.startswith('"') else x)
+            
             dataframes.append(df)
             table_names.append(table)
             
@@ -47,9 +54,10 @@ class ExtractData(PythonOperator):
 
     def execute(self, context):
         ds = context['ds']
+        text_columns = ['message', 'content', 'content_activity', 'description']
         
         formatted_query = self.query_select.replace('{{ ds }}', ds)
-        dataframes, table_names = self.extract_data_from_external_db(formatted_query)
+        dataframes, table_names = self.extract_data_from_external_db(formatted_query, text_columns)
         
         context['ti'].xcom_push(key='dataframes', value=dataframes)
         context['ti'].xcom_push(key='table_names', value=table_names)
@@ -293,54 +301,53 @@ class TransformationDataWarehouseSchema(PythonOperator):
         return list_fact_tables, list_dim_tables
 
 
-# class LoadFirebase(PythonOperator):
-#     def __init__(self, *args, **kwargs):
-#         super().__init__(*args, **kwargs)
+class LoadFirebase(PythonOperator):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
     
-#     def upload_files_to_firebase(self, env_dir, data_frames, tables, ds):
-#         # Load environment variables from .env file
-#         env_path = env_dir
-#         load_dotenv(dotenv_path=env_path)
+    def upload_files_to_firebase(self, env_dir, data_frames, tables, ds):
+        # Load environment variables from .env file
+        env_path = env_dir
+        load_dotenv(dotenv_path=env_path)
         
-#         credentials_path = os.getenv('FIREBASE_CREDENTIALS_PATH')
-#         cred = credentials.Certificate(credentials_path)
-#         bucket_name = os.getenv('BUCKET_NAME')
-#         firebase_admin.initialize_app(cred, {
-#             'storageBucket': bucket_name
-#         })
+        credentials_path = os.getenv('FIREBASE_CREDENTIALS_PATH')
+        cred = credentials.Certificate(credentials_path)
+        bucket_name = os.getenv('BUCKET_NAME')
+        firebase_admin.initialize_app(cred, {
+            'storageBucket': bucket_name
+        })
         
-#         bucket = storage.bucket()
-#         current_date = ds.replace("-", "")
-#         folder_blob = bucket.blob(f"{current_date}/")
-#         folder_blob.upload_from_string('')
-#         print(f"Folder '{current_date}' created successfully.")
+        bucket = storage.bucket()
+        current_date = ds.replace("-", "")
+        folder_blob = bucket.blob(f"{current_date}/")
+        folder_blob.upload_from_string('')
+        print(f"Folder '{current_date}' created successfully.")
         
-#         for df, table_name in zip(data_frames, tables):
-#             if df is not None and not df.empty:
-#                 # Convert dataframe to CSV string
-#                 csv_str = df.to_csv(index=False)
+        for df, table_name in zip(data_frames, tables):
+            if df is not None and not df.empty:
+                # Convert dataframe to CSV string
+                csv_str = df.to_csv(index=False)
 
-#                 # Create the blob reference with folder name
-#                 file_name_with_date = f"{current_date}_{table_name}.csv"
-#                 file_path_in_bucket = f"{current_date}/{file_name_with_date}"
-#                 file_ref = bucket.blob(file_path_in_bucket)
+                # Create the blob reference with folder name
+                file_name_with_date = f"{current_date}_{table_name}.csv"
+                file_path_in_bucket = f"{current_date}/{file_name_with_date}"
+                file_ref = bucket.blob(file_path_in_bucket)
                 
-#                 # Upload CSV string to Firebase
-#                 file_ref.upload_from_string(csv_str, content_type='text/csv')
-#                 print(f"Dataframe {table_name} uploaded successfully as {file_name_with_date}!")
-#             else:
-#                 print(f"Dataframe {table_name} is empty or None. Skipping upload.")
+                # Upload CSV string to Firebase
+                file_ref.upload_from_string(csv_str, content_type='text/csv')
+                print(f"Dataframe {table_name} uploaded successfully as {file_name_with_date}!")
+            else:
+                print(f"Dataframe {table_name} is empty or None. Skipping upload.")
     
-#     def execute(self, context):
-#         dataframes=context['ti'].xcom_pull(task_ids='extract_data', key='dataframes')
-#         tables_name=context['ti'].xcom_pull(task_ids='extract_data', key='table_names')
-#         if dataframes is None or tables_name is None:
-#             raise ValueError("No dataframes or table names found in XCom.")
+    def execute(self, context):
+        dataframes=context['ti'].xcom_pull(task_ids='extract_data', key='dataframes')
+        tables_name=context['ti'].xcom_pull(task_ids='extract_data', key='table_names')
+        if dataframes is None or tables_name is None:
+            raise ValueError("No dataframes or table names found in XCom.")
         
-#         ds = context['ds']
-#         self.upload_files_to_firebase("/opt/airflow/.env", dataframes, tables_name, ds)
-#         return "Data success upload to Firebase"
-    
+        ds = context['ds']
+        self.upload_files_to_firebase("/opt/airflow/.env", dataframes, tables_name, ds)
+        return "Data success upload to Firebase"
 
 
 class LoadFileLocal(PythonOperator):
@@ -348,16 +355,24 @@ class LoadFileLocal(PythonOperator):
         super().__init__(*args, **kwargs)
 
     def save_to_csv(self, dfs, base_dir, sub_dir, file_names, ds):
-        for df, filename in zip(dfs, file_names):
-            if df.empty:
-                print(f"DataFrame for {filename} is empty, skipping file save.")
-                continue
+        # for df, filename in zip(dfs, file_names):
+        #     if df.empty:
+        #         print(f"DataFrame for {filename} is empty, skipping file save.")
+        #         continue
             
-            file_path = f"{base_dir}/{sub_dir}/{ds}_{filename}.csv"
-            os.makedirs(os.path.dirname(file_path), exist_ok=True)
+        #     file_path = f"{base_dir}/{sub_dir}/{ds}_{filename}.csv"
+        #     os.makedirs(os.path.dirname(file_path), exist_ok=True)
             
-            df.to_csv(file_path, index=False)
+        #     df.to_csv(file_path, index=False)
+        #     print(f"Data dari tabel telah disimpan ke file '{file_path}'.")
+        if dfs is not None and not dfs.empty:
+            folder_path = f"{base_dir}/{sub_dir}/{ds}"
+            os.makedirs(folder_path, exist_ok=True)
+            file_path = f"{folder_path}/{file_names}.csv"
+            dfs.to_csv(file_path, index=False)
             print(f"Data dari tabel telah disimpan ke file '{file_path}'.")
+        else:
+            print(f"DataFrame '{file_names}' kosong. Tidak disimpan ke file CSV.")
     
     def execute(self, context):
         df_fact_table=context['ti'].xcom_pull(task_ids='transform_dw_schema', key='list_fact_table')
@@ -374,155 +389,217 @@ class LoadFileLocal(PythonOperator):
         # for df, filename in zip(df_dim_table, filename_dim_table):
         #     self.save_to_csv(df, "dags/data_loaded", "dim", f"{ds}_{filename}", ds)
         
-        # Save fact tables
-        self.save_to_csv(df_fact_table, "dags/data_loaded", "fact", f"{ds}_{filename_fact_table}", ds)
+        # # Save fact tables
+        # self.save_to_csv(df_fact_table, "dags/data_loaded", "fact", f"{ds}_{filename_fact_table}", ds)
         
+        # # Save dimension tables
+        # self.save_to_csv(df_dim_table, "dags/data_loaded", "dim", f"{ds}_{filename_dim_table}", ds)
+        
+        # Save fact tables
+        for df, filename in zip(df_fact_table, filename_fact_table):
+            self.save_to_csv(df, "dags/data_loaded", f"fact", f"{ds}_{filename}", ds)
+
         # Save dimension tables
-        self.save_to_csv(df_dim_table, "dags/data_loaded", "dim", f"{ds}_{filename_dim_table}", ds)
+        for df, filename in zip(df_dim_table, filename_dim_table):
+            self.save_to_csv(df, "dags/data_loaded", f"dim", f"{ds}_{filename}", ds)
         
         
         return "Data saved to CSV files."
 
 
-# class LoadDatabaseLocal(PythonOperator):
-#     def __init__(self, mysql_conn_id, *args, **kwargs):
-#         super().__init__(*args, **kwargs)
-#         self.mysql_conn_id = mysql_conn_id
+class LoadGoogleBigQuery(PythonOperator):
+    def __init__(self, gcp_conn, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.gcp_conn = gcp_conn
     
-#     def test_mysql_connection(self):
-#         try:
-#             mysql_hook = MySqlHook(mysql_conn_id=self.mysql_conn_id)
-#             conn = mysql_hook.get_conn()
-#             cursor = conn.cursor()
-#             cursor.execute("USE peduli_pintar")
-#             cursor.execute("SELECT 1")
-#             result = cursor.fetchone()
-#             cursor.close()
-#             conn.close()
-#             if result:
-#                 logging.info(f"Connection to MySQL with connection ID '{self.mysql_conn_id}' is successful.")
-#                 return True
-#             else:
-#                 logging.error(f"Connection to MySQL with connection ID '{self.mysql_conn_id}' failed.")
-#                 return False
-#         except Exception as e:
-#             logging.error(f"Error connecting to MySQL with connection ID '{self.mysql_conn_id}': {e}")
-#             return False
+    def upload_df_to_gbq(self, dataset_id, table_names, ds, data_directory):
+        gcp_conn = BaseHook.get_connection(self.gcp_conn)
+        client = bigquery.Client()
+        
+        # ambil list semua file didalam direktori
+        file_names = os.listdir(data_directory)
+        
+        for table_name in table_names:
+            table_id = f"{dataset_id}.{table_name}"
+
+            for file_name in file_names:
+                # Extract partition date from the file name (assuming format is YYYYMMDD_filename.csv)
+                partition_date = file_name.split('_')[0]
+
+                # Define the table reference with partition decorator
+                table_ref = client.dataset(dataset_id).table(
+                    f'{table_name}${partition_date}'
+                )
+
+                # Load the CSV file into a Pandas DataFrame
+                file_path = os.path.join(data_directory, file_name)
+                df = pd.read_csv(file_path)
+                df['updated_at_bq'] = datetime.now()  
+                
+                if 'created_at' in df.columns:
+                    df['created_at'] = pd.to_datetime(df['created_at'], errors='coerce')
+
+
+                job_config = bigquery.LoadJobConfig(
+                    create_disposition=bigquery.CreateDisposition.CREATE_IF_NEEDED,
+                    write_disposition=bigquery.WriteDisposition.WRITE_TRUNCATE,
+                    source_format=bigquery.SourceFormat.CSV,
+                    skip_leading_rows=1,
+                    autodetect=True,
+                    time_partitioning=bigquery.TimePartitioning(
+                        type_="DAY",
+                        field="created_at",  
+                        require_partition_filter=True
+                    ),
+                )
+
+                # Load the data into the partitioned table
+                load_job = client.load_table_from_dataframe(
+                    df, table_ref, job_config=job_config
+                )
+
+                # load_job.result()  # Waits for the job to complete
+
+                # print(f'Loaded {load_job.output_rows} rows into {table_ref}')
+                try:
+                    load_job.result()  # Tunggu job selesai
+                    print(f'Loaded {load_job.output_rows} rows into {table_ref}')
+                except Exception as e:
+                    print(f'Failed to load data into {table_ref}: {str(e)}')
+
+        # Convert DataFrame to CSV
+        # csv_buffer = StringIO()
+        # df.to_csv(csv_buffer, index=False)
+        # csv_buffer.seek(0)
+
+        
+        # partition_by = bigquery.TimePartitioning(field="created_at")
+
+        # job_config = bigquery.LoadJobConfig(
+        #     source_format=bigquery.SourceFormat.CSV,
+        #     skip_leading_rows=1,
+        #     autodetect=True,
+        #     write_disposition=bigquery.WriteDisposition.WRITE_APPEND,
+        #     time_partitioning=partition_by
+        # )
+
+        # Load CSV data from StringIO buffer
+        # job = client.load_table_from_file(csv_buffer, table_id, job_config=job_config)
+        # job.result()
+
+        # # Get table information
+        # table = client.get_table(table_id)
+        # print(
+        #     "Loaded {} rows and {} columns to {}".format(
+        #         table.num_rows, len(table.schema), table_id
+        #     )
+        # )
     
-#     def create_and_insert_data(self, dfs, table_names):
-#         try:
-#             # Get SQLAlchemy connection string from MySqlHook
-#             mysql_hook = MySqlHook(mysql_conn_id=self.mysql_conn_id)
-#             connection_uri = mysql_hook.get_uri()
-            
-#             # Print connection URI to debug
-#             logging.info(f"Original connection URI: {connection_uri}")
-            
-#             # Remove any __extra__ parameters if present
-#             if '__extra__' in connection_uri:
-#                 connection_uri = connection_uri.split('?')[0]
-#                 logging.info(f"Cleaned connection URI: {connection_uri}")
-            
-#             engine = create_engine(connection_uri)
-#             conn = engine.connect()
-            
-#             for df, table_name in zip(dfs, table_names):
-#                 if not df.empty:
-#                     df.to_sql(table_name, conn, index=False, if_exists='replace')
-#                     logging.info(f"Table '{table_name}' created and data inserted successfully.")
-#                 else:
-#                     logging.info(f"DataFrame for table '{table_name}' is empty. Skipping insertion.")
-            
-#             conn.close()
-#             logging.info("All tables created and data inserted successfully.")
-#             return True
+    def execute(self, context):
+        env_path = "/opt/airflow/.env"
+        load_dotenv(dotenv_path=env_path)
+        dataset_id_fact_ds = os.getenv("dataset_id_fact_ds")
+        dataset_id_dim_ds = os.getenv("dataset_id_dim_ds")
         
-#         except Exception as e:
-#             logging.error(f"Error creating tables and inserting data: {e}")
-#             return False
+        # df_fact_table=context['ti'].xcom_pull(task_ids='transform_dw_schema', key='list_fact_table')
+        # df_dim_table=context['ti'].xcom_pull(task_ids='transform_dw_schema', key='list_dim_tables')
+        
+        ds = context['ds']
+        ds = ds.replace("-", "")
+        
+        table_fact_table = ["fact_donation_transaction", "fact_volunteer_applications", "fact_volunteer_testimoni", "fact_article_popular", "fact_bookmark_fundraising", "fact_bookmark_volunteer_vacancies"]
+        table_dim_table = ["dim_fundraisings", "dim_fundraising_categories", "dim_donation_manual", "dim_organization", "dim_user", "dim_volunteer_applictaion", "dim_volunteer_vacancies", "dim_testimoni_volunteer", "dim_article", "dim_bookmark_fundraising", "dim_bookmark_volunter_vacancies", "dim_bookmark_article", "dim_comments", "dim_like_comments"]
+        
+        self.upload_df_to_gbq(dataset_id_fact_ds, table_fact_table, ds, f"dags/data_loaded/fact/{ds}/" )
+        self.upload_df_to_gbq(dataset_id_dim_ds, table_dim_table, ds, f"dags/data_loaded/dim/{ds}/" )
+        
+        # # Upload fact tables
+        # for x in range(len(df_fact_table)):
+        #     if not df_fact_table[x].empty:
+        #         self.upload_df_to_gbq(dataset_id_fact_ds, table_fact_table[x], df_fact_table[x])
+        #     else:
+        #         print(f"DataFrame '{table_fact_table[x]}' is empty. Skipping upload to BigQuery.")
+        
+        # # Upload dimension tables
+        # for y in range(len(df_dim_table)):
+        #     if not df_dim_table[y].empty:
+        #         self.upload_df_to_gbq(dataset_id_dim_ds, table_dim_table[y], df_dim_table[y])
+        #     else:
+        #         print(f"DataFrame '{table_dim_table[y]}' is empty. Skipping upload to BigQuery.")
+        
+        return "Data successfully uploaded to Google BigQuery!"
     
-#     def execute(self, context):
-#         if self.test_mysql_connection():
-#             logging.info("Connection DB sukses!!!")
-            
-#             df_dim_table=context['ti'].xcom_pull(task_ids='transform_dw_schema', key='list_dim_tables')
-#             df_fact_table=context['ti'].xcom_pull(task_ids='transform_dw_schema', key='list_fact_table')
-#             dfs = df_dim_table + df_fact_table
-            
-#             logging.info(f"DataFrames retrieved: {dfs}")
-#             table_names = ["dim_fundraisings", "dim_fundraising_categories", "dim_donation_manual", "dim_organization", "dim_user", "dim_volunteer_application", "dim_volunteer_vacancies", "dim_testimoni_volunteer", "dim_article", "dim_bookmark_fundraising", "dim_bookmark_volunter_vacancies", "dim_bookmark_article", "dim_comments", "dim_like_comments", "fact_donation_transaction", "fact_volunteer_applications", "fact_volunteer_testimoni", "fact_article_popular", "fact_bookmark_fundraising", "fact_bookmark_volunteer_vacancies"]
-            
-#             if self.create_and_insert_data(dfs, table_names):
-#                 logging.info("Data insertion completed successfully.")
-#             else:
-#                 raise Exception("Failed to create tables and insert data.")
-        
-#         else:
-#             raise Exception("Failed to connect to MySQL database.")
-        
+    
+
 
 # class LoadGoogleBigQuery(PythonOperator):
 #     def __init__(self, gcp_conn, *args, **kwargs):
 #         super().__init__(*args, **kwargs)
 #         self.gcp_conn = gcp_conn
     
-#     def upload_df_to_gbq(self, dataset_id, table_name, df):
+#     def upload_df_to_gbq(self, dataset_id, table_names, ds, data_directory):
 #         gcp_conn = BaseHook.get_connection(self.gcp_conn)
 #         client = bigquery.Client()
         
-#         # Convert DataFrame to CSV
-#         csv_buffer = StringIO()
-#         df.to_csv(csv_buffer, index=False)
-#         csv_buffer.seek(0)
-
-#         table_id = f"{dataset_id}.{table_name}"
+#         # ambil list semua file didalam direktori
+#         file_names = os.listdir(data_directory)
         
-#         partition_by = bigquery.TimePartitioning(field="created_at")
+#         for table_name in table_names:
+#             table_id = f"{dataset_id}.{table_name}"
 
-#         job_config = bigquery.LoadJobConfig(
-#             source_format=bigquery.SourceFormat.CSV,
-#             skip_leading_rows=1,
-#             autodetect=True,
-#             write_disposition=bigquery.WriteDisposition.WRITE_APPEND,
-#             time_partitioning=partition_by
-#         )
+#             for file_name in file_names:
+#                 # Extract partition date from the file name (assuming format is YYYYMMDD_filename.csv)
+#                 partition_date = file_name.split('_')[0]
 
-#         # Load CSV data from StringIO buffer
-#         job = client.load_table_from_file(csv_buffer, table_id, job_config=job_config)
-#         job.result()
+#                 # Define the table reference with partition decorator
+#                 table_ref = client.dataset(dataset_id).table(
+#                     f'{table_name}${partition_date}'
+#                 )
 
-#         # Get table information
-#         table = client.get_table(table_id)
-#         print(
-#             "Loaded {} rows and {} columns to {}".format(
-#                 table.num_rows, len(table.schema), table_id
-#             )
-#         )
+#                 # Load the CSV file into a Pandas DataFrame
+#                 file_path = os.path.join(data_directory, file_name)
+#                 df = pd.read_csv(file_path)
+#                 df['updated_at_bq'] = ds  
+
+
+#                 job_config = bigquery.LoadJobConfig(
+#                     create_disposition=bigquery.CreateDisposition.CREATE_IF_NEEDED,
+#                     write_disposition=bigquery.WriteDisposition.WRITE_TRUNCATE,
+#                     source_format=bigquery.SourceFormat.CSV,
+#                     skip_leading_rows=1,
+#                     autodetect=True,
+#                     time_partitioning=bigquery.TimePartitioning(
+#                         type_="DAY",
+#                         field="created_at",  
+#                         require_partition_filter=True
+#                     ),
+#                 )
+
+#                 # Load the data into the partitioned table
+#                 load_job = client.load_table_from_dataframe(
+#                     df, table_ref, job_config=job_config
+#                 )
+
+#                 load_job.result()  # Waits for the job to complete
+
+#                 print(f'Loaded {load_job.output_rows} rows into {table_ref}')
+
     
 #     def execute(self, context):
 #         env_path = "/opt/airflow/.env"
 #         load_dotenv(dotenv_path=env_path)
-#         dataset_id_fact = os.getenv("dataset_id_fact")
-#         dataset_id_dim = os.getenv("dataset_id_dim")
+#         dataset_id_fact_ds = os.getenv("dataset_id_fact_ds")
+#         dataset_id_dim_ds = os.getenv("dataset_id_dim_ds")
         
-#         df_fact_table=context['ti'].xcom_pull(task_ids='transform_dw_schema', key='list_fact_table')
-#         df_dim_table=context['ti'].xcom_pull(task_ids='transform_dw_schema', key='list_dim_tables')
+        
+#         ds = context['ds']
+#         ds = ds.replace("-", "")
         
 #         table_fact_table = ["fact_donation_transaction", "fact_volunteer_applications", "fact_volunteer_testimoni", "fact_article_popular", "fact_bookmark_fundraising", "fact_bookmark_volunteer_vacancies"]
 #         table_dim_table = ["dim_fundraisings", "dim_fundraising_categories", "dim_donation_manual", "dim_organization", "dim_user", "dim_volunteer_applictaion", "dim_volunteer_vacancies", "dim_testimoni_volunteer", "dim_article", "dim_bookmark_fundraising", "dim_bookmark_volunter_vacancies", "dim_bookmark_article", "dim_comments", "dim_like_comments"]
         
-#         # Upload fact tables
-#         for x in range(len(df_fact_table)):
-#             if not df_fact_table[x].empty:
-#                 self.upload_df_to_gbq(dataset_id_fact, table_fact_table[x], df_fact_table[x])
-#             else:
-#                 print(f"DataFrame '{table_fact_table[x]}' is empty. Skipping upload to BigQuery.")
+#         self.upload_df_to_gbq(dataset_id_fact_ds, table_fact_table, ds, f"dags/data_loaded/fact/{ds}/" )
+#         self.upload_df_to_gbq(dataset_id_dim_ds, table_dim_table, ds, f"dags/data_loaded/dim/{ds}/" )
         
-#         # Upload dimension tables
-#         for y in range(len(df_dim_table)):
-#             if not df_dim_table[y].empty:
-#                 self.upload_df_to_gbq(dataset_id_dim, table_dim_table[y], df_dim_table[y])
-#             else:
-#                 print(f"DataFrame '{table_dim_table[y]}' is empty. Skipping upload to BigQuery.")
         
 #         return "Data successfully uploaded to Google BigQuery!"

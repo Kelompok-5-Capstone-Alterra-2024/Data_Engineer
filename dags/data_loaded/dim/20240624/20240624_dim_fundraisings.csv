@@ -1,0 +1,4 @@
+id,created_at,deleted_at,title,image_url,description,status,goal_amount,current_progress,start_date,end_date
+19,2024-06-06,,Santunan Anak Yatim,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1717582970/s.1_t54ipr.jpg,Inisiatif untuk menyediakan dana pendidikan dan kesejahteraan bagi anak-anak yatim di seluruh Indonesia.,aktif,20000000,5397000,2024-04-01,2024-12-31
+64,2024-06-12,2024-06-24,Bantuan Pendidikan Untuk Anak Yatim,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1719218776/y2vjifid0iblilhwa4k5.png,Program ini fokus pada pemberian bantuan pendidikan bagi anak yatim di berbagai wilayah di Indonesia.,aktif,50000000,100000,2024-06-13,2025-06-26
+81,2024-06-24,,Contoh Donasi,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1719218736/wrjhwfmewdecuuy6bbfi.png,Contoh deskripsi,aktif,5000000,0,2024-06-25,2024-07-20

@@ -1,0 +1,642 @@
+[2024-06-26T14:20:17.451+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-26T14:20:17.492+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: peduli_pintar_elt_all_dags_v2.extract_data scheduled__2024-06-23T00:00:00+00:00 [queued]>
+[2024-06-26T14:20:17.503+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: peduli_pintar_elt_all_dags_v2.extract_data scheduled__2024-06-23T00:00:00+00:00 [queued]>
+[2024-06-26T14:20:17.504+0000] {taskinstance.py:2306} INFO - Starting attempt 2 of 5
+[2024-06-26T14:20:17.523+0000] {taskinstance.py:2330} INFO - Executing <Task(ExtractData): extract_data> on 2024-06-23 00:00:00+00:00
+[2024-06-26T14:20:17.535+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=417) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-06-26T14:20:17.538+0000] {standard_task_runner.py:63} INFO - Started process 426 to run task
+[2024-06-26T14:20:17.538+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'peduli_pintar_elt_all_dags_v2', 'extract_data', 'scheduled__2024-06-23T00:00:00+00:00', '--job-id', '35', '--raw', '--subdir', 'DAGS_FOLDER/etl_all_dags.py', '--cfg-path', '/tmp/tmp5agr83x8']
+[2024-06-26T14:20:17.543+0000] {standard_task_runner.py:91} INFO - Job 35: Subtask extract_data
+[2024-06-26T14:20:17.618+0000] {task_command.py:426} INFO - Running <TaskInstance: peduli_pintar_elt_all_dags_v2.extract_data scheduled__2024-06-23T00:00:00+00:00 [running]> on host 7ecff3f83b62
+[2024-06-26T14:20:17.754+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Kelompok 5 Capstone DE' AIRFLOW_CTX_DAG_ID='peduli_pintar_elt_all_dags_v2' AIRFLOW_CTX_TASK_ID='extract_data' AIRFLOW_CTX_EXECUTION_DATE='2024-06-23T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-06-23T00:00:00+00:00'
+[2024-06-26T14:20:17.756+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-06-26T14:20:17.816+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T14:20:18.153+0000] {sql.py:487} INFO - Running statement: SHOW TABLES, parameters: None
+[2024-06-26T14:20:18.185+0000] {sql.py:496} INFO - Rows affected: 22
+[2024-06-26T14:20:18.228+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T14:20:19.510+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM admin_notifications, parameters: None
+[2024-06-26T14:20:19.542+0000] {sql.py:496} INFO - Rows affected: 8
+[2024-06-26T14:20:19.586+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T14:20:19.876+0000] {sql.py:487} INFO - Running statement: SELECT * FROM admin_notifications, parameters: None
+[2024-06-26T14:20:19.934+0000] {sql.py:496} INFO - Rows affected: 82
+[2024-06-26T14:20:20.014+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T14:20:20.295+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM admins, parameters: None
+[2024-06-26T14:20:20.326+0000] {sql.py:496} INFO - Rows affected: 8
+[2024-06-26T14:20:20.361+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T14:20:21.700+0000] {sql.py:487} INFO - Running statement: SELECT * FROM admins, parameters: None
+[2024-06-26T14:20:21.729+0000] {sql.py:496} INFO - Rows affected: 2
+[2024-06-26T14:20:21.769+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T14:20:22.065+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM applications, parameters: None
+[2024-06-26T14:20:22.095+0000] {sql.py:496} INFO - Rows affected: 11
+[2024-06-26T14:20:22.132+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T14:20:22.434+0000] {sql.py:487} INFO - Running statement: SELECT * FROM applications, parameters: None
+[2024-06-26T14:20:22.501+0000] {sql.py:496} INFO - Rows affected: 133
+[2024-06-26T14:20:22.543+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T14:20:24.805+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM articles, parameters: None
+[2024-06-26T14:20:24.836+0000] {sql.py:496} INFO - Rows affected: 8
+[2024-06-26T14:20:24.871+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T14:20:25.150+0000] {sql.py:487} INFO - Running statement: SELECT * FROM articles, parameters: None
+[2024-06-26T14:20:25.210+0000] {sql.py:496} INFO - Rows affected: 28
+[2024-06-26T14:20:25.251+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T14:20:25.547+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM comments, parameters: None
+[2024-06-26T14:20:25.579+0000] {sql.py:496} INFO - Rows affected: 8
+[2024-06-26T14:20:25.619+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T14:20:25.989+0000] {sql.py:487} INFO - Running statement: SELECT * FROM comments, parameters: None
+[2024-06-26T14:20:26.022+0000] {sql.py:496} INFO - Rows affected: 55
+[2024-06-26T14:20:26.064+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T14:20:29.417+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM donation_comments, parameters: None
+[2024-06-26T14:20:29.450+0000] {sql.py:496} INFO - Rows affected: 7
+[2024-06-26T14:20:29.490+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T14:20:29.828+0000] {sql.py:487} INFO - Running statement: SELECT * FROM donation_comments, parameters: None
+[2024-06-26T14:20:29.866+0000] {sql.py:496} INFO - Rows affected: 0
+[2024-06-26T14:20:29.949+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T14:20:30.281+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM donation_manual_comments, parameters: None
+[2024-06-26T14:20:30.313+0000] {sql.py:496} INFO - Rows affected: 7
+[2024-06-26T14:20:30.352+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T14:20:32.709+0000] {sql.py:487} INFO - Running statement: SELECT * FROM donation_manual_comments, parameters: None
+[2024-06-26T14:20:32.742+0000] {sql.py:496} INFO - Rows affected: 90
+[2024-06-26T14:20:32.782+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T14:20:33.098+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM donation_manuals, parameters: None
+[2024-06-26T14:20:33.128+0000] {sql.py:496} INFO - Rows affected: 9
+[2024-06-26T14:20:33.167+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T14:20:33.450+0000] {sql.py:487} INFO - Running statement: SELECT * FROM donation_manuals, parameters: None
+[2024-06-26T14:20:33.516+0000] {sql.py:496} INFO - Rows affected: 196
+[2024-06-26T14:20:33.556+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T14:20:33.870+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM donations, parameters: None
+[2024-06-26T14:20:33.902+0000] {sql.py:496} INFO - Rows affected: 11
+[2024-06-26T14:20:33.942+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T14:20:34.245+0000] {sql.py:487} INFO - Running statement: SELECT * FROM donations, parameters: None
+[2024-06-26T14:20:34.275+0000] {sql.py:496} INFO - Rows affected: 10
+[2024-06-26T14:20:34.313+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T14:20:34.630+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM fundraising_categories, parameters: None
+[2024-06-26T14:20:34.661+0000] {sql.py:496} INFO - Rows affected: 5
+[2024-06-26T14:20:34.699+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T14:20:35.002+0000] {sql.py:487} INFO - Running statement: SELECT * FROM fundraising_categories, parameters: None
+[2024-06-26T14:20:35.031+0000] {sql.py:496} INFO - Rows affected: 4
+[2024-06-26T14:20:35.078+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T14:20:35.378+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM fundraisings, parameters: None
+[2024-06-26T14:20:35.406+0000] {sql.py:496} INFO - Rows affected: 14
+[2024-06-26T14:20:35.441+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T14:20:35.747+0000] {sql.py:487} INFO - Running statement: SELECT * FROM fundraisings, parameters: None
+[2024-06-26T14:20:35.807+0000] {sql.py:496} INFO - Rows affected: 35
+[2024-06-26T14:20:35.846+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T14:20:36.149+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM like_donation_comments, parameters: None
+[2024-06-26T14:20:36.180+0000] {sql.py:496} INFO - Rows affected: 6
+[2024-06-26T14:20:36.215+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T14:20:36.523+0000] {sql.py:487} INFO - Running statement: SELECT * FROM like_donation_comments, parameters: None
+[2024-06-26T14:20:36.554+0000] {sql.py:496} INFO - Rows affected: 0
+[2024-06-26T14:20:36.594+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T14:20:37.911+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM like_donation_manual_comments, parameters: None
+[2024-06-26T14:20:37.942+0000] {sql.py:496} INFO - Rows affected: 6
+[2024-06-26T14:20:37.979+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T14:20:38.272+0000] {sql.py:487} INFO - Running statement: SELECT * FROM like_donation_manual_comments, parameters: None
+[2024-06-26T14:20:38.302+0000] {sql.py:496} INFO - Rows affected: 1
+[2024-06-26T14:20:38.339+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T14:20:39.624+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM likes_comments, parameters: None
+[2024-06-26T14:20:39.655+0000] {sql.py:496} INFO - Rows affected: 6
+[2024-06-26T14:20:39.691+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T14:20:40.967+0000] {sql.py:487} INFO - Running statement: SELECT * FROM likes_comments, parameters: None
+[2024-06-26T14:20:40.997+0000] {sql.py:496} INFO - Rows affected: 107
+[2024-06-26T14:20:41.033+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T14:20:41.333+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM organizations, parameters: None
+[2024-06-26T14:20:41.364+0000] {sql.py:496} INFO - Rows affected: 13
+[2024-06-26T14:20:41.400+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T14:20:41.711+0000] {sql.py:487} INFO - Running statement: SELECT * FROM organizations, parameters: None
+[2024-06-26T14:20:41.745+0000] {sql.py:496} INFO - Rows affected: 15
+[2024-06-26T14:20:41.782+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T14:20:42.082+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM testimoni_volunteers, parameters: None
+[2024-06-26T14:20:42.112+0000] {sql.py:496} INFO - Rows affected: 8
+[2024-06-26T14:20:42.145+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T14:20:42.445+0000] {sql.py:487} INFO - Running statement: SELECT * FROM testimoni_volunteers, parameters: None
+[2024-06-26T14:20:42.475+0000] {sql.py:496} INFO - Rows affected: 31
+[2024-06-26T14:20:42.511+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T14:20:42.814+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM transactions, parameters: None
+[2024-06-26T14:20:42.845+0000] {sql.py:496} INFO - Rows affected: 10
+[2024-06-26T14:20:42.880+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T14:20:43.181+0000] {sql.py:487} INFO - Running statement: SELECT * FROM transactions, parameters: None
+[2024-06-26T14:20:43.211+0000] {sql.py:496} INFO - Rows affected: 27
+[2024-06-26T14:20:43.247+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T14:20:43.540+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM user_bookmark_articles, parameters: None
+[2024-06-26T14:20:43.570+0000] {sql.py:496} INFO - Rows affected: 6
+[2024-06-26T14:20:43.605+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T14:20:43.913+0000] {sql.py:487} INFO - Running statement: SELECT * FROM user_bookmark_articles, parameters: None
+[2024-06-26T14:20:43.945+0000] {sql.py:496} INFO - Rows affected: 60
+[2024-06-26T14:20:43.983+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T14:20:45.265+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM user_bookmark_fundraisings, parameters: None
+[2024-06-26T14:20:45.299+0000] {sql.py:496} INFO - Rows affected: 6
+[2024-06-26T14:20:45.334+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T14:20:45.636+0000] {sql.py:487} INFO - Running statement: SELECT * FROM user_bookmark_fundraisings, parameters: None
+[2024-06-26T14:20:45.666+0000] {sql.py:496} INFO - Rows affected: 46
+[2024-06-26T14:20:45.705+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T14:20:46.011+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM user_bookmark_volunteer_vacancies, parameters: None
+[2024-06-26T14:20:46.041+0000] {sql.py:496} INFO - Rows affected: 7
+[2024-06-26T14:20:46.077+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T14:20:46.373+0000] {sql.py:487} INFO - Running statement: SELECT * FROM user_bookmark_volunteer_vacancies, parameters: None
+[2024-06-26T14:20:46.402+0000] {sql.py:496} INFO - Rows affected: 42
+[2024-06-26T14:20:46.440+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T14:20:46.731+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM users, parameters: None
+[2024-06-26T14:20:46.761+0000] {sql.py:496} INFO - Rows affected: 12
+[2024-06-26T14:20:46.796+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T14:20:47.103+0000] {sql.py:487} INFO - Running statement: SELECT * FROM users, parameters: None
+[2024-06-26T14:20:47.168+0000] {sql.py:496} INFO - Rows affected: 132
+[2024-06-26T14:20:47.205+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T14:20:48.484+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM volunteers, parameters: None
+[2024-06-26T14:20:48.514+0000] {sql.py:496} INFO - Rows affected: 16
+[2024-06-26T14:20:48.548+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T14:20:49.984+0000] {sql.py:487} INFO - Running statement: SELECT * FROM volunteers, parameters: None
+[2024-06-26T14:20:50.047+0000] {sql.py:496} INFO - Rows affected: 22
+[2024-06-26T14:20:50.304+0000] {logging_mixin.py:188} INFO - [    id  ...                               message
+0    1  ...  "jon2352 Bergabung ke Peduli Pintar"
+1    2  ...     " melakukan donasi sebesar Rp. 0"
+2    3  ...     " melakukan donasi sebesar Rp. 0"
+3    4  ...     " melakukan donasi sebesar Rp. 0"
+4    5  ...     " melakukan donasi sebesar Rp. 0"
+..  ..  ...                                   ...
+77  78  ...     "home Bergabung ke Peduli Pintar"
+78  79  ...    "homeQ Bergabung ke Peduli Pintar"
+79  80  ...    "homeQ Bergabung ke Peduli Pintar"
+80  81  ...     "homi Bergabung ke Peduli Pintar"
+81  82  ...    "login Bergabung ke Peduli Pintar"
+
+[82 rows x 8 columns],    id  ...                                             avatar
+0   1  ...  https://res.cloudinary.com/dvrhf8d9t/image/upl...
+1   2  ...  https://res.cloudinary.com/dvrhf8d9t/image/upl...
+
+[2 rows x 8 columns],       id              created_at  ...                        reason            age
+0      1 2024-06-07 13:08:19.244  ...  Ingin menambah produktivitas  21 - 25 Tahun
+1      4 2024-06-08 13:08:19.244  ...  Ingin menambah produktivitas  21 - 25 Tahun
+2      5 2024-06-08 13:08:19.244  ...        Ingin menambah relasi   21 - 25 Tahun
+3      6 2024-06-08 13:08:19.244  ...           Ingin mengisi waktu  21 - 25 Tahun
+4      7 2024-06-08 13:08:19.244  ...     Ingin menambah pengalaman  21 - 25 Tahun
+..   ...                     ...  ...                           ...            ...
+128  231 2024-06-24 05:28:01.961  ...                          suka  21 - 25 Tahun
+129  232 2024-06-24 07:51:13.444  ...            menambah aktivitas  21 - 25 Tahun
+130  233 2024-06-24 08:30:49.793  ...  Ingin menambah produktivitas  21 - 25 Tahun
+131  234 2024-06-26 04:58:41.625  ...          Ingein berkontribusi  18 - 20 Tahun
+132  235 2024-06-26 05:48:37.483  ...                 Ingin mencoba  21 - 25 Tahun
+
+[133 rows x 11 columns],     id  ...                                          image_url
+0    9  ...  https://res.cloudinary.com/dvrhf8d9t/image/upl...
+1   10  ...  https://res.cloudinary.com/dvrhf8d9t/image/upl...
+2   11  ...  https://res.cloudinary.com/dvrhf8d9t/image/upl...
+3   12  ...  https://res.cloudinary.com/dvrhf8d9t/image/upl...
+4   13  ...  https://res.cloudinary.com/dvrhf8d9t/image/upl...
+5   14  ...  https://res.cloudinary.com/dvrhf8d9t/image/upl...
+6   15  ...  https://res.cloudinary.com/dvrhf8d9t/image/upl...
+7   16  ...  https://res.cloudinary.com/dvrhf8d9t/image/upl...
+8   17  ...  https://res.cloudinary.com/dvrhf8d9t/image/upl...
+9   18  ...  https://res.cloudinary.com/dvrhf8d9t/image/upl...
+10  19  ...  https://res.cloudinary.com/dvrhf8d9t/image/upl...
+11  20  ...  https://res.cloudinary.com/dvrhf8d9t/image/upl...
+12  21  ...  https://res.cloudinary.com/dvrhf8d9t/image/upl...
+13  22  ...  https://res.cloudinary.com/dvrhf8d9t/image/upl...
+14  23  ...  https://res.cloudinary.com/dvrhf8d9t/image/upl...
+15  24  ...  https://res.cloudinary.com/dvrhf8d9t/image/upl...
+16  25  ...  https://res.cloudinary.com/dvrhf8d9t/image/upl...
+17  26  ...  https://res.cloudinary.com/dvrhf8d9t/image/upl...
+18  27  ...  https://res.cloudinary.com/dvrhf8d9t/image/upl...
+19  28  ...  https://res.cloudinary.com/dvrhf8d9t/image/upl...
+20  29  ...  https://res.cloudinary.com/dvrhf8d9t/image/upl...
+21  30  ...  https://res.cloudinary.com/dvrhf8d9t/image/upl...
+22  31  ...  https://res.cloudinary.com/dvrhf8d9t/image/upl...
+23  44  ...  https://res.cloudinary.com/dvrhf8d9t/image/upl...
+24  52  ...  https://res.cloudinary.com/dvrhf8d9t/image/upl...
+25  53  ...  https://res.cloudinary.com/dvrhf8d9t/image/upl...
+26  54  ...  https://res.cloudinary.com/dvrhf8d9t/image/upl...
+27  56  ...  https://res.cloudinary.com/dvrhf8d9t/image/upl...
+
+[28 rows x 8 columns],     id  ... total_likes
+0    1  ...           1
+1    2  ...          35
+2    3  ...           2
+3    4  ...           2
+4    5  ...           6
+5    6  ...           2
+6    7  ...           4
+7    8  ...           6
+8    9  ...           2
+9   10  ...           0
+10  11  ...           2
+11  12  ...           2
+12  13  ...           4
+13  14  ...           2
+14  15  ...           0
+15  16  ...           2
+16  17  ...           2
+17  18  ...           0
+18  19  ...           2
+19  20  ...           6
+20  21  ...           2
+21  22  ...           0
+22  23  ...           0
+23  24  ...           0
+24  25  ...           0
+25  26  ...           1
+26  27  ...           0
+27  28  ...           0
+28  29  ...           0
+29  30  ...           0
+30  31  ...           0
+31  32  ...           0
+32  33  ...           0
+33  34  ...           0
+34  35  ...           0
+35  36  ...           0
+36  37  ...           0
+37  38  ...           0
+38  39  ...           0
+39  40  ...           0
+40  41  ...           0
+41  42  ...           0
+42  43  ...           0
+43  44  ...           0
+44  45  ...           0
+45  46  ...           0
+46  47  ...           0
+47  51  ...           0
+48  52  ...           0
+49  53  ...           0
+50  54  ...           0
+51  55  ...           0
+52  56  ...           0
+53  57  ...           0
+54  58  ...           0
+
+[55 rows x 8 columns], Empty DataFrame
+Columns: [id, created_at, updated_at, deleted_at, donation_id, comment, total_likes]
+Index: [],      id              created_at  ...                       comment total_likes
+0    11 2024-06-13 23:53:12.427  ...               Doa dan Harapan           1
+1    12 2024-06-14 04:51:15.750  ...             halo anak backend           0
+2    13 2024-06-14 04:51:56.064  ...                     tes komen           0
+3    14 2024-06-14 14:33:06.157  ...                       sdfsdfd           0
+4    15 2024-06-14 14:35:01.816  ...                        syalom           0
+..  ...                     ...  ...                           ...         ...
+85   96 2024-06-24 05:37:30.000  ...                semoga berkah            0
+86   97 2024-06-24 07:35:21.630  ...  semoga donasi ini bermanfaat           0
+87   98 2024-06-24 07:49:55.129  ...             semoga bermanfaat           0
+88   99 2024-06-24 08:27:56.714  ...  semoga donasi ini bermanfaat           0
+89  100 2024-06-25 17:40:30.364  ...                                         0
+
+[90 rows x 7 columns],       id  ... fundraising_id
+0     16  ...             10
+1     17  ...              6
+2     18  ...             11
+3     19  ...              7
+4     20  ...             28
+..   ...  ...            ...
+191  207  ...             24
+192  208  ...             11
+193  209  ...             64
+194  210  ...             64
+195  211  ...             22
+
+[196 rows x 9 columns],    id  ...       payment_method
+0   1  ...  BCA Virtual Account
+1   2  ...  BCA Virtual Account
+2   3  ...                     
+3   4  ...                     
+4   5  ...  BCA Virtual Account
+5   6  ...  BCA Virtual Account
+6   7  ...  BCA Virtual Account
+7   8  ...                     
+8   9  ...                     
+9  10  ...  BCA Virtual Account
+
+[10 rows x 11 columns],    id              created_at              updated_at deleted_at     name
+0   1 2024-06-03 18:43:04.730 2024-06-03 18:43:04.730       None  Edukasi
+1   2 2024-06-03 18:43:04.730 2024-06-03 18:43:04.730       None  Bencana
+2   3 2024-06-03 18:43:04.730 2024-06-03 18:43:04.730       None   Sosial
+3   4 2024-06-03 18:43:04.730 2024-06-03 18:43:04.730       None     Alam,     id              created_at  ... start_date   end_date
+0    1 2024-06-04 01:16:25.220  ... 2024-06-13 2024-07-22
+1    2 2024-06-04 03:09:44.762  ... 2024-06-15 2024-07-28
+2    3 2024-06-04 03:15:27.036  ... 2024-06-20 2024-06-27
+3    4 2024-06-05 09:30:16.797  ... 2024-06-20 2024-06-27
+4    5 2024-06-05 14:05:16.115  ... 2024-06-20 2024-07-27
+5    6 2024-06-06 00:03:25.012  ... 2024-01-01 2024-12-31
+6    7 2024-06-06 00:03:25.012  ... 2024-02-01 2024-07-20
+7    8 2024-06-06 00:03:25.012  ... 2024-03-01 2024-06-01
+8    9 2024-06-06 00:03:25.012  ... 2024-04-01 2024-12-31
+9   10 2024-06-06 00:03:25.012  ... 2024-05-01 2024-08-01
+10  11 2024-06-06 00:03:25.012  ... 2024-04-01 2024-12-31
+11  12 2024-06-06 00:03:25.012  ... 2024-01-01 2024-03-31
+12  13 2024-06-06 00:03:25.012  ... 2024-02-01 2024-06-30
+13  14 2024-06-06 00:03:25.012  ... 2024-03-01 2024-08-30
+14  15 2024-06-06 00:03:25.012  ... 2024-04-01 2024-09-30
+15  16 2024-06-06 00:03:25.012  ... 2024-05-01 2024-12-31
+16  17 2024-06-06 00:03:25.012  ... 2024-05-01 2024-06-30
+17  18 2024-06-06 00:03:25.012  ... 2024-05-08 2024-07-31
+18  19 2024-06-06 00:03:25.012  ... 2024-04-01 2024-12-31
+19  20 2024-06-06 00:03:25.012  ... 2024-02-01 2024-11-30
+20  21 2024-06-06 00:03:25.012  ... 2024-01-01 2024-06-30
+21  22 2024-06-06 00:03:25.012  ... 2024-02-01 2024-12-31
+22  23 2024-06-06 00:03:25.012  ... 2024-03-01 2024-08-31
+23  24 2024-06-06 00:03:25.012  ... 2024-04-01 2024-09-30
+24  25 2024-06-06 00:03:25.012  ... 2024-05-01 2024-12-31
+25  26 2024-06-06 00:03:25.012  ... 2024-01-01 2024-12-31
+26  27 2024-06-06 00:03:25.012  ... 2024-02-15 2025-02-15
+27  28 2024-06-06 00:03:25.012  ... 2024-03-01 2025-03-01
+28  29 2024-06-06 00:03:25.012  ... 2024-04-01 2025-04-01
+29  30 2024-06-06 00:03:25.012  ... 2024-05-01 2025-05-01
+30  31 2024-06-06 05:26:32.270  ... 2024-07-01 2025-08-08
+31  40 2024-06-09 08:43:37.295  ... 2024-07-01 2025-08-08
+32  44 2024-06-09 09:00:09.998  ... 2024-07-01 2025-08-08
+33  64 2024-06-12 23:19:30.182  ... 2024-06-13 2025-06-26
+34  81 2024-06-24 08:45:37.149  ... 2024-06-25 2024-07-20
+
+[35 rows x 14 columns], Empty DataFrame
+Columns: [id, created_at, updated_at, deleted_at, donation_comment_id, user_id]
+Index: [],    id              created_at  ... donation_manual_comment_id user_id
+0   9 2024-06-23 14:41:07.122  ...                         11       1
+
+[1 rows x 6 columns],       id              created_at  ... user_id comment_id
+0      4 2024-06-09 13:18:40.682  ...      51          1
+1      5 2024-06-09 13:20:29.867  ...      52          2
+2      6 2024-06-12 16:28:39.379  ...      53          2
+3      7 2024-06-12 16:54:56.385  ...      54          2
+4      8 2024-06-13 08:38:53.805  ...      55          2
+..   ...                     ...  ...     ...        ...
+102  106 2024-06-23 16:35:19.033  ...     158         26
+103  107 2024-06-23 16:37:13.541  ...     158          2
+104  108 2024-06-23 16:47:25.380  ...     123          2
+105  109 2024-06-23 16:57:36.688  ...     158          2
+106  110 2024-06-23 18:05:07.316  ...       1          2
+
+[107 rows x 6 columns],     id              created_at  ...      instagram no_rekening
+0    1 2024-06-03 18:37:01.370  ...  @berbagikisah  1234567891
+1    2 2024-06-03 18:55:32.633  ...    @sejahtera1  1234567892
+2    3 2024-06-05 11:53:01.370  ...  @pedulisesama  1234567893
+3    4 2024-06-05 11:53:01.370  ...   @solidaritas  1234347890
+4    5 2024-06-05 11:59:01.370  ...    @pelitahati  1234567899
+5    6 2024-06-05 12:00:01.370  ...  @bantu_sesama  1234127890
+6    7 2024-06-05 12:05:01.370  ...     @cemerlang  1234567835
+7    8 2024-06-05 12:05:01.370  ...  @cendekiamuda  1234568891
+8    9 2024-06-05 12:05:01.370  ...   @mutiarailmu  1234157895
+9   10 2024-06-05 12:05:01.370  ...      @bookclub  1234567824
+10  11 2024-06-05 12:05:01.370  ...    @senyumalam  1234567864
+11  12 2024-06-05 12:05:01.370  ...   @lestarialam  1234567813
+12  13 2024-06-05 12:10:01.370  ...    @kitapeduli  1234567857
+13  23 2024-06-23 14:32:56.692  ...   Peduli_Hijau   123456789
+14  24 2024-06-24 08:52:22.805  ...   Peduli_Hijau    12345678
+
+[15 rows x 13 columns],     id  ... rating
+0    1  ...      4
+1    2  ...      3
+2    3  ...      4
+3    4  ...      3
+4    5  ...      4
+5    6  ...      5
+6    7  ...      4
+7    8  ...      5
+8    9  ...      4
+9   10  ...      4
+10  11  ...      5
+11  12  ...      4
+12  13  ...      4
+13  14  ...      4
+14  15  ...      4
+15  16  ...      4
+16  17  ...      3
+17  18  ...      4
+18  19  ...      4
+19  20  ...      4
+20  21  ...      2
+21  22  ...      3
+22  23  ...      4
+23  24  ...      4
+24  26  ...      3
+25  36  ...      1
+26  42  ...      5
+27  43  ...      3
+28  44  ...      5
+29  45  ...      1
+30  46  ...      4
+
+[31 rows x 8 columns],     id  ... fundraising_id
+0    3  ...              3
+1    4  ...              3
+2    5  ...              2
+3    6  ...              2
+4    7  ...              2
+5    8  ...              2
+6    9  ...              2
+7   10  ...              2
+8   11  ...              2
+9   12  ...              2
+10  13  ...              2
+11  14  ...             64
+12  15  ...              1
+13  16  ...              1
+14  17  ...              1
+15  18  ...              1
+16  19  ...              1
+17  20  ...              1
+18  21  ...              3
+19  22  ...              9
+20  23  ...             10
+21  24  ...              1
+22  25  ...             11
+23  26  ...             11
+24  27  ...             12
+25  28  ...             81
+26  29  ...             22
+
+[27 rows x 10 columns],      id              created_at  ... user_id article_id
+0    16 2024-06-06 20:38:15.942  ...       1          9
+1    17 2024-06-06 20:38:15.942  ...      60         21
+2    18 2024-06-06 20:38:15.942  ...      52         20
+3    19 2024-06-06 20:38:15.942  ...      53         30
+4    20 2024-06-06 20:38:15.942  ...      54         11
+5    21 2024-06-06 20:39:50.461  ...      60         10
+6    22 2024-06-07 19:47:01.644  ...      64         15
+7    23 2024-06-07 19:47:01.644  ...      72         25
+8    24 2024-06-07 19:47:01.644  ...      63         29
+9    25 2024-06-07 19:47:01.644  ...      86         16
+10   26 2024-06-07 19:47:01.644  ...      75         22
+11   27 2024-06-07 19:47:01.644  ...      66         23
+12   28 2024-06-07 19:47:01.644  ...      55         13
+13   29 2024-06-07 19:47:01.644  ...      79         26
+14   30 2024-06-07 19:47:01.644  ...      71         17
+15   31 2024-06-07 19:47:01.644  ...      70         28
+16   32 2024-06-07 19:47:01.644  ...      56         24
+17   33 2024-06-07 19:47:01.644  ...      80         31
+18   34 2024-06-07 19:47:01.644  ...      61         19
+19   35 2024-06-07 19:47:01.644  ...      83         14
+20   36 2024-06-07 19:47:01.644  ...      86         27
+21   37 2024-06-07 19:47:01.644  ...      78         18
+22   38 2024-06-07 19:47:01.644  ...       1         12
+23   40 2024-06-15 02:29:49.543  ...      76         10
+24   41 2024-06-15 10:40:12.671  ...      73         10
+25   42 2024-06-16 14:46:01.582  ...      73         10
+26   43 2024-06-16 16:01:22.663  ...      73         10
+27   44 2024-06-16 16:01:49.732  ...      73         10
+28   69 2024-06-21 07:50:06.677  ...     136          9
+29   74 2024-06-21 08:12:23.447  ...     137         10
+30   75 2024-06-21 08:12:41.582  ...     137          9
+31   80 2024-06-21 17:55:56.349  ...     133          9
+32   81 2024-06-21 17:56:25.724  ...     133         10
+33   89 2024-06-21 18:15:41.875  ...     133         10
+34   90 2024-06-21 18:52:50.935  ...     143          9
+35   93 2024-06-21 20:30:34.504  ...     141          9
+36  100 2024-06-22 05:52:22.287  ...     163          9
+37  101 2024-06-22 07:59:27.970  ...     165          9
+38  102 2024-06-22 08:05:00.673  ...      60          9
+39  103 2024-06-22 08:05:27.509  ...      60          9
+40  104 2024-06-22 08:05:42.996  ...      60          9
+41  112 2024-06-22 08:08:29.856  ...      60          9
+42  113 2024-06-22 08:08:36.032  ...      60         11
+43  114 2024-06-22 08:08:42.935  ...      60         13
+44  115 2024-06-22 08:08:51.422  ...      60         14
+45  116 2024-06-22 19:41:59.289  ...     127          9
+46  117 2024-06-22 19:42:18.540  ...     127         10
+47  118 2024-06-22 19:42:26.689  ...     127          9
+48  119 2024-06-22 19:42:31.925  ...     127         10
+49  120 2024-06-22 20:09:09.866  ...     127          9
+50  121 2024-06-22 20:10:54.369  ...     127         10
+51  122 2024-06-22 20:11:01.167  ...     127         11
+52  123 2024-06-22 20:11:06.518  ...     127         12
+53  124 2024-06-22 20:11:11.154  ...     127         13
+54  125 2024-06-23 16:14:48.132  ...     123         54
+55  126 2024-06-23 16:15:21.530  ...     123         52
+56  127 2024-06-23 20:21:14.016  ...     127         54
+57  128 2024-06-24 04:31:17.678  ...     127         54
+58  129 2024-06-24 07:51:41.303  ...     171          9
+59  130 2024-06-24 07:51:56.289  ...     171         52
+
+[60 rows x 6 columns],      id              created_at  ... user_id fundraising_id
+0    16 2024-06-06 20:43:56.908  ...      61              6
+1    17 2024-06-06 20:43:56.908  ...      62              7
+2    18 2024-06-06 20:43:56.908  ...      63             10
+3    19 2024-06-06 20:43:56.908  ...      64             12
+4    20 2024-06-06 20:43:56.908  ...      65             11
+5    21 2024-06-07 18:16:42.151  ...      81              1
+6    22 2024-06-07 18:16:42.151  ...      72              2
+7    23 2024-06-07 18:16:42.151  ...      53              3
+8    24 2024-06-07 18:16:42.151  ...      54              9
+9    25 2024-06-07 18:16:42.151  ...      55              8
+10   26 2024-06-07 18:16:42.151  ...      76             13
+11   27 2024-06-07 18:16:42.151  ...      59             15
+12   28 2024-06-07 18:16:42.151  ...      60             14
+13   29 2024-06-07 18:16:42.151  ...      67             20
+14   30 2024-06-07 18:16:42.151  ...      68             23
+15   31 2024-06-07 18:16:42.151  ...      71             22
+16   32 2024-06-07 18:16:42.151  ...      56             21
+17   33 2024-06-07 18:16:42.151  ...      80             18
+18   34 2024-06-07 18:16:42.151  ...      70             19
+19   35 2024-06-07 18:16:42.151  ...      66             28
+20   36 2024-06-07 18:16:42.151  ...      55             30
+21   37 2024-06-07 18:16:42.151  ...      63             29
+22   38 2024-06-07 18:16:42.151  ...      52             26
+23   39 2024-06-07 18:16:42.151  ...      74             27
+24   40 2024-06-07 18:16:42.151  ...      73             16
+25   41 2024-06-15 02:17:59.531  ...      76              1
+26   42 2024-06-15 10:39:06.394  ...      73              1
+27   43 2024-06-15 10:52:02.911  ...      73              1
+28   44 2024-06-16 06:36:02.196  ...      73             40
+29   45 2024-06-16 08:02:14.044  ...      73              1
+30   46 2024-06-16 14:47:53.944  ...      73             44
+31   47 2024-06-19 03:49:23.488  ...      60              1
+32  116 2024-06-21 07:51:30.424  ...     136              1
+33  119 2024-06-22 08:00:38.020  ...     165              1
+34  120 2024-06-22 08:06:05.107  ...      60              1
+35  122 2024-06-22 18:06:57.936  ...     127             11
+36  123 2024-06-22 18:07:00.735  ...     127             11
+37  124 2024-06-23 14:03:59.197  ...     127             31
+38  125 2024-06-23 14:04:03.345  ...     127             31
+39  126 2024-06-23 14:04:09.206  ...     127             24
+40  127 2024-06-23 14:44:55.879  ...     127              7
+41  128 2024-06-23 14:45:09.949  ...     127              7
+42  129 2024-06-24 04:22:33.154  ...     127             64
+43  130 2024-06-24 07:35:36.060  ...     171             11
+44  131 2024-06-24 07:48:03.010  ...     171             22
+45  132 2024-06-24 08:25:34.704  ...     171             64
+
+[46 rows x 6 columns],      id              created_at  ... volunteer_vacancies_id volunteer_vacancy_id
+0    16 2024-06-07 07:19:52.737  ...                      2                 None
+1    17 2024-06-07 07:19:52.737  ...                      4                 None
+2    18 2024-06-07 07:19:52.737  ...                      6                 None
+3    19 2024-06-07 07:19:52.737  ...                      3                 None
+4    20 2024-06-07 07:19:52.737  ...                      5                 None
+5    21 2024-06-07 18:27:48.688  ...                      1                 None
+6    22 2024-06-07 18:27:48.688  ...                      5                 None
+7    23 2024-06-07 18:27:48.688  ...                      7                 None
+8    24 2024-06-07 18:27:48.688  ...                      8                 None
+9    25 2024-06-07 18:27:48.688  ...                      9                 None
+10   26 2024-06-07 18:27:48.688  ...                     10                 None
+11   27 2024-06-07 18:27:48.688  ...                     29                 None
+12   28 2024-06-07 18:27:48.688  ...                     36                 None
+13   29 2024-06-07 18:27:48.688  ...                     33                 None
+14   30 2024-06-07 18:27:48.688  ...                     12                 None
+15   31 2024-06-07 18:27:48.688  ...                     32                 None
+16   32 2024-06-07 18:27:48.688  ...                     11                 None
+17   33 2024-06-07 18:27:48.688  ...                     30                 None
+18   34 2024-06-07 18:27:48.688  ...                     34                 None
+19   35 2024-06-07 18:27:48.688  ...                     35                 None
+20   36 2024-06-07 18:27:48.688  ...                     31                 None
+21   37 2024-06-15 02:44:33.736  ...                      1                 None
+22   38 2024-06-15 03:22:49.578  ...                      1                 None
+23   39 2024-06-15 10:41:09.058  ...                      1                 None
+24   40 2024-06-16 08:10:36.431  ...                      1                 None
+25   77 2024-06-20 06:25:29.858  ...                      1                 None
+26   83 2024-06-21 07:51:39.570  ...                      1                 None
+27   84 2024-06-21 08:06:47.457  ...                      2                 None
+28   86 2024-06-21 20:30:21.497  ...                      6                 None
+29   87 2024-06-22 00:42:41.659  ...                      6                 None
+30   88 2024-06-22 08:00:28.736  ...                      1                 None
+31   89 2024-06-22 08:00:44.352  ...                      4                 None
+32   90 2024-06-22 08:06:12.632  ...                      1                 None
+33   92 2024-06-22 18:03:32.416  ...                      1                 None
+34   93 2024-06-22 20:11:34.166  ...                      2                 None
+35   94 2024-06-23 14:05:24.324  ...                      6                 None
+36   95 2024-06-23 15:03:50.690  ...                      6                 None
+37   96 2024-06-23 16:15:35.952  ...                      4                 None
+38   97 2024-06-23 20:23:31.250  ...                     30                 None
+39   98 2024-06-24 04:28:15.130  ...                      4                 None
+40   99 2024-06-24 08:29:05.451  ...                      4                 None
+41  100 2024-06-26 04:28:04.420  ...                      4                 None
+
+[42 rows x 7 columns],       id              created_at  ...          no_telp     otp
+0      1 2024-06-03 10:45:11.896  ...      08888888888    None
+1     51 2024-06-04 10:45:11.896  ...      81365706378    None
+2     52 2024-06-04 10:45:11.896  ...      81365706378    None
+3     53 2024-06-04 10:45:11.896  ...                8  503161
+4     54 2024-06-04 10:45:11.896  ...      81365706378    None
+..   ...                     ...  ...              ...     ...
+127  179 2024-06-26 05:31:35.007  ...    0845436352335        
+128  180 2024-06-26 05:32:10.620  ...   08454536352335        
+129  181 2024-06-26 05:32:10.661  ...   08454536352335        
+130  182 2024-06-26 05:34:24.441  ...    0856463525467        
+131  183 2024-06-26 05:37:22.045  ...  085465345345435        
+
+[132 rows x 12 columns],     id              created_at  ...    status  link_wa
+0    1 2024-06-04 01:16:25.220  ...  inactive     None
+1    2 2024-06-07 02:16:25.220  ...  inactive     None
+2    3 2024-06-07 10:16:25.220  ...    active         
+3    4 2024-06-07 11:16:25.220  ...    active         
+4    5 2024-06-07 01:16:25.220  ...  inactive     None
+5    6 2024-06-07 01:16:25.220  ...    active         
+6    7 2024-06-07 01:16:25.220  ...    active     None
+7    8 2024-06-07 01:16:25.220  ...    active     None
+8    9 2024-06-07 01:16:25.220  ...  inactive     None
+9   10 2024-06-07 01:16:25.220  ...    active     None
+10  11 2024-06-07 01:16:25.220  ...    active     None
+11  12 2024-06-07 01:16:25.220  ...    active     None
+12  29 2024-06-07 01:16:25.220  ...    active         
+13  30 2024-06-07 01:16:25.220  ...    active         
+14  31 2024-06-07 01:16:25.220  ...  inactive         
+15  32 2024-06-07 01:16:25.220  ...    active         
+16  33 2024-06-07 01:16:25.220  ...    active     None
+17  34 2024-06-07 01:16:25.220  ...    active     None
+18  35 2024-06-07 01:16:25.220  ...    active     None
+19  36 2024-06-07 01:16:25.220  ...    active     None
+20  59 2024-06-23 14:27:49.444  ...    active  link.wa
+21  60 2024-06-24 08:48:45.444  ...    active  link.wa
+
+[22 rows x 16 columns]]
+[2024-06-26T14:20:50.305+0000] {logging_mixin.py:188} INFO - ['admin_notifications', 'admins', 'applications', 'articles', 'comments', 'donation_comments', 'donation_manual_comments', 'donation_manuals', 'donations', 'fundraising_categories', 'fundraisings', 'like_donation_comments', 'like_donation_manual_comments', 'likes_comments', 'organizations', 'testimoni_volunteers', 'transactions', 'user_bookmark_articles', 'user_bookmark_fundraisings', 'user_bookmark_volunteer_vacancies', 'users', 'volunteers']
+[2024-06-26T14:20:50.543+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-06-26T14:20:50.561+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=peduli_pintar_elt_all_dags_v2, task_id=extract_data, run_id=scheduled__2024-06-23T00:00:00+00:00, execution_date=20240623T000000, start_date=20240626T142017, end_date=20240626T142050
+[2024-06-26T14:20:50.625+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-06-26T14:20:50.672+0000] {taskinstance.py:3503} INFO - 2 downstream tasks scheduled from follow-on schedule check
+[2024-06-26T14:20:50.675+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

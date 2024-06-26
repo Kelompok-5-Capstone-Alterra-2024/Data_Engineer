@@ -80,7 +80,7 @@ x-airflow-common:
     - ${AIRFLOW_PROJ_DIR:-.}/plugins:/opt/airflow/plugins
     - ${AIRFLOW_PROJ_DIR:-.}/.env:/opt/airflow/.env
     - ${AIRFLOW_PROJ_DIR:-.}/miniproject-de-firebase-adminsdk-t4ogl-310896718d.json:/opt/airflow/miniproject-de-firebase-adminsdk-t4ogl-310896718d.json
-    - ${AIRFLOW_PROJ_DIR:-.}/serviceAccountKeyCapstoneDE.json:/opt/airflow/serviceAccountKeyCapstoneDE.json
+    - ${AIRFLOW_PROJ_DIR:-.}/capstone-de2-3b8d363c4eab.json:/opt/airflow/capstone-de2-3b8d363c4eab.json
   user: "${AIRFLOW_UID:-50000}:0"
   depends_on:
     &airflow-common-depends-on

@@ -1,0 +1,42 @@
+[2024-06-26T14:12:17.612+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-26T14:12:17.665+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: peduli_pintar_elt_all_dags_v1.load_firebase scheduled__2024-06-23T00:00:00+00:00 [queued]>
+[2024-06-26T14:12:17.683+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: peduli_pintar_elt_all_dags_v1.load_firebase scheduled__2024-06-23T00:00:00+00:00 [queued]>
+[2024-06-26T14:12:17.684+0000] {taskinstance.py:2306} INFO - Starting attempt 2 of 5
+[2024-06-26T14:12:17.711+0000] {taskinstance.py:2330} INFO - Executing <Task(LoadFirebase): load_firebase> on 2024-06-23 00:00:00+00:00
+[2024-06-26T14:12:17.729+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=261) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-06-26T14:12:17.732+0000] {standard_task_runner.py:63} INFO - Started process 285 to run task
+[2024-06-26T14:12:17.733+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'peduli_pintar_elt_all_dags_v1', 'load_firebase', 'scheduled__2024-06-23T00:00:00+00:00', '--job-id', '23', '--raw', '--subdir', 'DAGS_FOLDER/etl_all_dags.py', '--cfg-path', '/tmp/tmpsbp35081']
+[2024-06-26T14:12:17.745+0000] {standard_task_runner.py:91} INFO - Job 23: Subtask load_firebase
+[2024-06-26T14:12:17.926+0000] {task_command.py:426} INFO - Running <TaskInstance: peduli_pintar_elt_all_dags_v1.load_firebase scheduled__2024-06-23T00:00:00+00:00 [running]> on host 7ecff3f83b62
+[2024-06-26T14:12:18.147+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Kelompok 5 Capstone DE' AIRFLOW_CTX_DAG_ID='peduli_pintar_elt_all_dags_v1' AIRFLOW_CTX_TASK_ID='load_firebase' AIRFLOW_CTX_EXECUTION_DATE='2024-06-23T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-06-23T00:00:00+00:00'
+[2024-06-26T14:12:18.149+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-06-26T14:12:19.493+0000] {logging_mixin.py:188} INFO - Folder '20240623' created successfully.
+[2024-06-26T14:12:20.074+0000] {logging_mixin.py:188} INFO - Dataframe admin_notifications uploaded successfully as admin_notifications.csv!
+[2024-06-26T14:12:20.576+0000] {logging_mixin.py:188} INFO - Dataframe admins uploaded successfully as admins.csv!
+[2024-06-26T14:12:21.147+0000] {logging_mixin.py:188} INFO - Dataframe applications uploaded successfully as applications.csv!
+[2024-06-26T14:12:21.767+0000] {logging_mixin.py:188} INFO - Dataframe articles uploaded successfully as articles.csv!
+[2024-06-26T14:12:22.293+0000] {logging_mixin.py:188} INFO - Dataframe comments uploaded successfully as comments.csv!
+[2024-06-26T14:12:22.808+0000] {logging_mixin.py:188} INFO - Dataframe donation_comments uploaded successfully as donation_comments.csv!
+[2024-06-26T14:12:23.342+0000] {logging_mixin.py:188} INFO - Dataframe donation_manual_comments uploaded successfully as donation_manual_comments.csv!
+[2024-06-26T14:12:24.039+0000] {logging_mixin.py:188} INFO - Dataframe donation_manuals uploaded successfully as donation_manuals.csv!
+[2024-06-26T14:12:24.553+0000] {logging_mixin.py:188} INFO - Dataframe donations uploaded successfully as donations.csv!
+[2024-06-26T14:12:25.046+0000] {logging_mixin.py:188} INFO - Dataframe fundraising_categories uploaded successfully as fundraising_categories.csv!
+[2024-06-26T14:12:25.613+0000] {logging_mixin.py:188} INFO - Dataframe fundraisings uploaded successfully as fundraisings.csv!
+[2024-06-26T14:12:26.116+0000] {logging_mixin.py:188} INFO - Dataframe like_donation_comments uploaded successfully as like_donation_comments.csv!
+[2024-06-26T14:12:26.623+0000] {logging_mixin.py:188} INFO - Dataframe like_donation_manual_comments uploaded successfully as like_donation_manual_comments.csv!
+[2024-06-26T14:12:27.162+0000] {logging_mixin.py:188} INFO - Dataframe likes_comments uploaded successfully as likes_comments.csv!
+[2024-06-26T14:12:27.717+0000] {logging_mixin.py:188} INFO - Dataframe organizations uploaded successfully as organizations.csv!
+[2024-06-26T14:12:28.249+0000] {logging_mixin.py:188} INFO - Dataframe testimoni_volunteers uploaded successfully as testimoni_volunteers.csv!
+[2024-06-26T14:12:28.774+0000] {logging_mixin.py:188} INFO - Dataframe transactions uploaded successfully as transactions.csv!
+[2024-06-26T14:12:29.287+0000] {logging_mixin.py:188} INFO - Dataframe user_bookmark_articles uploaded successfully as user_bookmark_articles.csv!
+[2024-06-26T14:12:29.816+0000] {logging_mixin.py:188} INFO - Dataframe user_bookmark_fundraisings uploaded successfully as user_bookmark_fundraisings.csv!
+[2024-06-26T14:12:30.317+0000] {logging_mixin.py:188} INFO - Dataframe user_bookmark_volunteer_vacancies uploaded successfully as user_bookmark_volunteer_vacancies.csv!
+[2024-06-26T14:12:30.983+0000] {logging_mixin.py:188} INFO - Dataframe users uploaded successfully as users.csv!
+[2024-06-26T14:12:31.677+0000] {logging_mixin.py:188} INFO - Dataframe volunteers uploaded successfully as volunteers.csv!
+[2024-06-26T14:12:31.679+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-06-26T14:12:31.700+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=peduli_pintar_elt_all_dags_v1, task_id=load_firebase, run_id=scheduled__2024-06-23T00:00:00+00:00, execution_date=20240623T000000, start_date=20240626T141217, end_date=20240626T141231
+[2024-06-26T14:12:31.739+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-06-26T14:12:31.753+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-06-26T14:12:31.756+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
