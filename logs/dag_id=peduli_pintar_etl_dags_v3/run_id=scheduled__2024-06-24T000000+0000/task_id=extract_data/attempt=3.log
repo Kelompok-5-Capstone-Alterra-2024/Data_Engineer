@@ -1,0 +1,369 @@
+[2024-06-27T09:01:23.003+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-27T09:01:23.042+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: peduli_pintar_etl_dags_v3.extract_data scheduled__2024-06-24T00:00:00+00:00 [queued]>
+[2024-06-27T09:01:23.061+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: peduli_pintar_etl_dags_v3.extract_data scheduled__2024-06-24T00:00:00+00:00 [queued]>
+[2024-06-27T09:01:23.062+0000] {taskinstance.py:2306} INFO - Starting attempt 3 of 5
+[2024-06-27T09:01:23.081+0000] {taskinstance.py:2330} INFO - Executing <Task(ExtractData): extract_data> on 2024-06-24 00:00:00+00:00
+[2024-06-27T09:01:23.094+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=227) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-06-27T09:01:23.097+0000] {standard_task_runner.py:63} INFO - Started process 231 to run task
+[2024-06-27T09:01:23.096+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'peduli_pintar_etl_dags_v3', 'extract_data', 'scheduled__2024-06-24T00:00:00+00:00', '--job-id', '43', '--raw', '--subdir', 'DAGS_FOLDER/etl_dags.py', '--cfg-path', '/tmp/tmpnaxlsrt5']
+[2024-06-27T09:01:23.099+0000] {standard_task_runner.py:91} INFO - Job 43: Subtask extract_data
+[2024-06-27T09:01:23.164+0000] {task_command.py:426} INFO - Running <TaskInstance: peduli_pintar_etl_dags_v3.extract_data scheduled__2024-06-24T00:00:00+00:00 [running]> on host 3dad981482d5
+[2024-06-27T09:01:23.283+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Kelompok 5 Capstone DE' AIRFLOW_CTX_DAG_ID='peduli_pintar_etl_dags_v3' AIRFLOW_CTX_TASK_ID='extract_data' AIRFLOW_CTX_EXECUTION_DATE='2024-06-24T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='3' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-06-24T00:00:00+00:00'
+[2024-06-27T09:01:23.286+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-06-27T09:01:23.352+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T09:01:23.675+0000] {sql.py:487} INFO - Running statement: SHOW TABLES, parameters: None
+[2024-06-27T09:01:23.706+0000] {sql.py:496} INFO - Rows affected: 23
+[2024-06-27T09:01:23.751+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T09:01:24.134+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM admin_notifications, parameters: None
+[2024-06-27T09:01:24.165+0000] {sql.py:496} INFO - Rows affected: 8
+[2024-06-27T09:01:24.214+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T09:01:25.493+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM admin_notifications
+            WHERE DATE(created_at) = '2024-06-24' OR DATE(updated_at) = '2024-06-24'
+        , parameters: None
+[2024-06-27T09:01:25.531+0000] {sql.py:496} INFO - Rows affected: 17
+[2024-06-27T09:01:25.600+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T09:01:25.890+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM admins, parameters: None
+[2024-06-27T09:01:25.921+0000] {sql.py:496} INFO - Rows affected: 8
+[2024-06-27T09:01:25.959+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T09:01:26.274+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM admins
+            WHERE DATE(created_at) = '2024-06-24' OR DATE(updated_at) = '2024-06-24'
+        , parameters: None
+[2024-06-27T09:01:26.304+0000] {sql.py:496} INFO - Rows affected: 0
+[2024-06-27T09:01:26.355+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T09:01:26.724+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM applications, parameters: None
+[2024-06-27T09:01:26.756+0000] {sql.py:496} INFO - Rows affected: 11
+[2024-06-27T09:01:26.796+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T09:01:27.096+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM applications
+            WHERE DATE(created_at) = '2024-06-24' OR DATE(updated_at) = '2024-06-24'
+        , parameters: None
+[2024-06-27T09:01:27.132+0000] {sql.py:496} INFO - Rows affected: 4
+[2024-06-27T09:01:27.168+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T09:01:27.472+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM articles, parameters: None
+[2024-06-27T09:01:27.501+0000] {sql.py:496} INFO - Rows affected: 8
+[2024-06-27T09:01:27.538+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T09:01:29.848+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM articles
+            WHERE DATE(created_at) = '2024-06-24' OR DATE(updated_at) = '2024-06-24'
+        , parameters: None
+[2024-06-27T09:01:29.883+0000] {sql.py:496} INFO - Rows affected: 1
+[2024-06-27T09:01:29.923+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T09:01:30.241+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM chatbots, parameters: None
+[2024-06-27T09:01:30.274+0000] {sql.py:496} INFO - Rows affected: 7
+[2024-06-27T09:01:30.311+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T09:01:30.618+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM chatbots
+            WHERE DATE(created_at) = '2024-06-24' OR DATE(updated_at) = '2024-06-24'
+        , parameters: None
+[2024-06-27T09:01:30.652+0000] {sql.py:496} INFO - Rows affected: 0
+[2024-06-27T09:01:30.692+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T09:01:33.976+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM comments, parameters: None
+[2024-06-27T09:01:34.009+0000] {sql.py:496} INFO - Rows affected: 8
+[2024-06-27T09:01:34.048+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T09:01:36.328+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM comments
+            WHERE DATE(created_at) = '2024-06-24' OR DATE(updated_at) = '2024-06-24'
+        , parameters: None
+[2024-06-27T09:01:36.362+0000] {sql.py:496} INFO - Rows affected: 0
+[2024-06-27T09:01:36.403+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T09:01:36.691+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM donation_comments, parameters: None
+[2024-06-27T09:01:36.723+0000] {sql.py:496} INFO - Rows affected: 7
+[2024-06-27T09:01:36.761+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T09:01:37.045+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM donation_comments
+            WHERE DATE(created_at) = '2024-06-24' OR DATE(updated_at) = '2024-06-24'
+        , parameters: None
+[2024-06-27T09:01:37.075+0000] {sql.py:496} INFO - Rows affected: 0
+[2024-06-27T09:01:37.115+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T09:01:37.427+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM donation_manual_comments, parameters: None
+[2024-06-27T09:01:37.459+0000] {sql.py:496} INFO - Rows affected: 7
+[2024-06-27T09:01:37.501+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T09:01:37.813+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM donation_manual_comments
+            WHERE DATE(created_at) = '2024-06-24' OR DATE(updated_at) = '2024-06-24'
+        , parameters: None
+[2024-06-27T09:01:37.846+0000] {sql.py:496} INFO - Rows affected: 9
+[2024-06-27T09:01:37.890+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T09:01:38.209+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM donation_manuals, parameters: None
+[2024-06-27T09:01:38.240+0000] {sql.py:496} INFO - Rows affected: 9
+[2024-06-27T09:01:38.274+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T09:01:38.585+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM donation_manuals
+            WHERE DATE(created_at) = '2024-06-24' OR DATE(updated_at) = '2024-06-24'
+        , parameters: None
+[2024-06-27T09:01:38.618+0000] {sql.py:496} INFO - Rows affected: 9
+[2024-06-27T09:01:38.661+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T09:01:38.969+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM donations, parameters: None
+[2024-06-27T09:01:39.000+0000] {sql.py:496} INFO - Rows affected: 11
+[2024-06-27T09:01:39.037+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T09:01:40.340+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM donations
+            WHERE DATE(created_at) = '2024-06-24' OR DATE(updated_at) = '2024-06-24'
+        , parameters: None
+[2024-06-27T09:01:40.371+0000] {sql.py:496} INFO - Rows affected: 0
+[2024-06-27T09:01:40.428+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T09:01:40.760+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM fundraising_categories, parameters: None
+[2024-06-27T09:01:40.791+0000] {sql.py:496} INFO - Rows affected: 5
+[2024-06-27T09:01:40.831+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T09:01:41.125+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM fundraising_categories
+            WHERE DATE(created_at) = '2024-06-24' OR DATE(updated_at) = '2024-06-24'
+        , parameters: None
+[2024-06-27T09:01:41.155+0000] {sql.py:496} INFO - Rows affected: 0
+[2024-06-27T09:01:41.193+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T09:01:42.485+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM fundraisings, parameters: None
+[2024-06-27T09:01:42.516+0000] {sql.py:496} INFO - Rows affected: 14
+[2024-06-27T09:01:42.551+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T09:01:42.858+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM fundraisings
+            WHERE DATE(created_at) = '2024-06-24' OR DATE(updated_at) = '2024-06-24'
+        , parameters: None
+[2024-06-27T09:01:42.887+0000] {sql.py:496} INFO - Rows affected: 3
+[2024-06-27T09:01:42.922+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T09:01:43.221+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM like_donation_comments, parameters: None
+[2024-06-27T09:01:43.252+0000] {sql.py:496} INFO - Rows affected: 6
+[2024-06-27T09:01:43.286+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T09:01:43.585+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM like_donation_comments
+            WHERE DATE(created_at) = '2024-06-24' OR DATE(updated_at) = '2024-06-24'
+        , parameters: None
+[2024-06-27T09:01:43.616+0000] {sql.py:496} INFO - Rows affected: 0
+[2024-06-27T09:01:43.654+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T09:01:43.952+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM like_donation_manual_comments, parameters: None
+[2024-06-27T09:01:43.983+0000] {sql.py:496} INFO - Rows affected: 6
+[2024-06-27T09:01:44.021+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T09:01:44.331+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM like_donation_manual_comments
+            WHERE DATE(created_at) = '2024-06-24' OR DATE(updated_at) = '2024-06-24'
+        , parameters: None
+[2024-06-27T09:01:44.362+0000] {sql.py:496} INFO - Rows affected: 0
+[2024-06-27T09:01:44.400+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T09:01:45.697+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM likes_comments, parameters: None
+[2024-06-27T09:01:45.731+0000] {sql.py:496} INFO - Rows affected: 6
+[2024-06-27T09:01:45.773+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T09:01:46.080+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM likes_comments
+            WHERE DATE(created_at) = '2024-06-24' OR DATE(updated_at) = '2024-06-24'
+        , parameters: None
+[2024-06-27T09:01:46.112+0000] {sql.py:496} INFO - Rows affected: 0
+[2024-06-27T09:01:46.149+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T09:01:46.463+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM organizations, parameters: None
+[2024-06-27T09:01:46.498+0000] {sql.py:496} INFO - Rows affected: 13
+[2024-06-27T09:01:46.543+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T09:01:47.826+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM organizations
+            WHERE DATE(created_at) = '2024-06-24' OR DATE(updated_at) = '2024-06-24'
+        , parameters: None
+[2024-06-27T09:01:47.855+0000] {sql.py:496} INFO - Rows affected: 1
+[2024-06-27T09:01:47.895+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T09:01:48.195+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM testimoni_volunteers, parameters: None
+[2024-06-27T09:01:48.227+0000] {sql.py:496} INFO - Rows affected: 8
+[2024-06-27T09:01:48.269+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T09:01:48.580+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM testimoni_volunteers
+            WHERE DATE(created_at) = '2024-06-24' OR DATE(updated_at) = '2024-06-24'
+        , parameters: None
+[2024-06-27T09:01:48.610+0000] {sql.py:496} INFO - Rows affected: 1
+[2024-06-27T09:01:48.649+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T09:01:48.946+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM transactions, parameters: None
+[2024-06-27T09:01:48.976+0000] {sql.py:496} INFO - Rows affected: 10
+[2024-06-27T09:01:49.016+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T09:01:49.327+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM transactions
+            WHERE DATE(created_at) = '2024-06-24' OR DATE(updated_at) = '2024-06-24'
+        , parameters: None
+[2024-06-27T09:01:49.357+0000] {sql.py:496} INFO - Rows affected: 1
+[2024-06-27T09:01:49.402+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T09:01:49.717+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM user_bookmark_articles, parameters: None
+[2024-06-27T09:01:49.754+0000] {sql.py:496} INFO - Rows affected: 6
+[2024-06-27T09:01:49.802+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T09:01:50.082+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM user_bookmark_articles
+            WHERE DATE(created_at) = '2024-06-24' OR DATE(updated_at) = '2024-06-24'
+        , parameters: None
+[2024-06-27T09:01:50.111+0000] {sql.py:496} INFO - Rows affected: 3
+[2024-06-27T09:01:50.160+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T09:01:51.451+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM user_bookmark_fundraisings, parameters: None
+[2024-06-27T09:01:51.482+0000] {sql.py:496} INFO - Rows affected: 6
+[2024-06-27T09:01:51.577+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T09:01:51.846+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM user_bookmark_fundraisings
+            WHERE DATE(created_at) = '2024-06-24' OR DATE(updated_at) = '2024-06-24'
+        , parameters: None
+[2024-06-27T09:01:51.876+0000] {sql.py:496} INFO - Rows affected: 4
+[2024-06-27T09:01:51.929+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T09:01:52.234+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM user_bookmark_volunteer_vacancies, parameters: None
+[2024-06-27T09:01:52.266+0000] {sql.py:496} INFO - Rows affected: 7
+[2024-06-27T09:01:52.306+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T09:01:52.613+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM user_bookmark_volunteer_vacancies
+            WHERE DATE(created_at) = '2024-06-24' OR DATE(updated_at) = '2024-06-24'
+        , parameters: None
+[2024-06-27T09:01:52.657+0000] {sql.py:496} INFO - Rows affected: 2
+[2024-06-27T09:01:52.722+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T09:01:53.023+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM users, parameters: None
+[2024-06-27T09:01:53.054+0000] {sql.py:496} INFO - Rows affected: 12
+[2024-06-27T09:01:53.093+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T09:01:53.453+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM users
+            WHERE DATE(created_at) = '2024-06-24' OR DATE(updated_at) = '2024-06-24'
+        , parameters: None
+[2024-06-27T09:01:53.486+0000] {sql.py:496} INFO - Rows affected: 10
+[2024-06-27T09:01:53.543+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T09:01:54.817+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM volunteers, parameters: None
+[2024-06-27T09:01:54.848+0000] {sql.py:496} INFO - Rows affected: 16
+[2024-06-27T09:01:54.889+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T09:01:55.237+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM volunteers
+            WHERE DATE(created_at) = '2024-06-24' OR DATE(updated_at) = '2024-06-24'
+        , parameters: None
+[2024-06-27T09:01:55.272+0000] {sql.py:496} INFO - Rows affected: 4
+[2024-06-27T09:01:55.496+0000] {logging_mixin.py:188} INFO - [    id  ...                                    message
+0   55  ...    "sintaayr03 Bergabung ke Peduli Pintar"
+1   56  ...          " melakukan donasi sebesar Rp. 0"
+2   57  ...        "suryaf Bergabung ke Peduli Pintar"
+3   58  ...       "suryasf Bergabung ke Peduli Pintar"
+4   59  ...      "suryaesf Bergabung ke Peduli Pintar"
+5   60  ...          " melakukan donasi sebesar Rp. 0"
+6   61  ...          " melakukan donasi sebesar Rp. 0"
+7   62  ...          " melakukan donasi sebesar Rp. 0"
+8   63  ...          " melakukan donasi sebesar Rp. 0"
+9   64  ...          " melakukan donasi sebesar Rp. 0"
+10  65  ...       "Admin10 Bergabung ke Peduli Pintar"
+11  66  ...    "Sintaayr19 Bergabung ke Peduli Pintar"
+12  67  ...          " melakukan donasi sebesar Rp. 0"
+13  68  ...          " melakukan donasi sebesar Rp. 0"
+14  69  ...   "Aryasenoaji Bergabung ke Peduli Pintar"
+15  70  ...          " melakukan donasi sebesar Rp. 0"
+16  71  ...  "Salsabilaefn Bergabung ke Peduli Pintar"
+
+[17 rows x 8 columns], Empty DataFrame
+Columns: [id, created_at, updated_at, deleted_at, username, email, password, avatar]
+Index: [],     id              created_at  ...                           reason            age
+0  230 2024-06-24 05:06:00.270  ...  Ingin membantu membangun sumur   18 - 20 Tahun
+1  231 2024-06-24 05:28:01.961  ...                             suka  21 - 25 Tahun
+2  232 2024-06-24 07:51:13.444  ...               menambah aktivitas  21 - 25 Tahun
+3  233 2024-06-24 08:30:49.793  ...     Ingin menambah produktivitas  21 - 25 Tahun
+
+[4 rows x 11 columns],    id  ...                                          image_url
+0  54  ...  https://res.cloudinary.com/dvrhf8d9t/image/upl...
+
+[1 rows x 8 columns], Empty DataFrame
+Columns: [id, created_at, updated_at, deleted_at, chat_id, role, message]
+Index: [], Empty DataFrame
+Columns: [id, created_at, updated_at, deleted_at, user_id, article_id, comment, total_likes]
+Index: [], Empty DataFrame
+Columns: [id, created_at, updated_at, deleted_at, donation_id, comment, total_likes]
+Index: [],    id              created_at  ...                       comment total_likes
+0  91 2024-06-24 04:26:50.925  ...              semoa bermanfaat           0
+1  92 2024-06-24 04:57:38.101  ...                 semoga berkah           0
+2  93 2024-06-24 05:00:19.905  ...                semoga berkah            0
+3  94 2024-06-24 05:31:51.322  ...                          sdsd           0
+4  95 2024-06-24 05:36:10.530  ...                      selamat            0
+5  96 2024-06-24 05:37:30.000  ...                semoga berkah            0
+6  97 2024-06-24 07:35:21.630  ...  semoga donasi ini bermanfaat           0
+7  98 2024-06-24 07:49:55.129  ...             semoga bermanfaat           0
+8  99 2024-06-24 08:27:56.714  ...  semoga donasi ini bermanfaat           0
+
+[9 rows x 7 columns],     id  ... fundraising_id
+0  202  ...             64
+1  203  ...             24
+2  204  ...             19
+3  205  ...             22
+4  206  ...             24
+5  207  ...             24
+6  208  ...             11
+7  209  ...             64
+8  210  ...             64
+
+[9 rows x 9 columns], Empty DataFrame
+Columns: [id, created_at, updated_at, deleted_at, user_id, amount, status, code, fundraising_id, payment_url, payment_method]
+Index: [], Empty DataFrame
+Columns: [id, created_at, updated_at, deleted_at, name]
+Index: [],    id              created_at  ... start_date   end_date
+0  19 2024-06-06 00:03:25.012  ... 2024-04-01 2024-12-31
+1  64 2024-06-12 23:19:30.182  ... 2024-06-13 2025-06-26
+2  81 2024-06-24 08:45:37.149  ... 2024-06-25 2024-07-20
+
+[3 rows x 14 columns], Empty DataFrame
+Columns: [id, created_at, updated_at, deleted_at, donation_comment_id, user_id]
+Index: [], Empty DataFrame
+Columns: [id, created_at, updated_at, deleted_at, donation_manual_comment_id, user_id]
+Index: [], Empty DataFrame
+Columns: [id, created_at, updated_at, deleted_at, user_id, comment_id]
+Index: [],    id              created_at  ...     instagram no_rekening
+0  24 2024-06-24 08:52:22.805  ...  Peduli_Hijau    12345678
+
+[1 rows x 13 columns],    id              created_at  ...     testimoni rating
+0  46 2024-06-24 04:34:10.597  ...  sangat seruu      4
+
+[1 rows x 8 columns],    id  ... fundraising_id
+0  28  ...             81
+
+[1 rows x 10 columns],     id              created_at  ... user_id article_id
+0  128 2024-06-24 04:31:17.678  ...     127         54
+1  129 2024-06-24 07:51:41.303  ...     171          9
+2  130 2024-06-24 07:51:56.289  ...     171         52
+
+[3 rows x 6 columns],     id              created_at  ... user_id fundraising_id
+0  129 2024-06-24 04:22:33.154  ...     127             64
+1  130 2024-06-24 07:35:36.060  ...     171             11
+2  131 2024-06-24 07:48:03.010  ...     171             22
+3  132 2024-06-24 08:25:34.704  ...     171             64
+
+[4 rows x 6 columns],    id              created_at  ... volunteer_vacancies_id volunteer_vacancy_id
+0  98 2024-06-24 04:28:15.130  ...                      4                 None
+1  99 2024-06-24 08:29:05.451  ...                      4                 None
+
+[2 rows x 7 columns],     id              created_at  ...         no_telp     otp
+0  125 2024-06-15 13:00:44.807  ...    096585475456  428856
+1  127 2024-06-18 18:49:07.106  ...      3254467658        
+2  166 2024-06-24 04:11:30.351  ...   0823456789111  385372
+3  167 2024-06-24 04:44:03.785  ...   0865734543532        
+4  168 2024-06-24 04:48:23.005  ...    086573454332        
+5  169 2024-06-24 04:49:40.202  ...   0865734543332        
+6  170 2024-06-24 06:32:10.453  ...  08657345325324        
+7  171 2024-06-24 07:33:14.126  ...    081365707638        
+8  172 2024-06-24 08:03:56.883  ...     08999999999        
+9  173 2024-06-24 10:07:12.081  ...    085761641524        
+
+[10 rows x 12 columns],    id              created_at  ...  status  link_wa
+0   4 2024-06-07 11:16:25.220  ...  active         
+1  29 2024-06-07 01:16:25.220  ...  active         
+2  30 2024-06-07 01:16:25.220  ...  active         
+3  60 2024-06-24 08:48:45.444  ...  active  link.wa
+
+[4 rows x 16 columns]]
+[2024-06-27T09:01:55.496+0000] {logging_mixin.py:188} INFO - ['admin_notifications', 'admins', 'applications', 'articles', 'chatbots', 'comments', 'donation_comments', 'donation_manual_comments', 'donation_manuals', 'donations', 'fundraising_categories', 'fundraisings', 'like_donation_comments', 'like_donation_manual_comments', 'likes_comments', 'organizations', 'testimoni_volunteers', 'transactions', 'user_bookmark_articles', 'user_bookmark_fundraisings', 'user_bookmark_volunteer_vacancies', 'users', 'volunteers']
+[2024-06-27T09:01:55.760+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-06-27T09:01:55.772+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=peduli_pintar_etl_dags_v3, task_id=extract_data, run_id=scheduled__2024-06-24T00:00:00+00:00, execution_date=20240624T000000, start_date=20240627T090123, end_date=20240627T090155
+[2024-06-27T09:01:55.860+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-06-27T09:01:55.896+0000] {taskinstance.py:3503} INFO - 2 downstream tasks scheduled from follow-on schedule check
+[2024-06-27T09:01:55.898+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

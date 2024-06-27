@@ -1,3 +1,0 @@
-id,created_at,deleted_at,fullname,username,email,password,avatar,reset_token,no_telp,otp
-174,2024-06-25,,Wisnu,Wisnu0002,tengkuhadi380@gmail.com,"$argon2id$v=19$m=65536,t=4,p=4$qbc6jwton/VT2Il/Tdlblg$bYT5fl+XRfllzGQW8k6LddN1Zw438/FDTuM60C39pPw",https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,,87793143442,
-175,2024-06-25,2024-06-25,Arya Saloka,Arsen,aryadimascore@gmail.com,"$argon2id$v=19$m=65536,t=4,p=4$GJEmljyKWgfT6d+AnIadCg$2oeHijfZgEdlWHwFNDrfybqqsQUqs/A3AwFx2VyRXeo",https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,,85668882470,

@@ -101,7 +101,9 @@ class CleaningData(PythonOperator):
     
     def execute(self, context):
         dataframes=context['ti'].xcom_pull(task_ids='extract_data', key='dataframes')
-        dfs_raw_data = [dataframes[7], dataframes[10], dataframes[2], dataframes[21], dataframes[15], dataframes[18], dataframes[19], dataframes[3], dataframes[9], dataframes[20], dataframes[14], dataframes[17], dataframes[4], dataframes[13]]
+        
+        dfs_raw_data = [dataframes[8], dataframes[11], dataframes[2], dataframes[22], dataframes[16], dataframes[19], dataframes[20], dataframes[3], dataframes[10], dataframes[21], dataframes[15], dataframes[18], dataframes[5], dataframes[14]]
+        # dfs_raw_data = [dataframes[7], dataframes[10], dataframes[2], dataframes[21], dataframes[15], dataframes[18], dataframes[19], dataframes[3], dataframes[9], dataframes[20], dataframes[14], dataframes[17], dataframes[4], dataframes[13]]
         name_df = ["Donation", "Fundraising", "Application", "Volunteer_Vacancies", "Testimoni_Volunteer", "Bookmark_Fundraising", "Bookmark_Volunteer", "Article", "Fundraising_Categories", "User", "Organization", "Bookmark_Articles", "Comments", "Like Comments"]
         
         dfs_csv = []
@@ -358,7 +360,8 @@ class LoadDatabaseLocal(PythonOperator):
                             columns.append(f"{col} TEXT")
                     
                     columns_str = ", ".join(columns)
-                    primary_key = 'id' if 'id' in df.columns else df.columns[0]  # Default to the first column if 'id' is not present
+                    # menentukan pk
+                    primary_key = 'id' if 'id' in df.columns else df.columns[0] 
                     
                     sql_create_table = f"CREATE TABLE IF NOT EXISTS {table_name} ({columns_str}, PRIMARY KEY ({primary_key})) ENGINE=InnoDB"
                     cursor.execute(sql_create_table)
@@ -366,11 +369,11 @@ class LoadDatabaseLocal(PythonOperator):
                     # Insert data into table with ON DUPLICATE KEY UPDATE
                     for i, row in df.iterrows():
                         values = ", ".join(["NULL" if pd.isna(row[col]) else "'" + str(row[col]) + "'" for col in df.columns])
-                        update_clause = ", ".join([f"{col}=VALUES({col})" for col in df.columns if col != primary_key])
+                        update_value = ", ".join([f"{col}=VALUES({col})" for col in df.columns if col != primary_key])
                         sql_insert_data = f"""
                             INSERT INTO {table_name} ({', '.join(df.columns)})
                             VALUES ({values})
-                            ON DUPLICATE KEY UPDATE {update_clause};
+                            ON DUPLICATE KEY UPDATE {update_value};
                         """
                         cursor.execute(sql_insert_data)
                     
@@ -411,7 +414,6 @@ class LoadGoogleBigQuery(PythonOperator):
         self.gcp_conn = gcp_conn
     
     def upload_df_to_gbq(self, dataset_id, table_name, df):
-        gcp_conn = BaseHook.get_connection(self.gcp_conn)
         
         client = bigquery.Client()
         

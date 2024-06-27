@@ -4,16 +4,12 @@ from airflow.operators.python import PythonOperator
 import pandas as pd
 import os
 import numpy as np
-import logging
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import storage
 from datetime import datetime
 from dotenv import load_dotenv
 from google.cloud import bigquery
-from io import StringIO
-from sqlalchemy import create_engine
-from google.cloud.exceptions import NotFound
 
 
 class ExtractData(PythonOperator):
@@ -81,7 +77,7 @@ class CleaningData(PythonOperator):
             print(f"Tidak ada data duplikat pada {name_df}")
         return df
     
-    def convert_to_datetime(self, df):
+    def convert_to_data_type(self, df):
         if df.empty:
             print("DataFrame is empty. Skipping datetime conversion.")
             return df
@@ -91,6 +87,12 @@ class CleaningData(PythonOperator):
             if df[col].dtype != 'datetime64[ns]':
                 df[col] = pd.to_datetime(df[col], format='%Y-%m-%d %H:%M:%S.%f', errors='coerce')
                 df[col] = df[col].dt.strftime('%Y-%m-%d')
+            
+        columns_int = ['goal_amount', 'organization_id', 'fundraising_category_id', 'amount', 'current_progress', 'otp']
+        for col in columns_int:
+            if col in df.columns and df[col].dtype != 'Int64':
+                df[col] = pd.to_numeric(df[col], errors='coerce').astype('Int64')
+                
         return df
     
     def handle_missing_values(self, df, name_df):
@@ -126,7 +128,8 @@ class CleaningData(PythonOperator):
         if dataframes is None:
             raise ValueError("No dataframes found in XCom.")
         
-        dfs_raw_data = [dataframes[7], dataframes[10], dataframes[2], dataframes[21], dataframes[15], dataframes[18], dataframes[19], dataframes[3], dataframes[9], dataframes[20], dataframes[14], dataframes[17], dataframes[4], dataframes[13]]
+        dfs_raw_data = [dataframes[8], dataframes[11], dataframes[2], dataframes[22], dataframes[16], dataframes[19], dataframes[20], dataframes[3], dataframes[10], dataframes[21], dataframes[15], dataframes[18], dataframes[5], dataframes[14]]
+        # dfs_raw_data = [dataframes[7], dataframes[10], dataframes[2], dataframes[21], dataframes[15], dataframes[18], dataframes[19], dataframes[3], dataframes[9], dataframes[20], dataframes[14], dataframes[17], dataframes[4], dataframes[13]]
         name_df = ["Donation", "Fundraising", "Application", "Volunteer_Vacancies", "Testimoni_Volunteer", "Bookmark_Fundraising", "Bookmark_Volunteer", "Article", "Fundraising_Categories", "User", "Organization", "Bookmark_Articles", "Comments", "Like Comments"]
         
         clean_dfs = []
@@ -139,7 +142,7 @@ class CleaningData(PythonOperator):
                 df = pd.read_csv(file_path)
                 
                 df = self.check_for_duplicates(df, name_df[i])
-                df = self.convert_to_datetime(df)
+                df = self.convert_to_data_type(df)
                 df = self.handle_missing_values(df, name_df[i])
             else:
                 df = df
@@ -156,7 +159,7 @@ class TransformationDataWarehouseSchema(PythonOperator):
         super().__init__(*args, **kwargs)
     
     def fact_donation_transaction(self, df_donations_manual, df_fundraisings):
-        columns = ['id', 'donation_id', 'fundraising_id', 'user_id', 'amount', 'goal_amount', 'fundraising_category_id', 'organization_id', 'created_at']
+        columns = ['id', 'donation_id', 'fundraising_id', 'user_id', 'amount', 'goal_amount', 'fundraising_category_id', 'organization_id', 'created_at', 'updated_at']
         df_fact_donation = pd.DataFrame(columns=columns)
         
         # mengambil data yang sukses di df_donation 
@@ -170,6 +173,7 @@ class TransformationDataWarehouseSchema(PythonOperator):
         df_fact_donation['user_id'] = df_donation_success['user_id']
         df_fact_donation['amount'] = df_donation_success['amount']
         df_fact_donation['created_at'] = df_donation_success['created_at']
+        df_fact_donation['updated_at'] = df_donation_success['updated_at']
         
         # merge df_fundraising
         df_merge_fact_fundraising = pd.merge(df_fact_donation, df_fundraisings, left_on='fundraising_id', right_on='id', how='left')
@@ -181,7 +185,7 @@ class TransformationDataWarehouseSchema(PythonOperator):
     
     def fact_volunteer_applications(self, df_applications, df_volunteer_vacancies):
         # Buat Struktur kolom df_fact_volunteer_applications
-        columns = ['id', 'application_id', 'vacancy_id', 'user_id', 'organization_id', 'created_at']
+        columns = ['id', 'application_id', 'vacancy_id', 'user_id', 'organization_id', 'created_at', 'updated_at']
         df_fact_applications = pd.DataFrame(columns=columns)
 
         # mengisi data pada dari kolom df_application
@@ -190,6 +194,7 @@ class TransformationDataWarehouseSchema(PythonOperator):
         df_fact_applications['vacancy_id'] = df_applications['vacancy_id']
         df_fact_applications['user_id'] = df_applications['user_id']
         df_fact_applications['created_at'] = df_applications['created_at']
+        df_fact_applications['updated_at'] = df_applications['updated_at']
 
         # merge df_fundraising
         df_merge_fact_volunteer = pd.merge(df_fact_applications, df_volunteer_vacancies, left_on='vacancy_id', right_on='id', how='left')
@@ -199,7 +204,7 @@ class TransformationDataWarehouseSchema(PythonOperator):
     
     def fact_volunteer_testimoni(self, df_testimoni_volunteers):
         # Buat Struktur kolom df_fact_volunteer_testimoni
-        columns = ['id', 'user_id', 'vacancy_id', 'testimoni_volunteer_id', 'rating', 'created_at']
+        columns = ['id', 'user_id', 'vacancy_id', 'testimoni_volunteer_id', 'rating', 'created_at', 'updated_at']
         df_fact_volunteer_testimoni = pd.DataFrame(columns=columns)
 
         # mengisi data pada dari kolom df_application
@@ -209,12 +214,13 @@ class TransformationDataWarehouseSchema(PythonOperator):
         df_fact_volunteer_testimoni['testimoni_volunteer_id'] = df_testimoni_volunteers['id']
         df_fact_volunteer_testimoni['rating'] = df_testimoni_volunteers['rating']
         df_fact_volunteer_testimoni['created_at'] = df_testimoni_volunteers['created_at']
+        df_fact_volunteer_testimoni['updated_at'] = df_testimoni_volunteers['updated_at']
         
         return df_fact_volunteer_testimoni
     
     def fact_article_popular(self, df_user_bookmark_articles, df_comments, df_like_comments):
         # Buat Struktur kolom df_fact_articel_popular
-        columns = ['id', 'article_id', 'bookmark_id', 'user_id', 'comment_id', 'like_comment_id', 'created_at']
+        columns = ['id', 'article_id', 'bookmark_id', 'user_id', 'comment_id', 'like_comment_id', 'created_at', 'updated_at']
         df_fact_article_popular = pd.DataFrame(columns=columns)
 
         # mengisi data pada dari kolom df_comment
@@ -225,11 +231,12 @@ class TransformationDataWarehouseSchema(PythonOperator):
         df_fact_article_popular['comment_id'] = df_comments['id']
         df_fact_article_popular['like_comment_id'] = df_like_comments['id']
         df_fact_article_popular['created_at'] = df_user_bookmark_articles['created_at']
+        df_fact_article_popular['updated_at'] = df_user_bookmark_articles['updated_at']
         
         return df_fact_article_popular
     
     def fact_bookmark_fundraising(self, df_bookmark_fundraising):
-        df_fact_bookmark_fundraising = df_bookmark_fundraising.drop(['deleted_at', 'updated_at'], axis=1)
+        df_fact_bookmark_fundraising = df_bookmark_fundraising.drop(['deleted_at'], axis=1)
         df_fact_bookmark_fundraising = df_fact_bookmark_fundraising.rename(columns={'id':'bookmark_id'})
         df_fact_bookmark_fundraising['id'] = range(1, len(df_fact_bookmark_fundraising) + 1)
         df_fact_bookmark_fundraising.insert(0, 'id', df_fact_bookmark_fundraising.pop('id'))
@@ -237,7 +244,7 @@ class TransformationDataWarehouseSchema(PythonOperator):
         return df_fact_bookmark_fundraising
     
     def fact_bookmark_volunteer_vacancies(self, df_bookmark_volunteer):
-        df_fact_bookmark_volunteer_vacancies = df_bookmark_volunteer.drop(['volunteer_vacancy_id', 'deleted_at', 'updated_at'], axis=1)
+        df_fact_bookmark_volunteer_vacancies = df_bookmark_volunteer.drop(['volunteer_vacancy_id', 'deleted_at'], axis=1)
         df_fact_bookmark_volunteer_vacancies = df_fact_bookmark_volunteer_vacancies.rename(columns={'id':'bookmark_id'})
         df_fact_bookmark_volunteer_vacancies['id'] = range(1, len(df_fact_bookmark_volunteer_vacancies) + 1)
         df_fact_bookmark_volunteer_vacancies.insert(0, 'id', df_fact_bookmark_volunteer_vacancies.pop('id'))
@@ -245,21 +252,24 @@ class TransformationDataWarehouseSchema(PythonOperator):
         return df_fact_bookmark_volunteer_vacancies
     
     def dimension_table(self, df_fundraisings, df_fundraising_categories, df_donation_manuals, df_organizations, df_users, df_applications, df_volunteer_vacancies, df_testimoni_volunteers, df_articles, df_bookmark_fundraising, df_bookmark_volunteer, df_bookmark_article, df_comments, df_like_comments):
-        dim_fundraisings = df_fundraisings.drop(['fundraising_category_id', 'organization_id', 'updated_at'], axis=1) if not df_fundraisings.empty else pd.DataFrame()
-        dim_fundraising_categories = df_fundraising_categories[['id', 'name', 'created_at']] if not df_fundraising_categories.empty else pd.DataFrame()
-        dim_donation_manual = df_donation_manuals.drop(['fundraising_id', 'user_id', 'updated_at'], axis=1) if not df_donation_manuals.empty else pd.DataFrame()
-        dim_organization = df_organizations.drop(['updated_at','contact'], axis=1) if not df_organizations.empty else pd.DataFrame()
-        dim_user = df_users.drop(['updated_at'], axis=1) if not df_users.empty else pd.DataFrame()
-        dim_volunteer_application = df_applications.drop(['user_id', 'vacancy_id', 'updated_at'], axis=1) if not df_applications.empty else pd.DataFrame()
-        dim_volunteer_vacancies = df_volunteer_vacancies.drop(['organization_id', 'updated_at'], axis=1) if not df_volunteer_vacancies.empty else pd.DataFrame()
-        dim_testimoni_volunteer = df_testimoni_volunteers.drop(['user_id', 'vacancy_id', 'updated_at'], axis=1) if not df_testimoni_volunteers.empty else pd.DataFrame()
-        dim_article = df_articles.drop(['updated_at'], axis=1) if not df_articles.empty else pd.DataFrame()
-        dim_bookmark_fundraising = df_bookmark_fundraising.drop(['fundraising_id', 'user_id', 'updated_at'], axis=1) if not df_bookmark_fundraising.empty else pd.DataFrame()
-        dim_bookmark_volunter_vacancies = df_bookmark_volunteer.drop(['volunteer_vacancy_id', 'volunteer_vacancies_id', 'user_id', 'updated_at'], axis=1) if not df_bookmark_volunteer.empty else pd.DataFrame()
-        dim_bookmark_article = df_bookmark_article.drop(['updated_at', 'user_id', 'article_id'], axis=1) if not df_bookmark_article.empty else pd.DataFrame()
+        dim_fundraisings = df_fundraisings.drop(['fundraising_category_id', 'organization_id'], axis=1) if not df_fundraisings.empty else pd.DataFrame()
+        dim_fundraising_categories = df_fundraising_categories[['id', 'name', 'created_at', 'updated_at']] if not df_fundraising_categories.empty else pd.DataFrame()
+        dim_donation_manual = df_donation_manuals.drop(['fundraising_id', 'user_id'], axis=1) if not df_donation_manuals.empty else pd.DataFrame()
+        dim_organization = df_organizations.drop(['contact'], axis=1) if not df_organizations.empty else pd.DataFrame()
+        dim_user = df_users if not df_users.empty else pd.DataFrame()
+        dim_volunteer_application = df_applications.drop(['user_id', 'vacancy_id'], axis=1) if not df_applications.empty else pd.DataFrame()
+        dim_volunteer_vacancies = df_volunteer_vacancies.drop(['organization_id'], axis=1) if not df_volunteer_vacancies.empty else pd.DataFrame()
+        dim_testimoni_volunteer = df_testimoni_volunteers.drop(['user_id', 'vacancy_id'], axis=1) if not df_testimoni_volunteers.empty else pd.DataFrame()
+        dim_article = df_articles if not df_articles.empty else pd.DataFrame()
+        dim_bookmark_fundraising = df_bookmark_fundraising.drop(['fundraising_id', 'user_id'], axis=1) if not df_bookmark_fundraising.empty else pd.DataFrame()
+        dim_bookmark_volunter_vacancies = df_bookmark_volunteer.drop(['volunteer_vacancy_id', 'volunteer_vacancies_id', 'user_id'], axis=1) if not df_bookmark_volunteer.empty else pd.DataFrame()
+        dim_bookmark_article = df_bookmark_article.drop(['user_id', 'article_id'], axis=1) if not df_bookmark_article.empty else pd.DataFrame()
         
-        dim_comments = df_comments.drop(['user_id', 'article_id', 'updated_at'], axis=1) if not df_comments.empty else pd.DataFrame()
-        dim_like_comments = df_like_comments.drop(['user_id', 'comment_id', 'updated_at'], axis=1) if not df_like_comments.empty else pd.DataFrame()
+        dim_comments = df_comments.drop(['user_id', 'article_id'], axis=1) if not df_comments.empty else pd.DataFrame()
+        dim_like_comments = df_like_comments.drop(['user_id', 'comment_id'], axis=1) if not df_like_comments.empty else pd.DataFrame()
+        
+        if not dim_user['deleted_at'].empty:
+            dim_user['deleted_at'] = dim_user['deleted_at'].astype(str)
         
         all_dimension_table = [dim_fundraisings, dim_fundraising_categories, dim_donation_manual, dim_organization, dim_user, dim_volunteer_application, dim_volunteer_vacancies, dim_testimoni_volunteer, dim_article, dim_bookmark_fundraising, dim_bookmark_volunter_vacancies, dim_bookmark_article, dim_comments, dim_like_comments]
         return all_dimension_table
@@ -355,22 +365,12 @@ class LoadFileLocal(PythonOperator):
         super().__init__(*args, **kwargs)
 
     def save_to_csv(self, dfs, base_dir, sub_dir, file_names, ds):
-        # for df, filename in zip(dfs, file_names):
-        #     if df.empty:
-        #         print(f"DataFrame for {filename} is empty, skipping file save.")
-        #         continue
-            
-        #     file_path = f"{base_dir}/{sub_dir}/{ds}_{filename}.csv"
-        #     os.makedirs(os.path.dirname(file_path), exist_ok=True)
-            
-        #     df.to_csv(file_path, index=False)
-        #     print(f"Data dari tabel telah disimpan ke file '{file_path}'.")
         if dfs is not None and not dfs.empty:
-            folder_path = f"{base_dir}/{sub_dir}/{ds}"
+            folder_path = f"{base_dir}/{sub_dir}/{file_names}"
             os.makedirs(folder_path, exist_ok=True)
-            file_path = f"{folder_path}/{file_names}.csv"
+            file_path = f"{folder_path}/{ds}_{file_names}.csv"
             dfs.to_csv(file_path, index=False)
-            print(f"Data dari tabel telah disimpan ke file '{file_path}'.")
+            print(f"Data dari tabel '{file_names}' telah disimpan ke file '{file_path}'.")
         else:
             print(f"DataFrame '{file_names}' kosong. Tidak disimpan ke file CSV.")
     
@@ -383,117 +383,88 @@ class LoadFileLocal(PythonOperator):
         
         ds = context['ds']
         ds = ds.replace("-", "")
-        # for df, filename in zip(df_fact_table, filename_fact_table):
-        #     self.save_to_csv(df, "dags/data_loaded", "fact", f"{ds}_{filename}", ds)
-        
-        # for df, filename in zip(df_dim_table, filename_dim_table):
-        #     self.save_to_csv(df, "dags/data_loaded", "dim", f"{ds}_{filename}", ds)
-        
-        # # Save fact tables
-        # self.save_to_csv(df_fact_table, "dags/data_loaded", "fact", f"{ds}_{filename_fact_table}", ds)
-        
-        # # Save dimension tables
-        # self.save_to_csv(df_dim_table, "dags/data_loaded", "dim", f"{ds}_{filename_dim_table}", ds)
         
         # Save fact tables
         for df, filename in zip(df_fact_table, filename_fact_table):
-            self.save_to_csv(df, "dags/data_loaded", f"fact", f"{ds}_{filename}", ds)
+            self.save_to_csv(df, "dags/data_loaded", f"fact", filename, ds)
 
         # Save dimension tables
         for df, filename in zip(df_dim_table, filename_dim_table):
-            self.save_to_csv(df, "dags/data_loaded", f"dim", f"{ds}_{filename}", ds)
-        
+            self.save_to_csv(df, "dags/data_loaded", f"dim", filename, ds)
         
         return "Data saved to CSV files."
-
+    
 
 class LoadGoogleBigQuery(PythonOperator):
     def __init__(self, gcp_conn, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.gcp_conn = gcp_conn
     
-    def upload_df_to_gbq(self, dataset_id, table_names, ds, data_directory):
-        gcp_conn = BaseHook.get_connection(self.gcp_conn)
+    def upload_df_to_gbq(self, dataset_id, table_names, ds, base_data_directory):
         client = bigquery.Client()
         
-        # ambil list semua file didalam direktori
-        file_names = os.listdir(data_directory)
-        
         for table_name in table_names:
-            table_id = f"{dataset_id}.{table_name}"
-
+            data_directory = os.path.join(base_data_directory, table_name)
+            if not os.path.exists(data_directory):
+                print(f"Directory {data_directory} does not exist, skipping table {table_name}")
+                continue
+            
+            # ambil list semua file didalam direktori
+            file_names = os.listdir(data_directory)
             for file_name in file_names:
-                # Extract partition date from the file name (assuming format is YYYYMMDD_filename.csv)
-                partition_date = file_name.split('_')[0]
+                if file_name.startswith(ds):
+                    partition_date = file_name.split('_')[0]
+                    table_id = f"{dataset_id}.{table_name}"
 
-                # Define the table reference with partition decorator
-                table_ref = client.dataset(dataset_id).table(
-                    f'{table_name}${partition_date}'
-                )
+                    table_ref = client.dataset(dataset_id).table(
+                        f'{table_name}${partition_date}'
+                    )
 
-                # Load the CSV file into a Pandas DataFrame
-                file_path = os.path.join(data_directory, file_name)
-                df = pd.read_csv(file_path)
-                df['updated_at_bq'] = datetime.now()  
-                
-                if 'created_at' in df.columns:
-                    df['created_at'] = pd.to_datetime(df['created_at'], errors='coerce')
+                    # Load the CSV file into a Pandas DataFrame
+                    file_path = os.path.join(data_directory, file_name)
+                    df = pd.read_csv(file_path)
+                    df['updated_at_bq'] = datetime.now()  
 
+                    # tipe data
+                    if 'created_at' in df.columns:
+                        df['created_at'] = pd.to_datetime(df['created_at'], errors='coerce')
+                    if 'updated_at' in df.columns:
+                        df['updated_at'] = pd.to_datetime(df['updated_at'], errors='coerce')
+                        
+                    
+                    valid_rows = df[
+                        (df['created_at'].dt.strftime('%Y%m%d') == partition_date) |
+                        (df['updated_at'].dt.strftime('%Y%m%d') == partition_date)
+                    ]
 
-                job_config = bigquery.LoadJobConfig(
-                    create_disposition=bigquery.CreateDisposition.CREATE_IF_NEEDED,
-                    write_disposition=bigquery.WriteDisposition.WRITE_TRUNCATE,
-                    source_format=bigquery.SourceFormat.CSV,
-                    skip_leading_rows=1,
-                    autodetect=True,
-                    time_partitioning=bigquery.TimePartitioning(
-                        type_="DAY",
-                        field="created_at",  
-                        require_partition_filter=True
-                    ),
-                )
+                    if valid_rows.empty:
+                        print(f"No valid rows found for partition date {partition_date} in {file_name}, skipping.")
+                        continue
 
-                # Load the data into the partitioned table
-                load_job = client.load_table_from_dataframe(
-                    df, table_ref, job_config=job_config
-                )
+                    job_config = bigquery.LoadJobConfig(
+                        create_disposition=bigquery.CreateDisposition.CREATE_IF_NEEDED,
+                        write_disposition=bigquery.WriteDisposition.WRITE_TRUNCATE,
+                        source_format=bigquery.SourceFormat.CSV,
+                        skip_leading_rows=1,
+                        autodetect=True,
+                        time_partitioning=bigquery.TimePartitioning(
+                            field="created_at"
+                        ),
+                    )
 
-                # load_job.result()  # Waits for the job to complete
+                    # Load the data into the partitioned table
+                    load_job = client.load_table_from_dataframe(
+                        df, table_ref, job_config=job_config
+                    )
 
-                # print(f'Loaded {load_job.output_rows} rows into {table_ref}')
-                try:
-                    load_job.result()  # Tunggu job selesai
-                    print(f'Loaded {load_job.output_rows} rows into {table_ref}')
-                except Exception as e:
-                    print(f'Failed to load data into {table_ref}: {str(e)}')
+                    try:
+                        load_job.result()  # Wait for the job to complete
+                        print(f'Loaded {load_job.output_rows} rows into {table_ref}')
+                    except Exception as e:
+                        print(f'Failed to load data into {table_ref}: {str(e)}')
+                else:
+                    print(f"File {file_name} does not match partition date {ds}, skipping.")
 
-        # Convert DataFrame to CSV
-        # csv_buffer = StringIO()
-        # df.to_csv(csv_buffer, index=False)
-        # csv_buffer.seek(0)
-
-        
-        # partition_by = bigquery.TimePartitioning(field="created_at")
-
-        # job_config = bigquery.LoadJobConfig(
-        #     source_format=bigquery.SourceFormat.CSV,
-        #     skip_leading_rows=1,
-        #     autodetect=True,
-        #     write_disposition=bigquery.WriteDisposition.WRITE_APPEND,
-        #     time_partitioning=partition_by
-        # )
-
-        # Load CSV data from StringIO buffer
-        # job = client.load_table_from_file(csv_buffer, table_id, job_config=job_config)
-        # job.result()
-
-        # # Get table information
-        # table = client.get_table(table_id)
-        # print(
-        #     "Loaded {} rows and {} columns to {}".format(
-        #         table.num_rows, len(table.schema), table_id
-        #     )
-        # )
     
     def execute(self, context):
         env_path = "/opt/airflow/.env"
@@ -501,105 +472,13 @@ class LoadGoogleBigQuery(PythonOperator):
         dataset_id_fact_ds = os.getenv("dataset_id_fact_ds")
         dataset_id_dim_ds = os.getenv("dataset_id_dim_ds")
         
-        # df_fact_table=context['ti'].xcom_pull(task_ids='transform_dw_schema', key='list_fact_table')
-        # df_dim_table=context['ti'].xcom_pull(task_ids='transform_dw_schema', key='list_dim_tables')
-        
         ds = context['ds']
         ds = ds.replace("-", "")
         
         table_fact_table = ["fact_donation_transaction", "fact_volunteer_applications", "fact_volunteer_testimoni", "fact_article_popular", "fact_bookmark_fundraising", "fact_bookmark_volunteer_vacancies"]
         table_dim_table = ["dim_fundraisings", "dim_fundraising_categories", "dim_donation_manual", "dim_organization", "dim_user", "dim_volunteer_applictaion", "dim_volunteer_vacancies", "dim_testimoni_volunteer", "dim_article", "dim_bookmark_fundraising", "dim_bookmark_volunter_vacancies", "dim_bookmark_article", "dim_comments", "dim_like_comments"]
-        
-        self.upload_df_to_gbq(dataset_id_fact_ds, table_fact_table, ds, f"dags/data_loaded/fact/{ds}/" )
-        self.upload_df_to_gbq(dataset_id_dim_ds, table_dim_table, ds, f"dags/data_loaded/dim/{ds}/" )
-        
-        # # Upload fact tables
-        # for x in range(len(df_fact_table)):
-        #     if not df_fact_table[x].empty:
-        #         self.upload_df_to_gbq(dataset_id_fact_ds, table_fact_table[x], df_fact_table[x])
-        #     else:
-        #         print(f"DataFrame '{table_fact_table[x]}' is empty. Skipping upload to BigQuery.")
-        
-        # # Upload dimension tables
-        # for y in range(len(df_dim_table)):
-        #     if not df_dim_table[y].empty:
-        #         self.upload_df_to_gbq(dataset_id_dim_ds, table_dim_table[y], df_dim_table[y])
-        #     else:
-        #         print(f"DataFrame '{table_dim_table[y]}' is empty. Skipping upload to BigQuery.")
+    
+        self.upload_df_to_gbq(dataset_id_fact_ds, table_fact_table, ds, "dags/data_loaded/fact")
+        self.upload_df_to_gbq(dataset_id_dim_ds, table_dim_table, ds, "dags/data_loaded/dim")
         
         return "Data successfully uploaded to Google BigQuery!"
-    
-    
-
-
-# class LoadGoogleBigQuery(PythonOperator):
-#     def __init__(self, gcp_conn, *args, **kwargs):
-#         super().__init__(*args, **kwargs)
-#         self.gcp_conn = gcp_conn
-    
-#     def upload_df_to_gbq(self, dataset_id, table_names, ds, data_directory):
-#         gcp_conn = BaseHook.get_connection(self.gcp_conn)
-#         client = bigquery.Client()
-        
-#         # ambil list semua file didalam direktori
-#         file_names = os.listdir(data_directory)
-        
-#         for table_name in table_names:
-#             table_id = f"{dataset_id}.{table_name}"
-
-#             for file_name in file_names:
-#                 # Extract partition date from the file name (assuming format is YYYYMMDD_filename.csv)
-#                 partition_date = file_name.split('_')[0]
-
-#                 # Define the table reference with partition decorator
-#                 table_ref = client.dataset(dataset_id).table(
-#                     f'{table_name}${partition_date}'
-#                 )
-
-#                 # Load the CSV file into a Pandas DataFrame
-#                 file_path = os.path.join(data_directory, file_name)
-#                 df = pd.read_csv(file_path)
-#                 df['updated_at_bq'] = ds  
-
-
-#                 job_config = bigquery.LoadJobConfig(
-#                     create_disposition=bigquery.CreateDisposition.CREATE_IF_NEEDED,
-#                     write_disposition=bigquery.WriteDisposition.WRITE_TRUNCATE,
-#                     source_format=bigquery.SourceFormat.CSV,
-#                     skip_leading_rows=1,
-#                     autodetect=True,
-#                     time_partitioning=bigquery.TimePartitioning(
-#                         type_="DAY",
-#                         field="created_at",  
-#                         require_partition_filter=True
-#                     ),
-#                 )
-
-#                 # Load the data into the partitioned table
-#                 load_job = client.load_table_from_dataframe(
-#                     df, table_ref, job_config=job_config
-#                 )
-
-#                 load_job.result()  # Waits for the job to complete
-
-#                 print(f'Loaded {load_job.output_rows} rows into {table_ref}')
-
-    
-#     def execute(self, context):
-#         env_path = "/opt/airflow/.env"
-#         load_dotenv(dotenv_path=env_path)
-#         dataset_id_fact_ds = os.getenv("dataset_id_fact_ds")
-#         dataset_id_dim_ds = os.getenv("dataset_id_dim_ds")
-        
-        
-#         ds = context['ds']
-#         ds = ds.replace("-", "")
-        
-#         table_fact_table = ["fact_donation_transaction", "fact_volunteer_applications", "fact_volunteer_testimoni", "fact_article_popular", "fact_bookmark_fundraising", "fact_bookmark_volunteer_vacancies"]
-#         table_dim_table = ["dim_fundraisings", "dim_fundraising_categories", "dim_donation_manual", "dim_organization", "dim_user", "dim_volunteer_applictaion", "dim_volunteer_vacancies", "dim_testimoni_volunteer", "dim_article", "dim_bookmark_fundraising", "dim_bookmark_volunter_vacancies", "dim_bookmark_article", "dim_comments", "dim_like_comments"]
-        
-#         self.upload_df_to_gbq(dataset_id_fact_ds, table_fact_table, ds, f"dags/data_loaded/fact/{ds}/" )
-#         self.upload_df_to_gbq(dataset_id_dim_ds, table_dim_table, ds, f"dags/data_loaded/dim/{ds}/" )
-        
-        
-#         return "Data successfully uploaded to Google BigQuery!"

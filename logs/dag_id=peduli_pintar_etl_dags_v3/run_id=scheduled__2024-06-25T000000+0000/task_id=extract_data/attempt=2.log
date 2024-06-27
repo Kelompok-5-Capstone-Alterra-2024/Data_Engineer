@@ -1,0 +1,528 @@
+[2024-06-27T08:57:53.546+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-27T08:57:54.283+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: peduli_pintar_etl_dags_v3.extract_data scheduled__2024-06-25T00:00:00+00:00 [queued]>
+[2024-06-27T08:57:54.398+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: peduli_pintar_etl_dags_v3.extract_data scheduled__2024-06-25T00:00:00+00:00 [queued]>
+[2024-06-27T08:57:54.405+0000] {taskinstance.py:2306} INFO - Starting attempt 2 of 5
+[2024-06-27T08:57:54.527+0000] {taskinstance.py:2330} INFO - Executing <Task(ExtractData): extract_data> on 2024-06-25 00:00:00+00:00
+[2024-06-27T08:57:54.588+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=208) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-06-27T08:57:54.592+0000] {standard_task_runner.py:63} INFO - Started process 219 to run task
+[2024-06-27T08:57:54.662+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'peduli_pintar_etl_dags_v3', 'extract_data', 'scheduled__2024-06-25T00:00:00+00:00', '--job-id', '41', '--raw', '--subdir', 'DAGS_FOLDER/etl_dags.py', '--cfg-path', '/tmp/tmpdv5_q26i']
+[2024-06-27T08:57:54.738+0000] {standard_task_runner.py:91} INFO - Job 41: Subtask extract_data
+[2024-06-27T08:57:55.549+0000] {task_command.py:426} INFO - Running <TaskInstance: peduli_pintar_etl_dags_v3.extract_data scheduled__2024-06-25T00:00:00+00:00 [running]> on host 3dad981482d5
+[2024-06-27T08:57:56.699+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Kelompok 5 Capstone DE' AIRFLOW_CTX_DAG_ID='peduli_pintar_etl_dags_v3' AIRFLOW_CTX_TASK_ID='extract_data' AIRFLOW_CTX_EXECUTION_DATE='2024-06-25T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-06-25T00:00:00+00:00'
+[2024-06-27T08:57:56.751+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-06-27T08:57:57.040+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T08:57:59.155+0000] {sql.py:487} INFO - Running statement: SHOW TABLES, parameters: None
+[2024-06-27T08:57:59.203+0000] {sql.py:496} INFO - Rows affected: 23
+[2024-06-27T08:57:59.392+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T08:57:59.694+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM admin_notifications, parameters: None
+[2024-06-27T08:57:59.734+0000] {sql.py:496} INFO - Rows affected: 8
+[2024-06-27T08:57:59.797+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T08:58:00.149+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM admin_notifications
+            WHERE DATE(created_at) = '2024-06-25' OR DATE(updated_at) = '2024-06-25'
+        , parameters: None
+[2024-06-27T08:58:00.206+0000] {sql.py:496} INFO - Rows affected: 3
+[2024-06-27T08:58:00.507+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T08:58:01.810+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM admins, parameters: None
+[2024-06-27T08:58:01.843+0000] {sql.py:496} INFO - Rows affected: 8
+[2024-06-27T08:58:01.898+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T08:58:02.302+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM admins
+            WHERE DATE(created_at) = '2024-06-25' OR DATE(updated_at) = '2024-06-25'
+        , parameters: None
+[2024-06-27T08:58:02.332+0000] {sql.py:496} INFO - Rows affected: 0
+[2024-06-27T08:58:02.405+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T08:58:02.717+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM applications, parameters: None
+[2024-06-27T08:58:02.749+0000] {sql.py:496} INFO - Rows affected: 11
+[2024-06-27T08:58:02.797+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T08:58:03.100+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM applications
+            WHERE DATE(created_at) = '2024-06-25' OR DATE(updated_at) = '2024-06-25'
+        , parameters: None
+[2024-06-27T08:58:03.130+0000] {sql.py:496} INFO - Rows affected: 0
+[2024-06-27T08:58:03.179+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T08:58:04.470+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM articles, parameters: None
+[2024-06-27T08:58:04.502+0000] {sql.py:496} INFO - Rows affected: 8
+[2024-06-27T08:58:04.543+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T08:58:04.848+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM articles
+            WHERE DATE(created_at) = '2024-06-25' OR DATE(updated_at) = '2024-06-25'
+        , parameters: None
+[2024-06-27T08:58:04.878+0000] {sql.py:496} INFO - Rows affected: 1
+[2024-06-27T08:58:04.916+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T08:58:05.213+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM chatbots, parameters: None
+[2024-06-27T08:58:05.244+0000] {sql.py:496} INFO - Rows affected: 7
+[2024-06-27T08:58:05.280+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T08:58:05.618+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM chatbots
+            WHERE DATE(created_at) = '2024-06-25' OR DATE(updated_at) = '2024-06-25'
+        , parameters: None
+[2024-06-27T08:58:05.646+0000] {sql.py:496} INFO - Rows affected: 0
+[2024-06-27T08:58:05.685+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T08:58:05.979+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM comments, parameters: None
+[2024-06-27T08:58:06.010+0000] {sql.py:496} INFO - Rows affected: 8
+[2024-06-27T08:58:06.045+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T08:58:06.349+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM comments
+            WHERE DATE(created_at) = '2024-06-25' OR DATE(updated_at) = '2024-06-25'
+        , parameters: None
+[2024-06-27T08:58:06.378+0000] {sql.py:496} INFO - Rows affected: 0
+[2024-06-27T08:58:06.416+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T08:58:07.697+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM donation_comments, parameters: None
+[2024-06-27T08:58:07.727+0000] {sql.py:496} INFO - Rows affected: 7
+[2024-06-27T08:58:07.765+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T08:58:08.057+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM donation_comments
+            WHERE DATE(created_at) = '2024-06-25' OR DATE(updated_at) = '2024-06-25'
+        , parameters: None
+[2024-06-27T08:58:08.088+0000] {sql.py:496} INFO - Rows affected: 0
+[2024-06-27T08:58:08.127+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T08:58:08.430+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM donation_manual_comments, parameters: None
+[2024-06-27T08:58:08.460+0000] {sql.py:496} INFO - Rows affected: 7
+[2024-06-27T08:58:08.502+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T08:58:08.807+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM donation_manual_comments
+            WHERE DATE(created_at) = '2024-06-25' OR DATE(updated_at) = '2024-06-25'
+        , parameters: None
+[2024-06-27T08:58:08.836+0000] {sql.py:496} INFO - Rows affected: 1
+[2024-06-27T08:58:08.874+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T08:58:09.181+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM donation_manuals, parameters: None
+[2024-06-27T08:58:09.214+0000] {sql.py:496} INFO - Rows affected: 9
+[2024-06-27T08:58:09.255+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T08:58:09.623+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM donation_manuals
+            WHERE DATE(created_at) = '2024-06-25' OR DATE(updated_at) = '2024-06-25'
+        , parameters: None
+[2024-06-27T08:58:09.654+0000] {sql.py:496} INFO - Rows affected: 2
+[2024-06-27T08:58:09.710+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T08:58:10.992+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM donations, parameters: None
+[2024-06-27T08:58:11.023+0000] {sql.py:496} INFO - Rows affected: 11
+[2024-06-27T08:58:11.064+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T08:58:11.558+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM donations
+            WHERE DATE(created_at) = '2024-06-25' OR DATE(updated_at) = '2024-06-25'
+        , parameters: None
+[2024-06-27T08:58:11.588+0000] {sql.py:496} INFO - Rows affected: 0
+[2024-06-27T08:58:11.626+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T08:58:11.921+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM fundraising_categories, parameters: None
+[2024-06-27T08:58:11.954+0000] {sql.py:496} INFO - Rows affected: 5
+[2024-06-27T08:58:11.997+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T08:58:14.338+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM fundraising_categories
+            WHERE DATE(created_at) = '2024-06-25' OR DATE(updated_at) = '2024-06-25'
+        , parameters: None
+[2024-06-27T08:58:14.368+0000] {sql.py:496} INFO - Rows affected: 0
+[2024-06-27T08:58:14.406+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T08:58:14.698+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM fundraisings, parameters: None
+[2024-06-27T08:58:14.729+0000] {sql.py:496} INFO - Rows affected: 14
+[2024-06-27T08:58:14.765+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T08:58:15.061+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM fundraisings
+            WHERE DATE(created_at) = '2024-06-25' OR DATE(updated_at) = '2024-06-25'
+        , parameters: None
+[2024-06-27T08:58:15.091+0000] {sql.py:496} INFO - Rows affected: 1
+[2024-06-27T08:58:15.133+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T08:58:15.487+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM like_donation_comments, parameters: None
+[2024-06-27T08:58:15.523+0000] {sql.py:496} INFO - Rows affected: 6
+[2024-06-27T08:58:15.558+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T08:58:15.863+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM like_donation_comments
+            WHERE DATE(created_at) = '2024-06-25' OR DATE(updated_at) = '2024-06-25'
+        , parameters: None
+[2024-06-27T08:58:15.893+0000] {sql.py:496} INFO - Rows affected: 0
+[2024-06-27T08:58:15.931+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T08:58:16.243+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM like_donation_manual_comments, parameters: None
+[2024-06-27T08:58:16.277+0000] {sql.py:496} INFO - Rows affected: 6
+[2024-06-27T08:58:16.312+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T08:58:16.613+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM like_donation_manual_comments
+            WHERE DATE(created_at) = '2024-06-25' OR DATE(updated_at) = '2024-06-25'
+        , parameters: None
+[2024-06-27T08:58:16.643+0000] {sql.py:496} INFO - Rows affected: 0
+[2024-06-27T08:58:16.682+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T08:58:17.980+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM likes_comments, parameters: None
+[2024-06-27T08:58:18.014+0000] {sql.py:496} INFO - Rows affected: 6
+[2024-06-27T08:58:18.061+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T08:58:18.359+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM likes_comments
+            WHERE DATE(created_at) = '2024-06-25' OR DATE(updated_at) = '2024-06-25'
+        , parameters: None
+[2024-06-27T08:58:18.390+0000] {sql.py:496} INFO - Rows affected: 0
+[2024-06-27T08:58:18.486+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T08:58:18.775+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM organizations, parameters: None
+[2024-06-27T08:58:18.810+0000] {sql.py:496} INFO - Rows affected: 13
+[2024-06-27T08:58:18.865+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T08:58:20.279+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM organizations
+            WHERE DATE(created_at) = '2024-06-25' OR DATE(updated_at) = '2024-06-25'
+        , parameters: None
+[2024-06-27T08:58:20.345+0000] {sql.py:496} INFO - Rows affected: 1
+[2024-06-27T08:58:20.468+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T08:58:20.838+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM testimoni_volunteers, parameters: None
+[2024-06-27T08:58:20.974+0000] {sql.py:496} INFO - Rows affected: 8
+[2024-06-27T08:58:21.077+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-27T08:58:22.859+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM testimoni_volunteers
+            WHERE DATE(created_at) = '2024-06-25' OR DATE(updated_at) = '2024-06-25'
+        , parameters: None
+[2024-06-27T08:59:28.950+0000] {job.py:218} ERROR - Job heartbeat got an exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 3371, in _wrap_pool_connect
+    return fn()
+           ^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 327, in connect
+    return _ConnectionFairy._checkout(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 894, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 493, in checkout
+    rec = pool._do_get()
+          ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/impl.py", line 256, in _do_get
+    return self._create_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 273, in _create_connection
+    return _ConnectionRecord(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 388, in __init__
+    self.__connect()
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 690, in __connect
+    with util.safe_reraise():
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 686, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/create.py", line 574, in connect
+    return dialect.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 598, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: could not translate host name "postgres" to address: Temporary failure in name resolution
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/jobs/job.py", line 192, in heartbeat
+    self._merge_from(Job._fetch_from_db(self, session))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/api_internal/internal_api_call.py", line 115, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 76, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/retries.py", line 89, in wrapped_function
+    for attempt in run_with_db_retries(max_retries=retries, logger=logger, **retry_kwargs):
+  File "/home/airflow/.local/lib/python3.12/site-packages/tenacity/__init__.py", line 435, in __iter__
+    do = self.iter(retry_state=retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/tenacity/__init__.py", line 368, in iter
+    result = action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/tenacity/__init__.py", line 410, in exc_check
+    raise retry_exc.reraise()
+          ^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/tenacity/__init__.py", line 183, in reraise
+    raise self.last_attempt.result()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/retries.py", line 98, in wrapped_function
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/jobs/job.py", line 316, in _fetch_from_db
+    session.merge(job)
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 3056, in merge
+    return self._merge(
+           ^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 3136, in _merge
+    merged = self.get(
+             ^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2853, in get
+    return self._get_impl(
+           ^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2975, in _get_impl
+    return db_load_fn(
+           ^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/orm/loading.py", line 530, in load_on_pk_identity
+    session.execute(
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 1716, in execute
+    conn = self._connection_for_bind(bind)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 1555, in _connection_for_bind
+    return self._transaction._connection_for_bind(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 750, in _connection_for_bind
+    conn = bind.connect()
+           ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/future/engine.py", line 412, in connect
+    return super(Engine, self).connect()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 3325, in connect
+    return self._connection_cls(self, close_with_result=close_with_result)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 96, in __init__
+    else engine.raw_connection()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 3404, in raw_connection
+    return self._wrap_pool_connect(self.pool.connect, _connection)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 3374, in _wrap_pool_connect
+    Connection._handle_dbapi_exception_noconnection(
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2208, in _handle_dbapi_exception_noconnection
+    util.raise_(
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 3371, in _wrap_pool_connect
+    return fn()
+           ^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 327, in connect
+    return _ConnectionFairy._checkout(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 894, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 493, in checkout
+    rec = pool._do_get()
+          ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/impl.py", line 256, in _do_get
+    return self._create_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 273, in _create_connection
+    return _ConnectionRecord(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 388, in __init__
+    self.__connect()
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 690, in __connect
+    with util.safe_reraise():
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 686, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/create.py", line 574, in connect
+    return dialect.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 598, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) could not translate host name "postgres" to address: Temporary failure in name resolution
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+[2024-06-27T08:59:36.944+0000] {job.py:226} ERROR - Job heartbeat failed with error. Scheduler is in unhealthy state
+[2024-06-27T08:59:37.221+0000] {sql.py:496} INFO - Rows affected: 0
+[2024-06-27T09:00:23.998+0000] {job.py:226} ERROR - Job heartbeat failed with error. Scheduler is in unhealthy state
+[2024-06-27T09:00:35.027+0000] {connection.py:513} ERROR - Unable to retrieve connection from secrets backend (MetastoreBackend). Checking subsequent secrets backend.
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 3371, in _wrap_pool_connect
+    return fn()
+           ^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 327, in connect
+    return _ConnectionFairy._checkout(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 894, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 493, in checkout
+    rec = pool._do_get()
+          ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/impl.py", line 256, in _do_get
+    return self._create_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 273, in _create_connection
+    return _ConnectionRecord(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 388, in __init__
+    self.__connect()
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 690, in __connect
+    with util.safe_reraise():
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 686, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/create.py", line 574, in connect
+    return dialect.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 598, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: could not translate host name "postgres" to address: Temporary failure in name resolution
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/connection.py", line 508, in get_connection_from_secrets
+    conn = secrets_backend.get_connection(conn_id=conn_id)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 79, in wrapper
+    return func(*args, session=session, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/secrets/metastore.py", line 43, in get_connection
+    return MetastoreBackend._fetch_connection(conn_id, session=session)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/api_internal/internal_api_call.py", line 115, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 76, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/secrets/metastore.py", line 74, in _fetch_connection
+    conn = session.scalar(select(Connection).where(Connection.conn_id == conn_id).limit(1))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 1747, in scalar
+    return self.execute(
+           ^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 1716, in execute
+    conn = self._connection_for_bind(bind)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 1555, in _connection_for_bind
+    return self._transaction._connection_for_bind(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 750, in _connection_for_bind
+    conn = bind.connect()
+           ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/future/engine.py", line 412, in connect
+    return super(Engine, self).connect()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 3325, in connect
+    return self._connection_cls(self, close_with_result=close_with_result)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 96, in __init__
+    else engine.raw_connection()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 3404, in raw_connection
+    return self._wrap_pool_connect(self.pool.connect, _connection)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 3374, in _wrap_pool_connect
+    Connection._handle_dbapi_exception_noconnection(
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2208, in _handle_dbapi_exception_noconnection
+    util.raise_(
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 3371, in _wrap_pool_connect
+    return fn()
+           ^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 327, in connect
+    return _ConnectionFairy._checkout(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 894, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 493, in checkout
+    rec = pool._do_get()
+          ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/impl.py", line 256, in _do_get
+    return self._create_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 273, in _create_connection
+    return _ConnectionRecord(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 388, in __init__
+    self.__connect()
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 690, in __connect
+    with util.safe_reraise():
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 686, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/create.py", line 574, in connect
+    return dialect.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 598, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) could not translate host name "postgres" to address: Temporary failure in name resolution
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+[2024-06-27T09:00:38.611+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-06-27T09:00:40.679+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/custom_operator/etl_operator.py", line 56, in execute
+    dataframes, table_names = self.extract_data_from_external_db(formatted_query, text_columns)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/custom_operator/etl_operator.py", line 31, in extract_data_from_external_db
+    column_names = [col[0] for col in mysql_hook.get_records(f"SHOW COLUMNS FROM {table}")]
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/hooks/sql.py", line 303, in get_records
+    return self.run(sql=sql, parameters=parameters, handler=fetch_all_handler)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/hooks/sql.py", line 431, in run
+    with self._create_autocommit_connection(autocommit) as conn:
+  File "/usr/local/lib/python3.12/contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/hooks/sql.py", line 551, in _create_autocommit_connection
+    with closing(self.get_conn()) as conn:
+                 ^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/mysql/hooks/mysql.py", line 188, in get_conn
+    conn = self.connection or self.get_connection(getattr(self, self.conn_name_attr))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/hooks/base.py", line 83, in get_connection
+    conn = Connection.get_connection_from_secrets(conn_id)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/connection.py", line 519, in get_connection_from_secrets
+    raise AirflowNotFoundException(f"The conn_id `{conn_id}` isn't defined")
+airflow.exceptions.AirflowNotFoundException: The conn_id `EXTERNAL_DB_CONN_CAPSTONE_DE` isn't defined
+[2024-06-27T09:00:41.046+0000] {taskinstance.py:1206} INFO - Marking task as UP_FOR_RETRY. dag_id=peduli_pintar_etl_dags_v3, task_id=extract_data, run_id=scheduled__2024-06-25T00:00:00+00:00, execution_date=20240625T000000, start_date=20240627T085754, end_date=20240627T090040
+[2024-06-27T09:00:41.448+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 41 for task extract_data (The conn_id `EXTERNAL_DB_CONN_CAPSTONE_DE` isn't defined; 219)
+[2024-06-27T09:00:41.789+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2024-06-27T09:00:42.732+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-06-27T09:00:42.750+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

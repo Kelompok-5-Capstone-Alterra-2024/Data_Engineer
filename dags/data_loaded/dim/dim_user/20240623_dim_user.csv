@@ -1,0 +1,3 @@
+id,created_at,updated_at,deleted_at,fullname,username,email,password,avatar,reset_token,no_telp,otp
+1,2024-06-03,2024-06-23,2024-06-23,John Doe Doe,johndoe,newaccount@test.com,123123,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1715517059/default-avatar_yt6eua.png,PyZcxA7ErwYN3VC0Yef4NyfVseHQ33UAmY6kVNhInFo=,8888888888,
+158,2024-06-22,2024-06-23,None,Firnanda,nanda12,nanda@gmail.com,"$argon2id$v=19$m=65536,t=4,p=4$AhXyfnUJPZjYrMMGTzet/Q$/UwwWA0ZJowmgmts3X4Nf/vGOPy98LVxAW3uVSQWuQw",https://res.cloudinary.com/dvrhf8d9t/image/upload/v1719159502/rbxqliqrqlrdepnvwffe.png,Unknown,8560743664311,

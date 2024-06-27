@@ -1,0 +1,67 @@
+[2024-06-27T03:19:24.189+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-27T03:19:24.230+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: coba_ds_v3.load_gbq scheduled__2024-06-26T00:00:00+00:00 [queued]>
+[2024-06-27T03:19:24.244+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: coba_ds_v3.load_gbq scheduled__2024-06-26T00:00:00+00:00 [queued]>
+[2024-06-27T03:19:24.245+0000] {taskinstance.py:2306} INFO - Starting attempt 2 of 4
+[2024-06-27T03:19:24.265+0000] {taskinstance.py:2330} INFO - Executing <Task(LoadGoogleBigQuery): load_gbq> on 2024-06-26 00:00:00+00:00
+[2024-06-27T03:19:24.279+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=113) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-06-27T03:19:24.281+0000] {standard_task_runner.py:63} INFO - Started process 115 to run task
+[2024-06-27T03:19:24.281+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'coba_ds_v3', 'load_gbq', 'scheduled__2024-06-26T00:00:00+00:00', '--job-id', '145', '--raw', '--subdir', 'DAGS_FOLDER/etl_dags.py', '--cfg-path', '/tmp/tmptqrpampk']
+[2024-06-27T03:19:24.285+0000] {standard_task_runner.py:91} INFO - Job 145: Subtask load_gbq
+[2024-06-27T03:19:24.352+0000] {task_command.py:426} INFO - Running <TaskInstance: coba_ds_v3.load_gbq scheduled__2024-06-26T00:00:00+00:00 [running]> on host 0bef536324ed
+[2024-06-27T03:19:24.487+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Kelompok 5 Capstone DE' AIRFLOW_CTX_DAG_ID='coba_ds_v3' AIRFLOW_CTX_TASK_ID='load_gbq' AIRFLOW_CTX_EXECUTION_DATE='2024-06-26T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-06-26T00:00:00+00:00'
+[2024-06-27T03:19:24.489+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-06-27T03:19:24.571+0000] {connection.py:274} WARNING - Connection schemes (type: google_cloud_platform) shall not contain '_' according to RFC3986.
+[2024-06-27T03:19:24.576+0000] {base.py:84} INFO - Using connection ID 'gcp_conn_capstone_de' for task execution.
+[2024-06-27T03:19:24.753+0000] {logging_mixin.py:188} INFO - File 20240623_fact_donation_transaction.csv does not match partition date 20240626, skipping.
+[2024-06-27T03:19:24.754+0000] {logging_mixin.py:188} INFO - File 20240624_fact_donation_transaction.csv does not match partition date 20240626, skipping.
+[2024-06-27T03:19:24.754+0000] {logging_mixin.py:188} INFO - File 20240625_fact_donation_transaction.csv does not match partition date 20240626, skipping.
+[2024-06-27T03:19:24.762+0000] {logging_mixin.py:188} INFO - File 20240623_fact_volunteer_applications.csv does not match partition date 20240626, skipping.
+[2024-06-27T03:19:24.763+0000] {logging_mixin.py:188} INFO - File 20240624_fact_volunteer_applications.csv does not match partition date 20240626, skipping.
+[2024-06-27T03:19:24.770+0000] {logging_mixin.py:188} INFO - File 20240623_fact_volunteer_testimoni.csv does not match partition date 20240626, skipping.
+[2024-06-27T03:19:24.771+0000] {logging_mixin.py:188} INFO - File 20240624_fact_volunteer_testimoni.csv does not match partition date 20240626, skipping.
+[2024-06-27T03:19:24.779+0000] {logging_mixin.py:188} INFO - File 20240623_fact_article_popular.csv does not match partition date 20240626, skipping.
+[2024-06-27T03:19:24.780+0000] {logging_mixin.py:188} INFO - File 20240624_fact_article_popular.csv does not match partition date 20240626, skipping.
+[2024-06-27T03:19:24.790+0000] {logging_mixin.py:188} INFO - File 20240623_fact_bookmark_fundraising.csv does not match partition date 20240626, skipping.
+[2024-06-27T03:19:24.790+0000] {logging_mixin.py:188} INFO - File 20240624_fact_bookmark_fundraising.csv does not match partition date 20240626, skipping.
+[2024-06-27T03:19:24.795+0000] {logging_mixin.py:188} INFO - File 20240623_fact_bookmark_volunteer_vacancies.csv does not match partition date 20240626, skipping.
+[2024-06-27T03:19:24.796+0000] {logging_mixin.py:188} INFO - File 20240624_fact_bookmark_volunteer_vacancies.csv does not match partition date 20240626, skipping.
+[2024-06-27T03:19:24.805+0000] {connection.py:274} WARNING - Connection schemes (type: google_cloud_platform) shall not contain '_' according to RFC3986.
+[2024-06-27T03:19:24.806+0000] {base.py:84} INFO - Using connection ID 'gcp_conn_capstone_de' for task execution.
+[2024-06-27T03:19:24.918+0000] {logging_mixin.py:188} INFO - File 20240623_dim_fundraisings.csv does not match partition date 20240626, skipping.
+[2024-06-27T03:19:24.919+0000] {logging_mixin.py:188} INFO - File 20240624_dim_fundraisings.csv does not match partition date 20240626, skipping.
+[2024-06-27T03:19:24.919+0000] {logging_mixin.py:188} INFO - File 20240625_dim_fundraisings.csv does not match partition date 20240626, skipping.
+[2024-06-27T03:19:24.921+0000] {logging_mixin.py:188} INFO - Directory dags/data_loaded/dim/dim_fundraising_categories does not exist, skipping table dim_fundraising_categories
+[2024-06-27T03:19:24.926+0000] {logging_mixin.py:188} INFO - File 20240623_dim_donation_manual.csv does not match partition date 20240626, skipping.
+[2024-06-27T03:19:24.927+0000] {logging_mixin.py:188} INFO - File 20240624_dim_donation_manual.csv does not match partition date 20240626, skipping.
+[2024-06-27T03:19:24.927+0000] {logging_mixin.py:188} INFO - File 20240625_dim_donation_manual.csv does not match partition date 20240626, skipping.
+[2024-06-27T03:19:24.932+0000] {logging_mixin.py:188} INFO - File 20240623_dim_organization.csv does not match partition date 20240626, skipping.
+[2024-06-27T03:19:24.933+0000] {logging_mixin.py:188} INFO - File 20240624_dim_organization.csv does not match partition date 20240626, skipping.
+[2024-06-27T03:19:24.934+0000] {logging_mixin.py:188} INFO - File 20240625_dim_organization.csv does not match partition date 20240626, skipping.
+[2024-06-27T03:19:24.938+0000] {logging_mixin.py:188} INFO - File 20240623_dim_user.csv does not match partition date 20240626, skipping.
+[2024-06-27T03:19:24.938+0000] {logging_mixin.py:188} INFO - File 20240624_dim_user.csv does not match partition date 20240626, skipping.
+[2024-06-27T03:19:24.939+0000] {logging_mixin.py:188} INFO - File 20240625_dim_user.csv does not match partition date 20240626, skipping.
+[2024-06-27T03:19:24.943+0000] {logging_mixin.py:188} INFO - File 20240623_dim_volunteer_applictaion.csv does not match partition date 20240626, skipping.
+[2024-06-27T03:19:24.943+0000] {logging_mixin.py:188} INFO - File 20240624_dim_volunteer_applictaion.csv does not match partition date 20240626, skipping.
+[2024-06-27T03:19:24.948+0000] {logging_mixin.py:188} INFO - File 20240623_dim_volunteer_vacancies.csv does not match partition date 20240626, skipping.
+[2024-06-27T03:19:24.949+0000] {logging_mixin.py:188} INFO - File 20240624_dim_volunteer_vacancies.csv does not match partition date 20240626, skipping.
+[2024-06-27T03:19:24.949+0000] {logging_mixin.py:188} INFO - File 20240625_dim_volunteer_vacancies.csv does not match partition date 20240626, skipping.
+[2024-06-27T03:19:24.954+0000] {logging_mixin.py:188} INFO - File 20240623_dim_testimoni_volunteer.csv does not match partition date 20240626, skipping.
+[2024-06-27T03:19:24.955+0000] {logging_mixin.py:188} INFO - File 20240624_dim_testimoni_volunteer.csv does not match partition date 20240626, skipping.
+[2024-06-27T03:19:24.959+0000] {logging_mixin.py:188} INFO - File 20240623_dim_article.csv does not match partition date 20240626, skipping.
+[2024-06-27T03:19:24.960+0000] {logging_mixin.py:188} INFO - File 20240624_dim_article.csv does not match partition date 20240626, skipping.
+[2024-06-27T03:19:24.960+0000] {logging_mixin.py:188} INFO - File 20240625_dim_article.csv does not match partition date 20240626, skipping.
+[2024-06-27T03:19:24.964+0000] {logging_mixin.py:188} INFO - File 20240623_dim_bookmark_fundraising.csv does not match partition date 20240626, skipping.
+[2024-06-27T03:19:24.965+0000] {logging_mixin.py:188} INFO - File 20240624_dim_bookmark_fundraising.csv does not match partition date 20240626, skipping.
+[2024-06-27T03:19:24.969+0000] {logging_mixin.py:188} INFO - File 20240623_dim_bookmark_volunter_vacancies.csv does not match partition date 20240626, skipping.
+[2024-06-27T03:19:24.969+0000] {logging_mixin.py:188} INFO - File 20240624_dim_bookmark_volunter_vacancies.csv does not match partition date 20240626, skipping.
+[2024-06-27T03:19:24.973+0000] {logging_mixin.py:188} INFO - File 20240623_dim_bookmark_article.csv does not match partition date 20240626, skipping.
+[2024-06-27T03:19:24.974+0000] {logging_mixin.py:188} INFO - File 20240624_dim_bookmark_article.csv does not match partition date 20240626, skipping.
+[2024-06-27T03:19:24.979+0000] {logging_mixin.py:188} INFO - File 20240623_dim_comments.csv does not match partition date 20240626, skipping.
+[2024-06-27T03:19:24.983+0000] {logging_mixin.py:188} INFO - File 20240623_dim_like_comments.csv does not match partition date 20240626, skipping.
+[2024-06-27T03:19:24.984+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-06-27T03:19:25.012+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=coba_ds_v3, task_id=load_gbq, run_id=scheduled__2024-06-26T00:00:00+00:00, execution_date=20240626T000000, start_date=20240627T031924, end_date=20240627T031925
+[2024-06-27T03:19:25.059+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-06-27T03:19:25.080+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-06-27T03:19:25.082+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

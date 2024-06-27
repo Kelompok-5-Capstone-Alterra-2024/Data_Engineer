@@ -1,0 +1,4 @@
+id,created_at,updated_at,deleted_at,title,image_url,description,status,goal_amount,current_progress,start_date,end_date
+7,2024-06-06,2024-06-23,,Bantuan Pendidikan Untuk Anak Yatim,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1717582967/e.2_ms2ulm.jpg,"""Program ini fokus pada pemberian bantuan pendidikan bagi anak yatim di berbagai wilayah di Indonesia.""",aktif,10000000,8280000,2024-02-01,2024-07-20
+12,2024-06-06,2024-06-23,,Bantuan Darurat untuk Korban Banjir di Jakarta,https://res.cloudinary.com/dvrhf8d9t/image/upload/v1717582967/b.1_fxd1gn.jpg,"""Program ini bertujuan untuk memberikan bantuan darurat kepada korban banjir di Jakarta, termasuk penyediaan makanan, air bersih, dan tempat penampungan sementara.""",aktif,10000000,1452000,2024-01-01,2024-03-31
+1,Unknown,,,5000000,0,2024-06-25,2024-07-20,0,0,Unknown,Unknown
