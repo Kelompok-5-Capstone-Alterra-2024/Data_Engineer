@@ -129,7 +129,6 @@ class CleaningData(PythonOperator):
             raise ValueError("No dataframes found in XCom.")
         
         dfs_raw_data = [dataframes[8], dataframes[11], dataframes[2], dataframes[22], dataframes[16], dataframes[19], dataframes[20], dataframes[3], dataframes[10], dataframes[21], dataframes[15], dataframes[18], dataframes[5], dataframes[14]]
-        # dfs_raw_data = [dataframes[7], dataframes[10], dataframes[2], dataframes[21], dataframes[15], dataframes[18], dataframes[19], dataframes[3], dataframes[9], dataframes[20], dataframes[14], dataframes[17], dataframes[4], dataframes[13]]
         name_df = ["Donation", "Fundraising", "Application", "Volunteer_Vacancies", "Testimoni_Volunteer", "Bookmark_Fundraising", "Bookmark_Volunteer", "Article", "Fundraising_Categories", "User", "Organization", "Bookmark_Articles", "Comments", "Like Comments"]
         
         clean_dfs = []
