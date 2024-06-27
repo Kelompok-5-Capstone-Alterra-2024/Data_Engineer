@@ -1,0 +1,157 @@
+[2024-06-26T09:25:14.754+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-26T09:25:14.788+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: coba_ds_v4.load_gbq scheduled__2024-06-24T00:00:00+00:00 [queued]>
+[2024-06-26T09:25:14.799+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: coba_ds_v4.load_gbq scheduled__2024-06-24T00:00:00+00:00 [queued]>
+[2024-06-26T09:25:14.800+0000] {taskinstance.py:2306} INFO - Starting attempt 3 of 4
+[2024-06-26T09:25:14.816+0000] {taskinstance.py:2330} INFO - Executing <Task(LoadGoogleBigQuery): load_gbq> on 2024-06-24 00:00:00+00:00
+[2024-06-26T09:25:14.829+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=393) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-06-26T09:25:14.830+0000] {standard_task_runner.py:63} INFO - Started process 395 to run task
+[2024-06-26T09:25:14.830+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'coba_ds_v4', 'load_gbq', 'scheduled__2024-06-24T00:00:00+00:00', '--job-id', '291', '--raw', '--subdir', 'DAGS_FOLDER/etl_dags.py', '--cfg-path', '/tmp/tmptenqqqkw']
+[2024-06-26T09:25:14.833+0000] {standard_task_runner.py:91} INFO - Job 291: Subtask load_gbq
+[2024-06-26T09:25:14.890+0000] {task_command.py:426} INFO - Running <TaskInstance: coba_ds_v4.load_gbq scheduled__2024-06-24T00:00:00+00:00 [running]> on host 0f460bd5d17a
+[2024-06-26T09:25:14.993+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Kelompok 5 Capstone DE' AIRFLOW_CTX_DAG_ID='coba_ds_v4' AIRFLOW_CTX_TASK_ID='load_gbq' AIRFLOW_CTX_EXECUTION_DATE='2024-06-24T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='3' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-06-24T00:00:00+00:00'
+[2024-06-26T09:25:14.994+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-06-26T09:25:15.026+0000] {connection.py:274} WARNING - Connection schemes (type: google_cloud_platform) shall not contain '_' according to RFC3986.
+[2024-06-26T09:25:15.029+0000] {base.py:84} INFO - Using connection ID 'gcp_conn_capstone_de' for task execution.
+[2024-06-26T09:25:15.863+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-06-26T09:25:15.864+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/google/cloud/bigquery/client.py", line 2584, in load_table_from_file
+    response = self._do_multipart_upload(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/google/cloud/bigquery/client.py", line 3148, in _do_multipart_upload
+    response = upload.transmit(
+               ^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/google/resumable_media/requests/upload.py", line 153, in transmit
+    return _request_helpers.wait_and_retry(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/google/resumable_media/requests/_request_helpers.py", line 155, in wait_and_retry
+    response = func()
+               ^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/google/resumable_media/requests/upload.py", line 149, in retriable_request
+    self._process_response(result)
+  File "/home/airflow/.local/lib/python3.12/site-packages/google/resumable_media/_upload.py", line 125, in _process_response
+    _helpers.require_status_code(response, (http.client.OK,), self._get_status_code)
+  File "/home/airflow/.local/lib/python3.12/site-packages/google/resumable_media/_helpers.py", line 108, in require_status_code
+    raise common.InvalidResponse(
+google.resumable_media.common.InvalidResponse: ('Request failed with status code', 400, 'Expected one of', 200)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/custom_operator/etl_operator.py", line 512, in execute
+    self.upload_df_to_gbq(dataset_id_fact_ds, table_fact_table, ds, f"dags/data_loaded/fact/{ds}/" )
+  File "/opt/airflow/dags/custom_operator/etl_operator.py", line 456, in upload_df_to_gbq
+    load_job = client.load_table_from_dataframe(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/google/cloud/bigquery/client.py", line 2824, in load_table_from_dataframe
+    return self.load_table_from_file(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/google/cloud/bigquery/client.py", line 2588, in load_table_from_file
+    raise exceptions.from_http_response(exc.response)
+google.api_core.exceptions.BadRequest: 400 POST https://bigquery.googleapis.com/upload/bigquery/v2/projects/capstone-de2/jobs?uploadType=multipart: Invalid table ID "airflow_peduli_pintar_fact.fact_donation_transaction$20240624".
+[2024-06-26T09:25:15.886+0000] {taskinstance.py:1206} INFO - Marking task as UP_FOR_RETRY. dag_id=coba_ds_v4, task_id=load_gbq, run_id=scheduled__2024-06-24T00:00:00+00:00, execution_date=20240624T000000, start_date=20240626T092514, end_date=20240626T092515
+[2024-06-26T09:25:15.902+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 291 for task load_gbq (400 POST https://bigquery.googleapis.com/upload/bigquery/v2/projects/capstone-de2/jobs?uploadType=multipart: Invalid table ID "airflow_peduli_pintar_fact.fact_donation_transaction$20240624".; 395)
+[2024-06-26T09:25:15.932+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2024-06-26T09:25:15.951+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-06-26T09:25:15.953+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2024-06-27T03:45:18.053+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-27T03:45:18.117+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: coba_ds_v4.load_gbq scheduled__2024-06-24T00:00:00+00:00 [queued]>
+[2024-06-27T03:45:18.142+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: coba_ds_v4.load_gbq scheduled__2024-06-24T00:00:00+00:00 [queued]>
+[2024-06-27T03:45:18.147+0000] {taskinstance.py:2306} INFO - Starting attempt 3 of 4
+[2024-06-27T03:45:18.184+0000] {taskinstance.py:2330} INFO - Executing <Task(LoadGoogleBigQuery): load_gbq> on 2024-06-24 00:00:00+00:00
+[2024-06-27T03:45:18.202+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=208) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-06-27T03:45:18.204+0000] {standard_task_runner.py:63} INFO - Started process 210 to run task
+[2024-06-27T03:45:18.205+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'coba_ds_v4', 'load_gbq', 'scheduled__2024-06-24T00:00:00+00:00', '--job-id', '158', '--raw', '--subdir', 'DAGS_FOLDER/etl_dags.py', '--cfg-path', '/tmp/tmpgialcjhz']
+[2024-06-27T03:45:18.213+0000] {standard_task_runner.py:91} INFO - Job 158: Subtask load_gbq
+[2024-06-27T03:45:18.334+0000] {task_command.py:426} INFO - Running <TaskInstance: coba_ds_v4.load_gbq scheduled__2024-06-24T00:00:00+00:00 [running]> on host 0bef536324ed
+[2024-06-27T03:45:18.535+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Kelompok 5 Capstone DE' AIRFLOW_CTX_DAG_ID='coba_ds_v4' AIRFLOW_CTX_TASK_ID='load_gbq' AIRFLOW_CTX_EXECUTION_DATE='2024-06-24T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='3' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-06-24T00:00:00+00:00'
+[2024-06-27T03:45:18.536+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-06-27T03:45:18.591+0000] {connection.py:274} WARNING - Connection schemes (type: google_cloud_platform) shall not contain '_' according to RFC3986.
+[2024-06-27T03:45:18.600+0000] {base.py:84} INFO - Using connection ID 'gcp_conn_capstone_de' for task execution.
+[2024-06-27T03:45:18.735+0000] {logging_mixin.py:188} INFO - File 20240623_fact_donation_transaction.csv does not match partition date 20240624, skipping.
+[2024-06-27T03:45:23.783+0000] {logging_mixin.py:188} INFO - Loaded 1 rows into capstone-de2.***_peduli_pintar_fact.fact_donation_transaction$20240624
+[2024-06-27T03:45:23.784+0000] {logging_mixin.py:188} INFO - File 20240625_fact_donation_transaction.csv does not match partition date 20240624, skipping.
+[2024-06-27T03:45:23.789+0000] {logging_mixin.py:188} INFO - File 20240623_fact_volunteer_applications.csv does not match partition date 20240624, skipping.
+[2024-06-27T03:45:28.942+0000] {logging_mixin.py:188} INFO - Loaded 3 rows into capstone-de2.***_peduli_pintar_fact.fact_volunteer_applications$20240624
+[2024-06-27T03:45:28.956+0000] {logging_mixin.py:188} INFO - File 20240623_fact_volunteer_testimoni.csv does not match partition date 20240624, skipping.
+[2024-06-27T03:45:33.363+0000] {logging_mixin.py:188} INFO - Loaded 0 rows into capstone-de2.***_peduli_pintar_fact.fact_volunteer_testimoni$20240624
+[2024-06-27T03:45:33.370+0000] {logging_mixin.py:188} INFO - File 20240623_fact_article_popular.csv does not match partition date 20240624, skipping.
+[2024-06-27T03:45:37.442+0000] {logging_mixin.py:188} INFO - Loaded 2 rows into capstone-de2.***_peduli_pintar_fact.fact_article_popular$20240624
+[2024-06-27T03:45:37.448+0000] {logging_mixin.py:188} INFO - File 20240623_fact_bookmark_fundraising.csv does not match partition date 20240624, skipping.
+[2024-06-27T03:45:41.827+0000] {logging_mixin.py:188} INFO - Loaded 3 rows into capstone-de2.***_peduli_pintar_fact.fact_bookmark_fundraising$20240624
+[2024-06-27T03:45:41.834+0000] {logging_mixin.py:188} INFO - File 20240623_fact_bookmark_volunteer_vacancies.csv does not match partition date 20240624, skipping.
+[2024-06-27T03:45:45.886+0000] {logging_mixin.py:188} INFO - Loaded 1 rows into capstone-de2.***_peduli_pintar_fact.fact_bookmark_volunteer_vacancies$20240624
+[2024-06-27T03:45:45.895+0000] {connection.py:274} WARNING - Connection schemes (type: google_cloud_platform) shall not contain '_' according to RFC3986.
+[2024-06-27T03:45:45.896+0000] {base.py:84} INFO - Using connection ID 'gcp_conn_capstone_de' for task execution.
+[2024-06-27T03:45:45.985+0000] {logging_mixin.py:188} INFO - File 20240623_dim_fundraisings.csv does not match partition date 20240624, skipping.
+[2024-06-27T03:45:49.263+0000] {logging_mixin.py:188} INFO - Failed to load data into capstone-de2.***_peduli_pintar_dim.dim_fundraisings$20240624: 400 Some rows belong to different partitions rather than destination partition; reason: invalid, message: Some rows belong to different partitions rather than destination partition
+[2024-06-27T03:45:49.263+0000] {logging_mixin.py:188} INFO - File 20240625_dim_fundraisings.csv does not match partition date 20240624, skipping.
+[2024-06-27T03:45:49.265+0000] {logging_mixin.py:188} INFO - Directory dags/data_loaded/dim/dim_fundraising_categories does not exist, skipping table dim_fundraising_categories
+[2024-06-27T03:45:49.271+0000] {logging_mixin.py:188} INFO - File 20240623_dim_donation_manual.csv does not match partition date 20240624, skipping.
+[2024-06-27T03:46:06.250+0000] {logging_mixin.py:188} INFO - Loaded 8 rows into capstone-de2.***_peduli_pintar_dim.dim_donation_manual$20240624
+[2024-06-27T03:46:06.263+0000] {logging_mixin.py:188} INFO - File 20240625_dim_donation_manual.csv does not match partition date 20240624, skipping.
+[2024-06-27T03:46:06.283+0000] {logging_mixin.py:188} INFO - File 20240623_dim_organization.csv does not match partition date 20240624, skipping.
+[2024-06-27T03:46:07.546+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-06-27T03:46:07.559+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/google/cloud/bigquery/client.py", line 2584, in load_table_from_file
+    response = self._do_multipart_upload(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/google/cloud/bigquery/client.py", line 3148, in _do_multipart_upload
+    response = upload.transmit(
+               ^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/google/resumable_media/requests/upload.py", line 153, in transmit
+    return _request_helpers.wait_and_retry(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/google/resumable_media/requests/_request_helpers.py", line 155, in wait_and_retry
+    response = func()
+               ^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/google/resumable_media/requests/upload.py", line 149, in retriable_request
+    self._process_response(result)
+  File "/home/airflow/.local/lib/python3.12/site-packages/google/resumable_media/_upload.py", line 125, in _process_response
+    _helpers.require_status_code(response, (http.client.OK,), self._get_status_code)
+  File "/home/airflow/.local/lib/python3.12/site-packages/google/resumable_media/_helpers.py", line 108, in require_status_code
+    raise common.InvalidResponse(
+google.resumable_media.common.InvalidResponse: ('Request failed with status code', 400, 'Expected one of', 200)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/custom_operator/etl_operator.py", line 617, in execute
+    self.upload_df_to_gbq(dataset_id_dim_ds, table_dim_table, ds, "dags/data_loaded/dim")
+  File "/opt/airflow/dags/custom_operator/etl_operator.py", line 588, in upload_df_to_gbq
+    load_job = client.load_table_from_dataframe(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/google/cloud/bigquery/client.py", line 2824, in load_table_from_dataframe
+    return self.load_table_from_file(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/google/cloud/bigquery/client.py", line 2588, in load_table_from_file
+    raise exceptions.from_http_response(exc.response)
+google.api_core.exceptions.BadRequest: 400 POST https://bigquery.googleapis.com/upload/bigquery/v2/projects/capstone-de2/jobs?uploadType=multipart: Provided Schema does not match Table capstone-de2:airflow_peduli_pintar_dim.dim_organization$20240624. Field deleted_at has changed type from STRING to FLOAT
+[2024-06-27T03:46:08.394+0000] {taskinstance.py:1206} INFO - Marking task as UP_FOR_RETRY. dag_id=coba_ds_v4, task_id=load_gbq, run_id=scheduled__2024-06-24T00:00:00+00:00, execution_date=20240624T000000, start_date=20240627T034518, end_date=20240627T034608
+[2024-06-27T03:46:08.505+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 158 for task load_gbq (400 POST https://bigquery.googleapis.com/upload/bigquery/v2/projects/capstone-de2/jobs?uploadType=multipart: Provided Schema does not match Table capstone-de2:airflow_peduli_pintar_dim.dim_organization$20240624. Field deleted_at has changed type from STRING to FLOAT; 210)
+[2024-06-27T03:46:08.582+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2024-06-27T03:46:08.666+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-06-27T03:46:08.670+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

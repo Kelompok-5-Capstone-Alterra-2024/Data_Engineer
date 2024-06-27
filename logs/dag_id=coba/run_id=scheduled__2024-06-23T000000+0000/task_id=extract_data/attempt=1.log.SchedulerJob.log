@@ -1,0 +1,1 @@
+[2024-06-26T07:22:33.531+0000] {scheduler_job_runner.py:769} ERROR - Executor reports task instance <TaskInstance: coba.extract_data scheduled__2024-06-23T00:00:00+00:00 [queued]> finished (failed) although the task says it's queued. (Info: None) Was the task killed externally?

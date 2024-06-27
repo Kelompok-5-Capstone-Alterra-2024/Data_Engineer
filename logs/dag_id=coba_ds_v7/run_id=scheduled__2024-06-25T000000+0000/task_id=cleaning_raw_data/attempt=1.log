@@ -1,0 +1,105 @@
+[2024-06-26T22:40:44.750+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-26T22:40:44.794+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: coba_ds_v7.cleaning_raw_data scheduled__2024-06-25T00:00:00+00:00 [queued]>
+[2024-06-26T22:40:44.806+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: coba_ds_v7.cleaning_raw_data scheduled__2024-06-25T00:00:00+00:00 [queued]>
+[2024-06-26T22:40:44.807+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 4
+[2024-06-26T22:40:44.832+0000] {taskinstance.py:2330} INFO - Executing <Task(CleaningData): cleaning_raw_data> on 2024-06-25 00:00:00+00:00
+[2024-06-26T22:40:44.850+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=1191) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-06-26T22:40:44.854+0000] {standard_task_runner.py:63} INFO - Started process 1194 to run task
+[2024-06-26T22:40:44.853+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'coba_ds_v7', 'cleaning_raw_data', 'scheduled__2024-06-25T00:00:00+00:00', '--job-id', '92', '--raw', '--subdir', 'DAGS_FOLDER/etl_dags.py', '--cfg-path', '/tmp/tmp6bjsbw2f']
+[2024-06-26T22:40:44.858+0000] {standard_task_runner.py:91} INFO - Job 92: Subtask cleaning_raw_data
+[2024-06-26T22:40:44.983+0000] {task_command.py:426} INFO - Running <TaskInstance: coba_ds_v7.cleaning_raw_data scheduled__2024-06-25T00:00:00+00:00 [running]> on host 7ecff3f83b62
+[2024-06-26T22:40:45.121+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Kelompok 5 Capstone DE' AIRFLOW_CTX_DAG_ID='coba_ds_v7' AIRFLOW_CTX_TASK_ID='cleaning_raw_data' AIRFLOW_CTX_EXECUTION_DATE='2024-06-25T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-06-25T00:00:00+00:00'
+[2024-06-26T22:40:45.122+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-06-26T22:40:45.449+0000] {logging_mixin.py:188} INFO - Tidak ada data duplikat pada Donation
+[2024-06-26T22:40:45.483+0000] {logging_mixin.py:188} INFO - Tidak ada missing value dalam Donation
+[2024-06-26T22:40:45.490+0000] {logging_mixin.py:188} INFO - id                0
+created_at        0
+user_id           0
+amount            0
+status            0
+image_payment     0
+fundraising_id    0
+dtype: int64
+[2024-06-26T22:40:45.501+0000] {logging_mixin.py:188} INFO - Tidak ada data duplikat pada Fundraising
+[2024-06-26T22:40:45.519+0000] {logging_mixin.py:188} INFO - Tidak ada missing value dalam Fundraising
+[2024-06-26T22:40:45.522+0000] {logging_mixin.py:188} INFO - id                         0
+created_at                 0
+fundraising_category_id    0
+organization_id            0
+title                      0
+image_url                  0
+description                0
+status                     0
+goal_amount                0
+current_progress           0
+start_date                 0
+end_date                   0
+dtype: int64
+[2024-06-26T22:40:45.524+0000] {logging_mixin.py:188} INFO - Application is None or empty. Skipping.
+[2024-06-26T22:40:45.541+0000] {logging_mixin.py:188} INFO - Tidak ada data duplikat pada Volunteer_Vacancies
+[2024-06-26T22:40:45.555+0000] {logging_mixin.py:188} INFO - Terdapat missing value dalam Volunteer_Vacancies
+[2024-06-26T22:40:45.561+0000] {logging_mixin.py:188} INFO - id                       0
+created_at               0
+title                    0
+organization_id          0
+content_activity         0
+location                 1
+start_date               0
+end_date                 0
+target_volunteer         0
+registered_volunteer     0
+registration_deadline    0
+image_url                0
+status                   0
+link_wa                  0
+dtype: int64
+[2024-06-26T22:40:45.568+0000] {logging_mixin.py:188} INFO - Testimoni_Volunteer is None or empty. Skipping.
+[2024-06-26T22:40:45.569+0000] {logging_mixin.py:188} INFO - Bookmark_Fundraising is None or empty. Skipping.
+[2024-06-26T22:40:45.569+0000] {logging_mixin.py:188} INFO - Bookmark_Volunteer is None or empty. Skipping.
+[2024-06-26T22:40:45.579+0000] {logging_mixin.py:188} INFO - Tidak ada data duplikat pada Article
+[2024-06-26T22:40:45.590+0000] {logging_mixin.py:188} INFO - Terdapat missing value dalam Article
+[2024-06-26T22:40:45.599+0000] {logging_mixin.py:188} INFO - id            0
+created_at    0
+admin_id      1
+title         0
+content       0
+image_url     0
+dtype: int64
+[2024-06-26T22:40:45.602+0000] {logging_mixin.py:188} INFO - Fundraising_Categories is None or empty. Skipping.
+[2024-06-26T22:40:45.623+0000] {logging_mixin.py:188} INFO - Tidak ada data duplikat pada User
+[2024-06-26T22:40:45.660+0000] {logging_mixin.py:188} INFO - Terdapat missing value dalam User
+[2024-06-26T22:40:45.664+0000] {logging_mixin.py:188} INFO - id             0
+created_at     0
+fullname       0
+username       0
+email          0
+password       0
+avatar         0
+reset_token    2
+no_telp        0
+otp            2
+dtype: int64
+[2024-06-26T22:40:45.681+0000] {logging_mixin.py:188} INFO - Tidak ada data duplikat pada Organization
+[2024-06-26T22:40:45.690+0000] {logging_mixin.py:188} INFO - Terdapat missing value dalam Organization
+[2024-06-26T22:40:45.694+0000] {logging_mixin.py:188} INFO - id             0
+created_at     0
+name           0
+description    0
+avatar         0
+is_verified    0
+contact        1
+start_date     0
+website        0
+instagram      0
+no_rekening    0
+dtype: int64
+[2024-06-26T22:40:45.697+0000] {logging_mixin.py:188} INFO - Bookmark_Articles is None or empty. Skipping.
+[2024-06-26T22:40:45.697+0000] {logging_mixin.py:188} INFO - Comments is None or empty. Skipping.
+[2024-06-26T22:40:45.698+0000] {logging_mixin.py:188} INFO - Like Comments is None or empty. Skipping.
+[2024-06-26T22:40:45.969+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-06-26T22:40:46.128+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=coba_ds_v7, task_id=cleaning_raw_data, run_id=scheduled__2024-06-25T00:00:00+00:00, execution_date=20240625T000000, start_date=20240626T224044, end_date=20240626T224046
+[2024-06-26T22:40:46.222+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-06-26T22:40:46.303+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2024-06-26T22:40:46.331+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

@@ -1,0 +1,4 @@
+id,article_id,bookmark_id,user_id,comment_id,like_comment_id,created_at,updated_at
+1,54,125,123,25,91,2024-06-23,2024-06-23
+2,52,126,123,26,92,2024-06-23,2024-06-23
+3,54,127,127,27,93,2024-06-23,2024-06-23

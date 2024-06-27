@@ -1,0 +1,3 @@
+id,donation_id,fundraising_id,user_id,amount,goal_amount,fundraising_category_id,organization_id,created_at,updated_at
+1,204,19,127,50000,20000000,3,4,2024-06-24,2024-06-24
+2,205,22,127,50000,,,,2024-06-24,2024-06-25

@@ -1,0 +1,554 @@
+[2024-06-26T21:39:37.903+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-26T21:39:38.162+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: coba_ds_v5.extract_data scheduled__2024-06-24T00:00:00+00:00 [queued]>
+[2024-06-26T21:39:38.205+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: coba_ds_v5.extract_data scheduled__2024-06-24T00:00:00+00:00 [queued]>
+[2024-06-26T21:39:38.206+0000] {taskinstance.py:2306} INFO - Starting attempt 2 of 4
+[2024-06-26T21:39:38.252+0000] {taskinstance.py:2330} INFO - Executing <Task(ExtractData): extract_data> on 2024-06-24 00:00:00+00:00
+[2024-06-26T21:39:38.318+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=430) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-06-26T21:39:38.318+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'coba_ds_v5', 'extract_data', 'scheduled__2024-06-24T00:00:00+00:00', '--job-id', '69', '--raw', '--subdir', 'DAGS_FOLDER/etl_dags.py', '--cfg-path', '/tmp/tmp1fu1_bm8']
+[2024-06-26T21:39:38.322+0000] {standard_task_runner.py:63} INFO - Started process 440 to run task
+[2024-06-26T21:39:38.323+0000] {standard_task_runner.py:91} INFO - Job 69: Subtask extract_data
+[2024-06-26T21:39:38.961+0000] {task_command.py:426} INFO - Running <TaskInstance: coba_ds_v5.extract_data scheduled__2024-06-24T00:00:00+00:00 [running]> on host 7ecff3f83b62
+[2024-06-26T21:39:40.012+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Kelompok 5 Capstone DE' AIRFLOW_CTX_DAG_ID='coba_ds_v5' AIRFLOW_CTX_TASK_ID='extract_data' AIRFLOW_CTX_EXECUTION_DATE='2024-06-24T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-06-24T00:00:00+00:00'
+[2024-06-26T21:39:40.021+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-06-26T21:39:40.158+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T21:39:40.633+0000] {sql.py:487} INFO - Running statement: SHOW TABLES, parameters: None
+[2024-06-26T21:39:40.663+0000] {sql.py:496} INFO - Rows affected: 23
+[2024-06-26T21:39:40.737+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T21:39:41.159+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM admin_notifications, parameters: None
+[2024-06-26T21:39:41.224+0000] {sql.py:496} INFO - Rows affected: 8
+[2024-06-26T21:39:41.439+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T21:39:41.857+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM admin_notifications
+            WHERE DATE(created_at) = '2024-06-24'
+            OR DATE(updated_at) = '2024-06-24'
+        , parameters: None
+[2024-06-26T21:39:41.891+0000] {sql.py:496} INFO - Rows affected: 17
+[2024-06-26T21:39:42.197+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T21:39:42.705+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM admins, parameters: None
+[2024-06-26T21:39:42.744+0000] {sql.py:496} INFO - Rows affected: 8
+[2024-06-26T21:39:43.473+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T21:39:43.871+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM admins
+            WHERE DATE(created_at) = '2024-06-24'
+            OR DATE(updated_at) = '2024-06-24'
+        , parameters: None
+[2024-06-26T21:39:43.907+0000] {sql.py:496} INFO - Rows affected: 0
+[2024-06-26T21:39:43.980+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T21:39:44.312+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM applications, parameters: None
+[2024-06-26T21:39:44.347+0000] {sql.py:496} INFO - Rows affected: 11
+[2024-06-26T21:39:44.406+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T21:39:44.835+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM applications
+            WHERE DATE(created_at) = '2024-06-24'
+            OR DATE(updated_at) = '2024-06-24'
+        , parameters: None
+[2024-06-26T21:39:44.875+0000] {sql.py:496} INFO - Rows affected: 4
+[2024-06-26T21:39:45.125+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T21:39:45.450+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM articles, parameters: None
+[2024-06-26T21:39:45.535+0000] {sql.py:496} INFO - Rows affected: 8
+[2024-06-26T21:39:45.583+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T21:39:45.949+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM articles
+            WHERE DATE(created_at) = '2024-06-24'
+            OR DATE(updated_at) = '2024-06-24'
+        , parameters: None
+[2024-06-26T21:39:45.981+0000] {sql.py:496} INFO - Rows affected: 1
+[2024-06-26T21:39:46.148+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T21:39:46.663+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM chatbots, parameters: None
+[2024-06-26T21:39:46.699+0000] {sql.py:496} INFO - Rows affected: 7
+[2024-06-26T21:39:46.903+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T21:39:47.221+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM chatbots
+            WHERE DATE(created_at) = '2024-06-24'
+            OR DATE(updated_at) = '2024-06-24'
+        , parameters: None
+[2024-06-26T21:39:47.252+0000] {sql.py:496} INFO - Rows affected: 0
+[2024-06-26T21:39:47.331+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T21:39:47.689+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM comments, parameters: None
+[2024-06-26T21:39:47.722+0000] {sql.py:496} INFO - Rows affected: 8
+[2024-06-26T21:39:47.774+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T21:39:48.109+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM comments
+            WHERE DATE(created_at) = '2024-06-24'
+            OR DATE(updated_at) = '2024-06-24'
+        , parameters: None
+[2024-06-26T21:39:48.143+0000] {sql.py:496} INFO - Rows affected: 0
+[2024-06-26T21:39:48.202+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T21:39:48.617+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM donation_comments, parameters: None
+[2024-06-26T21:39:48.652+0000] {sql.py:496} INFO - Rows affected: 7
+[2024-06-26T21:39:48.693+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T21:39:49.018+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM donation_comments
+            WHERE DATE(created_at) = '2024-06-24'
+            OR DATE(updated_at) = '2024-06-24'
+        , parameters: None
+[2024-06-26T21:39:49.048+0000] {sql.py:496} INFO - Rows affected: 0
+[2024-06-26T21:39:49.094+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T21:39:49.442+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM donation_manual_comments, parameters: None
+[2024-06-26T21:39:49.477+0000] {sql.py:496} INFO - Rows affected: 7
+[2024-06-26T21:39:49.520+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T21:39:49.752+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM donation_manual_comments
+            WHERE DATE(created_at) = '2024-06-24'
+            OR DATE(updated_at) = '2024-06-24'
+        , parameters: None
+[2024-06-26T21:39:49.786+0000] {sql.py:496} INFO - Rows affected: 9
+[2024-06-26T21:39:49.853+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T21:39:50.136+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM donation_manuals, parameters: None
+[2024-06-26T21:39:50.170+0000] {sql.py:496} INFO - Rows affected: 9
+[2024-06-26T21:39:50.222+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T21:39:50.526+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM donation_manuals
+            WHERE DATE(created_at) = '2024-06-24'
+            OR DATE(updated_at) = '2024-06-24'
+        , parameters: None
+[2024-06-26T21:39:50.558+0000] {sql.py:496} INFO - Rows affected: 9
+[2024-06-26T21:39:50.609+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T21:39:50.934+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM donations, parameters: None
+[2024-06-26T21:39:50.967+0000] {sql.py:496} INFO - Rows affected: 11
+[2024-06-26T21:39:51.009+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T21:39:51.279+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM donations
+            WHERE DATE(created_at) = '2024-06-24'
+            OR DATE(updated_at) = '2024-06-24'
+        , parameters: None
+[2024-06-26T21:39:51.311+0000] {sql.py:496} INFO - Rows affected: 0
+[2024-06-26T21:39:51.357+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T21:39:51.708+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM fundraising_categories, parameters: None
+[2024-06-26T21:39:51.743+0000] {sql.py:496} INFO - Rows affected: 5
+[2024-06-26T21:39:51.788+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T21:39:54.156+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM fundraising_categories
+            WHERE DATE(created_at) = '2024-06-24'
+            OR DATE(updated_at) = '2024-06-24'
+        , parameters: None
+[2024-06-26T21:39:54.188+0000] {sql.py:496} INFO - Rows affected: 0
+[2024-06-26T21:39:54.240+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T21:39:54.574+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM fundraisings, parameters: None
+[2024-06-26T21:39:54.608+0000] {sql.py:496} INFO - Rows affected: 14
+[2024-06-26T21:39:54.677+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T21:39:55.071+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM fundraisings
+            WHERE DATE(created_at) = '2024-06-24'
+            OR DATE(updated_at) = '2024-06-24'
+        , parameters: None
+[2024-06-26T21:39:55.104+0000] {sql.py:496} INFO - Rows affected: 3
+[2024-06-26T21:39:55.156+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T21:39:55.474+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM like_donation_comments, parameters: None
+[2024-06-26T21:39:55.506+0000] {sql.py:496} INFO - Rows affected: 6
+[2024-06-26T21:39:55.545+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T21:39:56.911+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM like_donation_comments
+            WHERE DATE(created_at) = '2024-06-24'
+            OR DATE(updated_at) = '2024-06-24'
+        , parameters: None
+[2024-06-26T21:39:56.943+0000] {sql.py:496} INFO - Rows affected: 0
+[2024-06-26T21:39:56.987+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T21:39:57.330+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM like_donation_manual_comments, parameters: None
+[2024-06-26T21:39:57.362+0000] {sql.py:496} INFO - Rows affected: 6
+[2024-06-26T21:39:57.400+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T21:39:57.727+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM like_donation_manual_comments
+            WHERE DATE(created_at) = '2024-06-24'
+            OR DATE(updated_at) = '2024-06-24'
+        , parameters: None
+[2024-06-26T21:39:57.758+0000] {sql.py:496} INFO - Rows affected: 0
+[2024-06-26T21:39:57.797+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T21:39:58.132+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM likes_comments, parameters: None
+[2024-06-26T21:39:58.164+0000] {sql.py:496} INFO - Rows affected: 6
+[2024-06-26T21:39:58.205+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T21:39:58.505+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM likes_comments
+            WHERE DATE(created_at) = '2024-06-24'
+            OR DATE(updated_at) = '2024-06-24'
+        , parameters: None
+[2024-06-26T21:39:58.535+0000] {sql.py:496} INFO - Rows affected: 0
+[2024-06-26T21:39:58.575+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T21:39:58.881+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM organizations, parameters: None
+[2024-06-26T21:39:58.913+0000] {sql.py:496} INFO - Rows affected: 13
+[2024-06-26T21:39:58.951+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T21:39:59.261+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM organizations
+            WHERE DATE(created_at) = '2024-06-24'
+            OR DATE(updated_at) = '2024-06-24'
+        , parameters: None
+[2024-06-26T21:39:59.293+0000] {sql.py:496} INFO - Rows affected: 1
+[2024-06-26T21:39:59.352+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T21:39:59.678+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM testimoni_volunteers, parameters: None
+[2024-06-26T21:39:59.709+0000] {sql.py:496} INFO - Rows affected: 8
+[2024-06-26T21:39:59.756+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T21:40:11.562+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM testimoni_volunteers
+            WHERE DATE(created_at) = '2024-06-24'
+            OR DATE(updated_at) = '2024-06-24'
+        , parameters: None
+[2024-06-26T21:40:11.606+0000] {sql.py:496} INFO - Rows affected: 1
+[2024-06-26T21:40:12.173+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T21:40:12.622+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM transactions, parameters: None
+[2024-06-26T21:40:12.688+0000] {sql.py:496} INFO - Rows affected: 10
+[2024-06-26T21:40:12.922+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T21:40:13.315+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM transactions
+            WHERE DATE(created_at) = '2024-06-24'
+            OR DATE(updated_at) = '2024-06-24'
+        , parameters: None
+[2024-06-26T21:40:13.344+0000] {sql.py:496} INFO - Rows affected: 1
+[2024-06-26T21:40:13.423+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T21:40:13.735+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM user_bookmark_articles, parameters: None
+[2024-06-26T21:40:13.768+0000] {sql.py:496} INFO - Rows affected: 6
+[2024-06-26T21:40:13.811+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T21:40:14.105+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM user_bookmark_articles
+            WHERE DATE(created_at) = '2024-06-24'
+            OR DATE(updated_at) = '2024-06-24'
+        , parameters: None
+[2024-06-26T21:40:14.135+0000] {sql.py:496} INFO - Rows affected: 3
+[2024-06-26T21:40:14.182+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T21:40:14.492+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM user_bookmark_fundraisings, parameters: None
+[2024-06-26T21:40:14.524+0000] {sql.py:496} INFO - Rows affected: 6
+[2024-06-26T21:40:14.568+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T21:40:14.867+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM user_bookmark_fundraisings
+            WHERE DATE(created_at) = '2024-06-24'
+            OR DATE(updated_at) = '2024-06-24'
+        , parameters: None
+[2024-06-26T21:40:14.898+0000] {sql.py:496} INFO - Rows affected: 4
+[2024-06-26T21:40:14.949+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T21:40:15.242+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM user_bookmark_volunteer_vacancies, parameters: None
+[2024-06-26T21:40:15.272+0000] {sql.py:496} INFO - Rows affected: 7
+[2024-06-26T21:40:15.311+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T21:40:15.604+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM user_bookmark_volunteer_vacancies
+            WHERE DATE(created_at) = '2024-06-24'
+            OR DATE(updated_at) = '2024-06-24'
+        , parameters: None
+[2024-06-26T21:40:15.634+0000] {sql.py:496} INFO - Rows affected: 2
+[2024-06-26T21:40:15.685+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T21:40:16.013+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM users, parameters: None
+[2024-06-26T21:40:16.047+0000] {sql.py:496} INFO - Rows affected: 12
+[2024-06-26T21:40:16.090+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T21:40:16.389+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM users
+            WHERE DATE(created_at) = '2024-06-24'
+            OR DATE(updated_at) = '2024-06-24'
+        , parameters: None
+[2024-06-26T21:40:16.421+0000] {sql.py:496} INFO - Rows affected: 10
+[2024-06-26T21:40:16.461+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T21:40:17.753+0000] {sql.py:487} INFO - Running statement: SHOW COLUMNS FROM volunteers, parameters: None
+[2024-06-26T21:40:17.785+0000] {sql.py:496} INFO - Rows affected: 16
+[2024-06-26T21:40:18.190+0000] {base.py:84} INFO - Using connection ID 'EXTERNAL_DB_CONN_CAPSTONE_DE' for task execution.
+[2024-06-26T21:40:18.854+0000] {sql.py:487} INFO - Running statement: 
+            SELECT *
+            FROM volunteers
+            WHERE DATE(created_at) = '2024-06-24'
+            OR DATE(updated_at) = '2024-06-24'
+        , parameters: None
+[2024-06-26T21:40:18.911+0000] {sql.py:496} INFO - Rows affected: 4
+[2024-06-26T21:41:03.859+0000] {job.py:218} ERROR - Job heartbeat got an exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 3371, in _wrap_pool_connect
+    return fn()
+           ^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 327, in connect
+    return _ConnectionFairy._checkout(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 894, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 493, in checkout
+    rec = pool._do_get()
+          ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/impl.py", line 256, in _do_get
+    return self._create_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 273, in _create_connection
+    return _ConnectionRecord(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 388, in __init__
+    self.__connect()
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 690, in __connect
+    with util.safe_reraise():
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 686, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/create.py", line 574, in connect
+    return dialect.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 598, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: could not translate host name "postgres" to address: Temporary failure in name resolution
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/jobs/job.py", line 192, in heartbeat
+    self._merge_from(Job._fetch_from_db(self, session))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/api_internal/internal_api_call.py", line 115, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py", line 76, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/retries.py", line 89, in wrapped_function
+    for attempt in run_with_db_retries(max_retries=retries, logger=logger, **retry_kwargs):
+  File "/home/airflow/.local/lib/python3.12/site-packages/tenacity/__init__.py", line 435, in __iter__
+    do = self.iter(retry_state=retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/tenacity/__init__.py", line 368, in iter
+    result = action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/tenacity/__init__.py", line 410, in exc_check
+    raise retry_exc.reraise()
+          ^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/tenacity/__init__.py", line 183, in reraise
+    raise self.last_attempt.result()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/utils/retries.py", line 98, in wrapped_function
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/jobs/job.py", line 316, in _fetch_from_db
+    session.merge(job)
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 3056, in merge
+    return self._merge(
+           ^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 3136, in _merge
+    merged = self.get(
+             ^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2853, in get
+    return self._get_impl(
+           ^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2975, in _get_impl
+    return db_load_fn(
+           ^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/orm/loading.py", line 530, in load_on_pk_identity
+    session.execute(
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 1716, in execute
+    conn = self._connection_for_bind(bind)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 1555, in _connection_for_bind
+    return self._transaction._connection_for_bind(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 750, in _connection_for_bind
+    conn = bind.connect()
+           ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/future/engine.py", line 412, in connect
+    return super(Engine, self).connect()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 3325, in connect
+    return self._connection_cls(self, close_with_result=close_with_result)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 96, in __init__
+    else engine.raw_connection()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 3404, in raw_connection
+    return self._wrap_pool_connect(self.pool.connect, _connection)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 3374, in _wrap_pool_connect
+    Connection._handle_dbapi_exception_noconnection(
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2208, in _handle_dbapi_exception_noconnection
+    util.raise_(
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 3371, in _wrap_pool_connect
+    return fn()
+           ^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 327, in connect
+    return _ConnectionFairy._checkout(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 894, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 493, in checkout
+    rec = pool._do_get()
+          ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/impl.py", line 256, in _do_get
+    return self._create_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 273, in _create_connection
+    return _ConnectionRecord(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 388, in __init__
+    self.__connect()
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 690, in __connect
+    with util.safe_reraise():
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 686, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/create.py", line 574, in connect
+    return dialect.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 598, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) could not translate host name "postgres" to address: Temporary failure in name resolution
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+[2024-06-26T21:41:19.377+0000] {job.py:226} ERROR - Job heartbeat failed with error. Scheduler is in unhealthy state
+[2024-06-26T21:41:40.900+0000] {logging_mixin.py:188} INFO - [    id  ...                                    message
+0   55  ...    "sintaayr03 Bergabung ke Peduli Pintar"
+1   56  ...          " melakukan donasi sebesar Rp. 0"
+2   57  ...        "suryaf Bergabung ke Peduli Pintar"
+3   58  ...       "suryasf Bergabung ke Peduli Pintar"
+4   59  ...      "suryaesf Bergabung ke Peduli Pintar"
+5   60  ...          " melakukan donasi sebesar Rp. 0"
+6   61  ...          " melakukan donasi sebesar Rp. 0"
+7   62  ...          " melakukan donasi sebesar Rp. 0"
+8   63  ...          " melakukan donasi sebesar Rp. 0"
+9   64  ...          " melakukan donasi sebesar Rp. 0"
+10  65  ...       "Admin10 Bergabung ke Peduli Pintar"
+11  66  ...    "Sintaayr19 Bergabung ke Peduli Pintar"
+12  67  ...          " melakukan donasi sebesar Rp. 0"
+13  68  ...          " melakukan donasi sebesar Rp. 0"
+14  69  ...   "Aryasenoaji Bergabung ke Peduli Pintar"
+15  70  ...          " melakukan donasi sebesar Rp. 0"
+16  71  ...  "Salsabilaefn Bergabung ke Peduli Pintar"
+
+[17 rows x 8 columns], Empty DataFrame
+Columns: [id, created_at, updated_at, deleted_at, username, email, password, avatar]
+Index: [],     id              created_at  ...                           reason            age
+0  230 2024-06-24 05:06:00.270  ...  Ingin membantu membangun sumur   18 - 20 Tahun
+1  231 2024-06-24 05:28:01.961  ...                             suka  21 - 25 Tahun
+2  232 2024-06-24 07:51:13.444  ...               menambah aktivitas  21 - 25 Tahun
+3  233 2024-06-24 08:30:49.793  ...     Ingin menambah produktivitas  21 - 25 Tahun
+
+[4 rows x 11 columns],    id  ...                                          image_url
+0  54  ...  https://res.cloudinary.com/dvrhf8d9t/image/upl...
+
+[1 rows x 8 columns], Empty DataFrame
+Columns: [id, created_at, updated_at, deleted_at, chat_id, role, message]
+Index: [], Empty DataFrame
+Columns: [id, created_at, updated_at, deleted_at, user_id, article_id, comment, total_likes]
+Index: [], Empty DataFrame
+Columns: [id, created_at, updated_at, deleted_at, donation_id, comment, total_likes]
+Index: [],    id              created_at  ...                       comment total_likes
+0  91 2024-06-24 04:26:50.925  ...              semoa bermanfaat           0
+1  92 2024-06-24 04:57:38.101  ...                 semoga berkah           0
+2  93 2024-06-24 05:00:19.905  ...                semoga berkah            0
+3  94 2024-06-24 05:31:51.322  ...                          sdsd           0
+4  95 2024-06-24 05:36:10.530  ...                      selamat            0
+5  96 2024-06-24 05:37:30.000  ...                semoga berkah            0
+6  97 2024-06-24 07:35:21.630  ...  semoga donasi ini bermanfaat           0
+7  98 2024-06-24 07:49:55.129  ...             semoga bermanfaat           0
+8  99 2024-06-24 08:27:56.714  ...  semoga donasi ini bermanfaat           0
+
+[9 rows x 7 columns],     id  ... fundraising_id
+0  202  ...             64
+1  203  ...             24
+2  204  ...             19
+3  205  ...             22
+4  206  ...             24
+5  207  ...             24
+6  208  ...             11
+7  209  ...             64
+8  210  ...             64
+
+[9 rows x 9 columns], Empty DataFrame
+Columns: [id, created_at, updated_at, deleted_at, user_id, amount, status, code, fundraising_id, payment_url, payment_method]
+Index: [], Empty DataFrame
+Columns: [id, created_at, updated_at, deleted_at, name]
+Index: [],    id              created_at  ... start_date   end_date
+0  19 2024-06-06 00:03:25.012  ... 2024-04-01 2024-12-31
+1  64 2024-06-12 23:19:30.182  ... 2024-06-13 2025-06-26
+2  81 2024-06-24 08:45:37.149  ... 2024-06-25 2024-07-20
+
+[3 rows x 14 columns], Empty DataFrame
+Columns: [id, created_at, updated_at, deleted_at, donation_comment_id, user_id]
+Index: [], Empty DataFrame
+Columns: [id, created_at, updated_at, deleted_at, donation_manual_comment_id, user_id]
+Index: [], Empty DataFrame
+Columns: [id, created_at, updated_at, deleted_at, user_id, comment_id]
+Index: [],    id              created_at  ...     instagram no_rekening
+0  24 2024-06-24 08:52:22.805  ...  Peduli_Hijau    12345678
+
+[1 rows x 13 columns],    id              created_at  ...     testimoni rating
+0  46 2024-06-24 04:34:10.597  ...  sangat seruu      4
+
+[1 rows x 8 columns],    id  ... fundraising_id
+0  28  ...             81
+
+[1 rows x 10 columns],     id              created_at  ... user_id article_id
+0  128 2024-06-24 04:31:17.678  ...     127         54
+1  129 2024-06-24 07:51:41.303  ...     171          9
+2  130 2024-06-24 07:51:56.289  ...     171         52
+
+[3 rows x 6 columns],     id              created_at  ... user_id fundraising_id
+0  129 2024-06-24 04:22:33.154  ...     127             64
+1  130 2024-06-24 07:35:36.060  ...     171             11
+2  131 2024-06-24 07:48:03.010  ...     171             22
+3  132 2024-06-24 08:25:34.704  ...     171             64
+
+[4 rows x 6 columns],    id              created_at  ... volunteer_vacancies_id volunteer_vacancy_id
+0  98 2024-06-24 04:28:15.130  ...                      4                 None
+1  99 2024-06-24 08:29:05.451  ...                      4                 None
+
+[2 rows x 7 columns],     id              created_at  ...         no_telp     otp
+0  125 2024-06-15 13:00:44.807  ...    096585475456  428856
+1  127 2024-06-18 18:49:07.106  ...      3254467658        
+2  166 2024-06-24 04:11:30.351  ...   0823456789111  385372
+3  167 2024-06-24 04:44:03.785  ...   0865734543532        
+4  168 2024-06-24 04:48:23.005  ...    086573454332        
+5  169 2024-06-24 04:49:40.202  ...   0865734543332        
+6  170 2024-06-24 06:32:10.453  ...  08657345325324        
+7  171 2024-06-24 07:33:14.126  ...    081365707638        
+8  172 2024-06-24 08:03:56.883  ...     08999999999        
+9  173 2024-06-24 10:07:12.081  ...    085761641524        
+
+[10 rows x 12 columns],    id              created_at  ...  status  link_wa
+0   4 2024-06-07 11:16:25.220  ...  active         
+1  29 2024-06-07 01:16:25.220  ...  active         
+2  30 2024-06-07 01:16:25.220  ...  active         
+3  60 2024-06-24 08:48:45.444  ...  active  link.wa
+
+[4 rows x 16 columns]]
+[2024-06-26T21:41:40.907+0000] {logging_mixin.py:188} INFO - ['admin_notifications', 'admins', 'applications', 'articles', 'chatbots', 'comments', 'donation_comments', 'donation_manual_comments', 'donation_manuals', 'donations', 'fundraising_categories', 'fundraisings', 'like_donation_comments', 'like_donation_manual_comments', 'likes_comments', 'organizations', 'testimoni_volunteers', 'transactions', 'user_bookmark_articles', 'user_bookmark_fundraisings', 'user_bookmark_volunteer_vacancies', 'users', 'volunteers']
+[2024-06-26T21:41:44.545+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-06-26T21:41:44.761+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=coba_ds_v5, task_id=extract_data, run_id=scheduled__2024-06-24T00:00:00+00:00, execution_date=20240624T000000, start_date=20240626T213938, end_date=20240626T214144
+[2024-06-26T21:41:44.977+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-06-26T21:41:45.261+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2024-06-26T21:41:45.280+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

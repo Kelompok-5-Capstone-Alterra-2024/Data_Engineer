@@ -1,0 +1,38 @@
+[2024-06-26T21:42:21.909+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-26T21:42:22.023+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: coba_ds_v5.load_file_local scheduled__2024-06-25T00:00:00+00:00 [queued]>
+[2024-06-26T21:42:22.060+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: coba_ds_v5.load_file_local scheduled__2024-06-25T00:00:00+00:00 [queued]>
+[2024-06-26T21:42:22.062+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 4
+[2024-06-26T21:42:22.112+0000] {taskinstance.py:2330} INFO - Executing <Task(LoadFileLocal): load_file_local> on 2024-06-25 00:00:00+00:00
+[2024-06-26T21:42:22.189+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=506) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-06-26T21:42:22.196+0000] {standard_task_runner.py:63} INFO - Started process 509 to run task
+[2024-06-26T21:42:22.213+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'coba_ds_v5', 'load_file_local', 'scheduled__2024-06-25T00:00:00+00:00', '--job-id', '76', '--raw', '--subdir', 'DAGS_FOLDER/etl_dags.py', '--cfg-path', '/tmp/tmpxffjs0lh']
+[2024-06-26T21:42:22.263+0000] {standard_task_runner.py:91} INFO - Job 76: Subtask load_file_local
+[2024-06-26T21:42:22.683+0000] {task_command.py:426} INFO - Running <TaskInstance: coba_ds_v5.load_file_local scheduled__2024-06-25T00:00:00+00:00 [running]> on host 7ecff3f83b62
+[2024-06-26T21:42:22.944+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Kelompok 5 Capstone DE' AIRFLOW_CTX_DAG_ID='coba_ds_v5' AIRFLOW_CTX_TASK_ID='load_file_local' AIRFLOW_CTX_EXECUTION_DATE='2024-06-25T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-06-25T00:00:00+00:00'
+[2024-06-26T21:42:22.947+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-06-26T21:42:23.399+0000] {logging_mixin.py:188} INFO - Data dari tabel 'fact_donation_transaction' telah disimpan ke file 'dags/data_loaded/fact/fact_donation_transaction/20240625_fact_donation_transaction.csv'.
+[2024-06-26T21:42:23.401+0000] {logging_mixin.py:188} INFO - DataFrame 'fact_volunteer_applications' kosong. Tidak disimpan ke file CSV.
+[2024-06-26T21:42:23.402+0000] {logging_mixin.py:188} INFO - DataFrame 'fact_volunteer_testimoni' kosong. Tidak disimpan ke file CSV.
+[2024-06-26T21:42:23.403+0000] {logging_mixin.py:188} INFO - DataFrame 'fact_article_popular' kosong. Tidak disimpan ke file CSV.
+[2024-06-26T21:42:23.404+0000] {logging_mixin.py:188} INFO - DataFrame 'fact_bookmark_fundraising' kosong. Tidak disimpan ke file CSV.
+[2024-06-26T21:42:23.405+0000] {logging_mixin.py:188} INFO - DataFrame 'fact_bookmark_volunteer_vacancies' kosong. Tidak disimpan ke file CSV.
+[2024-06-26T21:42:23.433+0000] {logging_mixin.py:188} INFO - Data dari tabel 'dim_fundraisings' telah disimpan ke file 'dags/data_loaded/dim/dim_fundraisings/20240625_dim_fundraisings.csv'.
+[2024-06-26T21:42:23.435+0000] {logging_mixin.py:188} INFO - DataFrame 'dim_fundraising_categories' kosong. Tidak disimpan ke file CSV.
+[2024-06-26T21:42:23.453+0000] {logging_mixin.py:188} INFO - Data dari tabel 'dim_donation_manual' telah disimpan ke file 'dags/data_loaded/dim/dim_donation_manual/20240625_dim_donation_manual.csv'.
+[2024-06-26T21:42:23.475+0000] {logging_mixin.py:188} INFO - Data dari tabel 'dim_organization' telah disimpan ke file 'dags/data_loaded/dim/dim_organization/20240625_dim_organization.csv'.
+[2024-06-26T21:42:23.501+0000] {logging_mixin.py:188} INFO - Data dari tabel 'dim_user' telah disimpan ke file 'dags/data_loaded/dim/dim_user/20240625_dim_user.csv'.
+[2024-06-26T21:42:23.504+0000] {logging_mixin.py:188} INFO - DataFrame 'dim_volunteer_applictaion' kosong. Tidak disimpan ke file CSV.
+[2024-06-26T21:42:23.545+0000] {logging_mixin.py:188} INFO - Data dari tabel 'dim_volunteer_vacancies' telah disimpan ke file 'dags/data_loaded/dim/dim_volunteer_vacancies/20240625_dim_volunteer_vacancies.csv'.
+[2024-06-26T21:42:23.546+0000] {logging_mixin.py:188} INFO - DataFrame 'dim_testimoni_volunteer' kosong. Tidak disimpan ke file CSV.
+[2024-06-26T21:42:23.562+0000] {logging_mixin.py:188} INFO - Data dari tabel 'dim_article' telah disimpan ke file 'dags/data_loaded/dim/dim_article/20240625_dim_article.csv'.
+[2024-06-26T21:42:23.563+0000] {logging_mixin.py:188} INFO - DataFrame 'dim_bookmark_fundraising' kosong. Tidak disimpan ke file CSV.
+[2024-06-26T21:42:23.564+0000] {logging_mixin.py:188} INFO - DataFrame 'dim_bookmark_volunter_vacancies' kosong. Tidak disimpan ke file CSV.
+[2024-06-26T21:42:23.565+0000] {logging_mixin.py:188} INFO - DataFrame 'dim_bookmark_article' kosong. Tidak disimpan ke file CSV.
+[2024-06-26T21:42:23.566+0000] {logging_mixin.py:188} INFO - DataFrame 'dim_comments' kosong. Tidak disimpan ke file CSV.
+[2024-06-26T21:42:23.566+0000] {logging_mixin.py:188} INFO - DataFrame 'dim_like_comments' kosong. Tidak disimpan ke file CSV.
+[2024-06-26T21:42:23.568+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-06-26T21:42:23.639+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=coba_ds_v5, task_id=load_file_local, run_id=scheduled__2024-06-25T00:00:00+00:00, execution_date=20240625T000000, start_date=20240626T214222, end_date=20240626T214223
+[2024-06-26T21:42:23.698+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-06-26T21:42:23.722+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

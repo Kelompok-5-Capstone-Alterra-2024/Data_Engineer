@@ -1,0 +1,20 @@
+[2024-06-27T03:16:40.182+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-27T03:16:40.871+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: coba_ds_v3.load_gbq scheduled__2024-06-23T00:00:00+00:00 [queued]>
+[2024-06-27T03:16:40.920+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: coba_ds_v3.load_gbq scheduled__2024-06-23T00:00:00+00:00 [queued]>
+[2024-06-27T03:16:40.923+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 4
+[2024-06-27T03:16:40.999+0000] {taskinstance.py:2330} INFO - Executing <Task(LoadGoogleBigQuery): load_gbq> on 2024-06-23 00:00:00+00:00
+[2024-06-27T03:16:41.048+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=99) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-06-27T03:16:41.058+0000] {standard_task_runner.py:63} INFO - Started process 105 to run task
+[2024-06-27T03:16:41.069+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'coba_ds_v3', 'load_gbq', 'scheduled__2024-06-23T00:00:00+00:00', '--job-id', '143', '--raw', '--subdir', 'DAGS_FOLDER/etl_dags.py', '--cfg-path', '/tmp/tmpxy2nda46']
+[2024-06-27T03:16:41.076+0000] {standard_task_runner.py:91} INFO - Job 143: Subtask load_gbq
+[2024-06-27T03:16:52.320+0000] {cli_action_loggers.py:137} WARNING - Failed to log action (psycopg2.OperationalError) could not translate host name "postgres" to address: Temporary failure in name resolution
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+[2024-06-27T03:17:03.253+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 143 for task load_gbq ((psycopg2.OperationalError) could not translate host name "postgres" to address: Temporary failure in name resolution
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8); 105)
+[2024-06-27T03:17:58.078+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2024-06-27T03:17:58.497+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-06-27T03:17:58.510+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
